@@ -10,7 +10,7 @@ module.exports = {
 		const publicPath = express.static(path.join(__dirname, 'public'));
 
 		app.use('/public', publicPath);
-		app.get('/', function(req, res){ res.sendFile(indexPath) });
+		app.get('/dashboard/design-board', function(req, res){ res.sendFile(indexPath) });
 
 		app.listen(3001);
 

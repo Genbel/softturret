@@ -1,0 +1,14 @@
+.widget-border{
+  border: 2px solid black;
+  margin: 2px 0;
+}
+.drop-element {
+  .empty {
+    margin: 2px;
+    border: 2px dotted royalblue;
+  }
+  .filled {
+    margin: 2px;
+    border: 2px solid black;
+  }
+}

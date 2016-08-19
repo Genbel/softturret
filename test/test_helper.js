@@ -29,10 +29,13 @@ $.fn.simulate = function(eventName, value = null) {
 	if(value) {
 		this.val(value);
 	}
-
 	TestUtils.Simulate[eventName](this[0]);
-}
+};
 
 chaiJquery(chai, chai.util, $);
+
+global.navigator = {
+	userAgent: 'node.js'
+};
 
 export { renderComponent, expect };

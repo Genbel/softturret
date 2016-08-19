@@ -8,5 +8,6 @@
     <orderEntry type="library" name="node-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="redux-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="react-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="softturret node_modules" level="project" />
   </component>
 </module>

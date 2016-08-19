@@ -1,0 +1,22 @@
+//Colors
+@import "./colors.scss";
+.side-bar{
+	background-color: $dashboard-color;
+	width: 300px;
+	padding-top: 50px;
+	ul {
+		list-style: none;
+		padding-left: 10px;
+		li {
+			padding: 10px 0px;
+			a {
+				text-decoration: none;
+				font-size: 1em;
+				color: white;
+			}
+			i {
+				padding: 10px;
+			}
+		}
+	}
+}

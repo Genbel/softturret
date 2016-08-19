@@ -8,7 +8,7 @@ module.exports = {
 	entry: [
 		'webpack-dev-server/client?http://localhost:3000', 
 		'webpack/hot/only-dev-server',
-		'./public/index.jsx'
+		'./public/index.js'
 	],
 
 	output: {
@@ -29,7 +29,7 @@ module.exports = {
 			include: path.join(__dirname, 'public')
 		},
 		{
-			test: /\.scss$/,
+			test: [/\.scss$/, /\.css$/],
 			loaders: ['style', 'css', 'sass']
 		}]
 	},
@@ -37,4 +37,4 @@ module.exports = {
 	resolve: {
 		extensions: ['', '.js', '.jsx']
 	}
-}
+};

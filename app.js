@@ -22,6 +22,6 @@ if(process.env.NODE_ENV !== 'production') {
 			return console.log(err);
 		}
 
-		console.log('Listening at http://localhost:3000/')
+		console.log('Listening at http://localhost:3000/');
 	});
 }
