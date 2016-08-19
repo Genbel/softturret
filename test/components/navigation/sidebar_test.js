@@ -1,7 +1,7 @@
 import { renderComponent, expect } from '../../test_helper';
 import Sidebar from '../../../public/components/navigation/sidebar';
 
-describe('NavigationBar', () => {
+describe('NavigationBar (Component)', () => {
 
     let component;
 
@@ -13,7 +13,7 @@ describe('NavigationBar', () => {
     it('has the correct class .side-bar', () => {
         expect(component).to.have.class('side-bar');
     });
-    it('has navigation elements', () => {
+    it('contains navigation elements', () => {
         expect(component.find('ul')).to.exist;
     });
 });

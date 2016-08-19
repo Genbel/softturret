@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Dragelement from './drag_element';
-import Dropelement from './drop_element';
+import Dragelement from './drag_board';
+import Dropelement from './drop_board';
 
 export default class Actionboard extends Component {
 

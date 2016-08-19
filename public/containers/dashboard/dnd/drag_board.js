@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 import _ from 'lodash';
 
-export default class Dragelement extends Component {
+export default class Dragboard extends Component {
 
     renderNonRoomWidgets(){
         const widgets = [
-            { text: "Amin", type: "GS"},
+            { text: "Gara", type: "GS"},
             { text: "Lina", type: "GS"},
             { text: "Aita", type: "GS"},
             { text: "Ama", type: "GS"}
@@ -17,7 +17,7 @@ export default class Dragelement extends Component {
     }
     render() {
         return (
-            <div className="drag-element">
+            <div className="drag-board">
                 {this.renderNonRoomWidgets()}
             </div>
         );

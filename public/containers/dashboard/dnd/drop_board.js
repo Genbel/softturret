@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
 
-export default class Dropelement extends Component {
+export default class Dropboard extends Component {
 
     renderWidgets(widgets) {
         return _.map(widgets, (val, index) => {
@@ -19,7 +19,7 @@ export default class Dropelement extends Component {
 
     render() {
         return (
-          <div className="drop-element clearfix">
+          <div className="drop-board clearfix">
               { this.renderWidgets([8,16,8,16,8,8]) }
           </div>
         );
