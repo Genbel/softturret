@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import _ from 'lodash';
 
-import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
-
 export default class Dropboard extends Component {
 
     renderWidgets(widgets) {

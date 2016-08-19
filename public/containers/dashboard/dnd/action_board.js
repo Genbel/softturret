@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
+
 import Dragelement from './drag_board';
 import Dropelement from './drop_board';
 
