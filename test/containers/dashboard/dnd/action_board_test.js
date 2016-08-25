@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../../../test_helper';
-import Actionboard from '../../../../public/containers/dashboard/dnd/action_board';
+import Actionboard from '../../../../public/containers/dashboard/dnd/actionBoard';
 
 describe('ActionBoard (Container)', () => {
     let container;

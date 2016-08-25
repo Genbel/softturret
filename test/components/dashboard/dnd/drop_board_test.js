@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../../../test_helper';
-import Dropboard from '../../../../public/containers/dashboard/dnd/drop_board';
+import Dropboard from '../../../../public/containers/dashboard/dnd/dropBoard';
 
 describe('Drop Board (Container)', () => {
     let container;

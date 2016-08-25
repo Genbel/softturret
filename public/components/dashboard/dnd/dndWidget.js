@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Actionboard from '../../../containers/dashboard/dnd/action_board';
+import Actionboard from '../../../containers/dashboard/dnd/actionBoard';
 
 export default class Dndwidget extends Component {
 

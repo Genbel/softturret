@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../../../test_helper';
-import Dragboard from '../../../../public/containers/dashboard/dnd/drag_board';
+import Dragboard from '../../../../public/containers/dashboard/dnd/dragBoard';
 
 describe('Drag Board (Container)', () => {
     let container;

@@ -6,12 +6,12 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './components/app';
 import Dashboard from './components/dashboard/board';
-import Dndwidget from './components/dashboard/dnd/dnd_widget';
-import Widgetboard from './containers/dashboard/widget_board';
-import Buttonboard from './containers/dashboard/button_board';
-import Userboard from './containers/dashboard/user_board';
+import Dndwidget from './components/dashboard/dnd/dndWidget';
+import Widgetboard from './containers/dashboard/widgetBoard';
+import Buttonboard from './containers/dashboard/buttonBoard';
+import Userboard from './containers/dashboard/userBoard';
 
-import reducers from './reducers/reducer.index';
+import reducers from './reducers/reducerIndex.js';
 
 // Style loaders
 import bootstrap from '../assets/stylesheets/bootstrap.css';

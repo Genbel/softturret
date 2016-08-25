@@ -1,5 +1,5 @@
 import { renderComponent, expect } from '../../../test_helper';
-import Dndwidget from '../../../../public/components/dashboard/dnd/dnd_widget';
+import Dndwidget from '../../../../public/components/dashboard/dnd/dndWidget';
 
 describe('DnD Widget (Component)', () => {
 
