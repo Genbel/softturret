@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Actionboard from '../../../containers/dashboard/dnd/actionBoard';
+import RoomPagination from 'containers/dashboard/dnd/pagination';
 
 export default class Dndwidget extends Component {
 
@@ -13,6 +14,9 @@ export default class Dndwidget extends Component {
 						</div>
 						<div className="col-lg-12">
 							<Actionboard />
+						</div>
+						<div className="col-lg-offset-8 col-lg-4">
+							<RoomPagination />
 						</div>
 					</div>
 				</div>

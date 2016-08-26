@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { DropTarget } from 'react-dnd';
+import { widgetAttachedToTheRoom } from 'actions/dashboard/widgetActions';
 import _ from 'lodash';
 
 function collect(connect, monitor) {
@@ -11,17 +14,10 @@ function collect(connect, monitor) {
 }
 const widgetTarget = {
     drop(props, monitor) {
-        //props.onDrop(monitor.getItem());
-        console.log(monitor.getItem());
+        props.widgetAttachedToTheRoom(monitor.getItem());
     },
     canDrop(props, monitor) {
-        if(props.type == monitor.getItem().type && !props.attached){
-            console.log('canDrop');
-            return true;
-        } else {
-            console.log('cannot drop');
-            return false;
-        }
+        return !!(props.type == monitor.getItem().type && !props.attached);
     }
 };
 class Dropboard extends Component {
@@ -41,4 +37,11 @@ class Dropboard extends Component {
         );
     }
 }
-export default DropTarget(props => props.type, widgetTarget, collect)(Dropboard);
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators( { widgetAttachedToTheRoom }, dispatch)
+};
+// Add the DropTarget to our component
+Dropboard = DropTarget(props => props.type, widgetTarget, collect)(Dropboard);
+// Connect with the redux store our component
+export default connect(null, mapDispatchToProps)(Dropboard);

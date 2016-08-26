@@ -1,3 +1,5 @@
 // Actions related with the widgets
 export const FETCH_WIDGETS_REQUEST = 'FETCH_WIDGETS_REQUEST';
 export const FETCH_WIDGETS_SUCCESS = 'FETCH_WIDGETS_SUCCESS';
+export const WIDGET_ATTACHED = 'WIDGET_ATTECHED';
+export const ROOM_CHANGED = 'ROOM_CHANGED';

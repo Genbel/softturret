@@ -1,4 +1,4 @@
-import { FETCH_WIDGETS_SUCCESS } from 'actions/dashboard/dashboardTypes';
+import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED } from 'actions/dashboard/dashboardTypes';
 import _ from 'lodash';
 
 // Widget reducer
@@ -6,6 +6,8 @@ const widgetReducer = () => {
     const widgets = (state = {}, action) => {
         switch (action.type){
             case FETCH_WIDGETS_SUCCESS:
+                return action.response.widgets;
+            case WIDGET_ATTACHED:
                 return action.response.widgets;
             default:
                 return state;

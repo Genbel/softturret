@@ -1,26 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import ConfigureStore from './createStore';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-
+// App Components
 import App from './components/app';
 import Dashboard from './components/dashboard/board';
 import Dndwidget from './components/dashboard/dnd/dndWidget';
 import Widgetboard from './containers/dashboard/widgetBoard';
 import Buttonboard from './containers/dashboard/buttonBoard';
 import Userboard from './containers/dashboard/userBoard';
-
-import reducers from './reducers/reducerIndex.js';
-
 // Style loaders
 import bootstrap from '../assets/stylesheets/bootstrap.css';
 import style from '../assets/stylesheets/global.scss';
-
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+// Prepare our Redux Store
+const store = ConfigureStore();
 
 ReactDOM.render( 
-	<Provider store={ createStoreWithMiddleware(reducers) }>
+	<Provider store={ store }>
 		<Router history={browserHistory}>
 			<Route path="/" component={App}>
 				<Route path="dashboard" component={Dashboard}>
@@ -32,4 +29,5 @@ ReactDOM.render(
 			</Route>				
 		</Router>
 	</Provider>
-	,document.getElementById('root'));
+	,document.getElementById('root')
+);

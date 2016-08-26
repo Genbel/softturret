@@ -31,6 +31,8 @@ module.exports = {
 	resolve: {
 		root: path.resolve(__dirname),
 		alias: {
+			components: 'public/components',
+			containers: 'public/containers',
 			actions: 'public/actions',
 			assets: 'assets',
 			reducers: 'public/reducers',
