@@ -17,9 +17,6 @@ class Actionboard extends Component {
     componentDidMount(){
         this.props.fetchWidgets();
     }
-    componentDidMount(){
-        this.props.fetchWidgets();
-    }
 
     static contextTypes = {
         router: React.PropTypes.object
@@ -46,7 +43,9 @@ class Actionboard extends Component {
                             { _.map(disconnectedWidgets, (widget, index) => {
                                 return <Dragelement type={widget.type}
                                              key={index}
-                                             text={widget.text} />
+                                             text={widget.text}
+                                             id ={widget.id}
+                                />
                             })}
                         </div>
                     </div>

@@ -11,8 +11,8 @@ function collect(connect, monitor) {
 const widgetSource = {
     beginDrag(props) {
         return {
-            name: props.text,
-            attached: props.type
+            id: props.id,
+            type: props.type
         }
     },
     canDrag(props){
@@ -23,11 +23,12 @@ const widgetSource = {
 class Dragboard extends Component {
 
     render() {
-        const { type, text, connectDragSource } = this.props;
+        const { type, text, connectDragSource, isDragging } = this.props;
+        const opacity = isDragging? 0.4 : 1;
         return connectDragSource(
-            <div className="col-lg-12 widget-border">{text} ({type})</div>
+            <div className="col-lg-12 widget-border" style={{opacity}}>{text} ({type})</div>
         );
     }
 }
 
-export default DragSource('GS', widgetSource, collect)(Dragboard);
+export default DragSource(props => props.type, widgetSource, collect)(Dragboard);

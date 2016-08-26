@@ -11,4 +11,17 @@
     margin: 2px;
     border: 2px solid black;
   }
+  .allowed {
+    border: 2px solid green;
+    background-color: #a3d7a3;
+  }
+  .forbidden {
+    border: 2px solid red;
+    background-color: #e4b9b9;
+  }
+  @media (min-width: 992px){
+    .col-lg-3 {
+      width: 23%;
+    }
+  }
 }

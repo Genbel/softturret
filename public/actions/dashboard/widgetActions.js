@@ -11,30 +11,34 @@ const getWidgets = () => ({
             type: 'GS',
             position: 1,
             text: 'Lina Familly',
-            attached: true
+            attached: true,
+            id: 1
         },
         2: {
             type: 'GS',
             position: null,
             text: 'Iraolatarrak',
-            attached: false
+            attached: false,
+            id: 2
         },
         3: {
             type: 'GS',
             position: null,
             text: 'Genbeltzutarrak',
-            attached: false
+            attached: false,
+            id: 3
         },
         4: {
             type: 'GS',
-            position: 7,
+            position: 3,
             text: 'Lagunak',
-            attached: true
+            attached: true,
+            id: 4
         }
     },
     rooms: {
         'asdfa': {
-            type: ['GS', 'GS', 'GM', 'GM', 'GM', 'GS', 'GS', 'GS'],
+            type: ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'],
             text: 'Surrounding People',
             widgets: [1,4]
         }
