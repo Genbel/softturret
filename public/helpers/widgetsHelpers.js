@@ -1,5 +1,9 @@
 import _ from 'lodash';
-
+/**
+ * @param {Array} widgets - Widgets which contains a specific room
+ * @param {Array} roomType - The structure of our room. We have identified the widgets types
+ * @returns {Array}
+ */
 export const fillWidgetsInTheBoard = (widgets, roomType) => {
     const roomWidgets = [];
     _.forEach(roomType, (type, number) => {

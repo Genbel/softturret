@@ -50,6 +50,13 @@ export const getTotalRooms = (state) => _.size(state.pagination) - 1;
 const getRoomType = (state, id) => state[id].type;
 
 //************* Reducer local functions *************//
+/**
+ * Get the room widgets sort by widgets position.
+ * @param {Object} rooms - All the rooms of the user
+ * @param {Object} widgets - All the widgets of the user
+ * @param {number} page - Actual state of the page
+ * @returns {Array} => attached:bool, text:String, type:String
+ */
 const _getRoomWidgets = ({rooms, widgets}, page) => {
     const roomId = rooms.pagination[page];
     const roomIds = getRoomWidgetsById(rooms.byId, roomId);
@@ -63,16 +70,32 @@ const _getRoomWidgets = ({rooms, widgets}, page) => {
     }
     return [];
 };
-const getRoomWidgetsById = (state, id) => {
-    return !state.hasOwnProperty(id)?
+/**
+ * Get widgets that belongs to the room.
+ * @param {number} state - All the rooms. byId reducer
+ * @param {id} roomId
+ * @return {Array} widgetId - room widgets sort by Id
+ */
+const getRoomWidgetsById = (state, roomId) => {
+    return !state.hasOwnProperty(roomId)?
         undefined:
-        state[id].widgets;
+        state[roomId].widgets;
 };
+/**
+ * Get the actual pagination number of the room. With that pagination number, we will get from pagination reducer the room id.
+ * @param {Array} rooms - All the rooms sort by roomId
+ * @param {number} state - Actual pagination number
+ * @returns {number} pagination number
+ */
 const findActualRoom = (rooms, state) => {
-    const keys = getRoomsKey(rooms);
+    const keys = createRoomPagination(rooms);
     return keys === null ? {} : state === null? 0 : state;
 };
-const createRoomPagination = (rooms) => getRoomsKey(rooms);
-const getRoomsKey = (rooms) =>  _.isEmpty(rooms) ? null : _.keys(rooms);
+/**
+ * Create an array with all the rooms id
+ * @param {Object} rooms - all the room objects after the response
+ * @returns {Array} room ids
+ */
+const createRoomPagination = (rooms) => _.isEmpty(rooms) ? null : _.keys(rooms);
 
 
