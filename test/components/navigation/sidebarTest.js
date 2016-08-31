@@ -1,13 +1,13 @@
 import { renderComponent, expect } from '../../test_helper';
 import Sidebar from '../../../public/components/navigation/sidebar';
 
-describe('NavigationBar (Component)', () => {
+describe('#Nav: NavigationBar (Component)', () => {
 
     let component;
 
     beforeEach(() => {
         const props = { items: [ { text: "Drag & Drop", icon: "fa fa-th", path: "/design-board" }]};
-        component = renderComponent(Sidebar, props, null);
+        component = renderComponent(Sidebar, props);
     });
 
     it('has the correct class .side-bar', () => {

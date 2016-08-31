@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --require ignore-styles --recursive ./test",
+    "test": "NODE_PATH=./public mocha --compilers js:babel-core/register --require ./test/test_helper.js --require ignore-styles --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [
@@ -26,11 +26,14 @@
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
+    "chai-spies": "^0.7.1",
     "css-loader": "^0.23.1",
+    "expect": "^1.20.2",
     "ignore-styles": "^4.0.0",
     "jquery": "^3.1.0",
     "jsdom": "^9.4.1",
     "mocha": "^3.0.1",
+    "morgan": "^1.7.0",
     "node-sass": "^3.8.0",
     "react-addons-test-utils": "^15.3.0",
     "react-hot-loader": "^1.3.0",
@@ -40,8 +43,13 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "http": "0.0.0",
+    "https": "^1.0.0",
     "lodash": "^4.15.0",
+    "method-override": "^2.3.6",
+    "path": "^0.12.7",
     "react": "^15.3.0",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",

@@ -1,7 +1,13 @@
 var server = require('./src/server');
-var app = server.app();
+server.app();
 
 if(process.env.NODE_ENV !== 'production') {
+
+	var configParams = require('./src/config/config');
+
+	var webpackDomain = configParams.webpackServer.domain;
+	var webpackPort = configParams.webpackServer.port;
+	var backendServerPort = configParams.enableHTTPS? configParams.server.httpsPort : configParams.server.httpPort;
 
 	var webpack = require('webpack');
 	var WebpackDevServer = require('webpack-dev-server');
@@ -15,13 +21,12 @@ if(process.env.NODE_ENV !== 'production') {
 		    colors: true
 		},
 		proxy: {
-			'*': 'http://localhost:3001'
+			'*': 'http://' + configParams.server.domain + ':' + backendServerPort
 		}
-	}).listen(3000, 'localhost', function(err, result) {
+	}).listen(webpackPort, webpackDomain, function(err, result) {
 		if (err) {
 			return console.log(err);
 		}
-
-		console.log('Listening at http://localhost:3000/');
+		console.log('Listening webpack server at http://' + webpackDomain + ':' + webpackPort);
 	});
 }

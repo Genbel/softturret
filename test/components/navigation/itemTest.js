@@ -1,13 +1,14 @@
 import { renderComponent, expect } from '../../test_helper';
-import Sidebar from '../../../public/components/navigation/item';
+import Item from '../../../public/components/navigation/item';
 
-describe('NavigationItem (Component)', () => {
+describe('#Nav: NavigationItem (Component)', () => {
 
     let component;
 
     beforeEach(() => {
         const props = { text: "Drag & Drop", icon: "fa fa-th", path: "/design-board" };
-        component = renderComponent(Sidebar, props, null);
+        // If we set the last argument as null, it throws an error because the state can be an object or undefined
+        component = renderComponent(Item, props, undefined);
     });
 
     it('has the correct class .item', () => {

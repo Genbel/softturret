@@ -1,7 +1,7 @@
 import { renderComponent, expect } from '../../../test_helper';
 import Actionboard from '../../../../public/containers/dashboard/dnd/actionBoard';
 
-describe('ActionBoard (Container)', () => {
+describe('#dnd: ActionBoard (Container)', () => {
     let container;
 
     beforeEach(() => {

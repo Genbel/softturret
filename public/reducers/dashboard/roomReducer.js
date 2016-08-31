@@ -25,7 +25,7 @@ const roomReducer = () => {
                 return state;
         }
     };
-    const pagination = (state = {}, action) => {
+    const pagination = (state = [], action) => {
         switch (action.type){
             case FETCH_WIDGETS_SUCCESS:
                 return createRoomPagination(action.response.rooms);

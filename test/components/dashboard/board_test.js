@@ -1,7 +1,7 @@
 import { renderComponent, expect } from '../../test_helper';
 import Dashboard from '../../../public/components/dashboard/board';
 
-describe('Dashboard (Component)', () => {
+describe('#dashboard: Dashboard (Component)', () => {
     let component;
 
     beforeEach(() => {

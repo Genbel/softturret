@@ -26,7 +26,7 @@ class Dragboard extends Component {
         const { type, text, connectDragSource, isDragging } = this.props;
         const opacity = isDragging? 0.4 : 1;
         return connectDragSource(
-            <div className="col-lg-12 widget-border" style={{opacity}}>{text} ({type})</div>
+            <div className="col-lg-12 widget-border drag-element" style={{opacity}}>{text} ({type})</div>
         );
     }
 }

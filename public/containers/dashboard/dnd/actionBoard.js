@@ -6,10 +6,10 @@ import { bindActionCreators } from 'redux';
 import { fetchWidgets } from 'actions/dashboard/widgetActions';
 import { getRoomWidgets } from 'reducers/dashboard/roomReducer';
 import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
-import style from 'assets/stylesheets/dashboard/dnd.scss';
+import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
 import _ from 'lodash';
 
-import Dragelement from './dragBoard';
+import Dragelement from './../../../components/dashboard/dnd/dragBoard';
 import Dropelement from './dropBoard';
 
 class Actionboard extends Component {

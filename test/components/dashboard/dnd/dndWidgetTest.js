@@ -1,7 +1,7 @@
 import { renderComponent, expect } from '../../../test_helper';
-import Dndwidget from '../../../../public/components/dashboard/dnd/dndWidget';
+import Dndwidget from 'components/dashboard/dnd/dndWidget';
 
-describe('DnD Widget (Component)', () => {
+describe('#dnd: DnD Widget (Component). Main Component of the DnD', () => {
 
     let component;
 
@@ -15,7 +15,7 @@ describe('DnD Widget (Component)', () => {
 
     it('has the description headline', () => {
         expect(component.find('.headline')).to.exist;
-    })
+    });
 
     it('contains ActionBar container', () => {
         expect(component.find('.main-dnd')).to.exist;

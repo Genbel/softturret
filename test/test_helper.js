@@ -3,6 +3,7 @@ import _$ from 'jquery';
 import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import chai, { expect } from 'chai';
+import spies from 'chai-spies';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -32,10 +33,11 @@ $.fn.simulate = function(eventName, value = null) {
 	TestUtils.Simulate[eventName](this[0]);
 };
 
+chai.use(spies);
 chaiJquery(chai, chai.util, $);
 
 global.navigator = {
 	userAgent: 'node.js'
 };
 
-export { renderComponent, expect };
+export { renderComponent, expect, chai };
