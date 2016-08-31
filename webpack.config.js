@@ -35,7 +35,8 @@ module.exports = {
 			containers: 'public/containers',
 			actions: 'public/actions',
 			reducers: 'public/reducers',
-			helpers: 'public/helpers'
+			helpers: 'public/helpers',
+			config: 'public/config'
 		},
 		extensions: ['', '.js', '.jsx']
 	}

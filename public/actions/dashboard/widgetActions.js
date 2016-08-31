@@ -1,17 +1,15 @@
-import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED, FETCH_WIDGETS_REQUEST } from './dashboardTypes';
+import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED, FETCH_WIDGETS_REQUEST, FETCH_WIDGETS_FAILURE } from './dashboardTypes';
 import axios from 'axios';
-
-const APIPath = 'http://192.168.0.2:3001/api/dataservice';
+import {APIPath} from 'config/staticPaths';
 
 export const fetchWidgets = () => (dispatch, getState) => {
-    dispatch({ type: FETCH_WIDGETS_REQUEST, response: 'Hello' });
-    axios.post(`${APIPath}/fetch_widgets`)
-        .then((response) => {
-            console.log(JSON.parse(response.data));
-            dispatch({ type: FETCH_WIDGETS_SUCCESS, response: JSON.parse(response.data) })
+    dispatch({ type: FETCH_WIDGETS_REQUEST });
+    return axios.post(`${APIPath}/fetch_widgets`)
+        .then(({data}) => {
+            dispatch({ type: FETCH_WIDGETS_SUCCESS, response: data });
         })
-        .catch((error) => {
-            console.log('error fetching widgets data for the user');
+        .catch(({response}) => {
+            dispatch({ type: FETCH_WIDGETS_FAILURE, response: response.data.message });
         });
 };
 

@@ -1,6 +1,6 @@
+import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED, ROOM_CHANGED } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import { getWidget } from 'reducers/dashboard/widgetReducer';
-import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED, ROOM_CHANGED } from 'actions/dashboard/dashboardTypes';
 import _ from 'lodash';
 import { fillWidgetsInTheBoard } from 'helpers/widgetsHelpers';
 
@@ -63,7 +63,7 @@ const _getRoomWidgets = ({rooms, widgets}, page) => {
     if(roomIds !== undefined){
         const connectedWidgets = [];
         _.forEach(roomIds, (widgetId) => {
-            const rawWidget = getWidget(widgets, widgetId);
+            const rawWidget = getWidget(widgets.byId, widgetId);
             connectedWidgets[rawWidget.position] = rawWidget;
         });
         return fillWidgetsInTheBoard(connectedWidgets, getRoomType(rooms.byId, roomId));

@@ -51,5 +51,8 @@ exports.fetchWidgets = function(req, res){
         }
     };
 
-    return res.status(200).json(JSON.stringify(data));
+    return res.status(200).json(data);
+    /*return res.status(500).json({
+        message: 'User is not authenticated'
+    });*/
 };
