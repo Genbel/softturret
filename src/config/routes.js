@@ -8,7 +8,7 @@ var path = require('path'),
 var routes = [
     // WARNING: IN SOME REQUEST WE NEED A requiresLogin function as middleware
     {
-        path: '/dashboard',
+        path: '/dashboard/design-board',
         httpMethod: 'GET',
         middleware: [renderIndex]
     },{

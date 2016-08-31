@@ -4,6 +4,7 @@ var express = require('express'),
     https = require('https'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
+    cors = require('cors'),
     morgan = require('morgan');
 var serverConfig = require('../config').server;
 var routes = require('../routes');
@@ -29,14 +30,17 @@ module.exports = {
         app.use(bodyParser.json());
         // Let has to add PUT and DELETE http calls
         app.use(methodOverride());
-
+        var port = serverConfig.enableHTTPS? serverConfig.httpsPort : serverConfig.httpPort;
+        // CORS: To allow to request data for another domain and port. In that case we need to let
+        // to access from the webpack server. Maybe in production we do not need that.
+        var corsOptions = {origin: 'http://' + serverConfig.domain + ':3000' };
+        app.use(cors(corsOptions));
         var publicPath = express.static(path.join(__dirname, 'public'));
 
         app.use('/public', publicPath);
         // Set up application routes for API request
         routes(app);
 
-        var port = serverConfig.enableHTTPS? serverConfig.httpsPort : serverConfig.httpPort;
         server.listen(port, serverConfig.domain, function(){
             console.log('Express server listening at ' + serverConfig.schema + '://' + serverConfig.domain + ':' + port + ' in ' + process.env.NODE_ENV + ' mode');
         });
