@@ -6,11 +6,11 @@ import { fillWidgetsInTheBoard } from 'helpers/widgetsHelpers';
 
 // Room reducer
 const roomReducer = () => {
-    const byId = (state = {}, action) => {
-        switch (action.type){
+    const byId = (state = {}, { type, response }) => {
+        switch (type){
             case FETCH_WIDGETS_SUCCESS:
             case WIDGET_ATTACHED:
-                return action.response.rooms;
+                return response.rooms;
             default:
                 return state;
         }
@@ -45,9 +45,11 @@ export default roomReducer;
 export const getRoomWidgets = (dashboard) => _getRoomWidgets(dashboard, dashboard.rooms.actual);
 export const getActualRoom = (state) => state.actual;
 export const getTotalRooms = (state) => _.size(state.pagination) - 1;
+export const getActualRoomName = (state) => _getActualRoomName(state.rooms.actual, state.rooms.pagination, state.rooms.byId);
 
 //************* Reducer getter functions *************//
 const getRoomType = (state, id) => state[id].type;
+const _getActualRoomName = (pageNo, paginationElements, rooms) => !_.isEmpty(rooms)? rooms[paginationElements[pageNo]].text : null;
 
 //************* Reducer local functions *************//
 /**
@@ -55,7 +57,7 @@ const getRoomType = (state, id) => state[id].type;
  * @param {Object} rooms - All the rooms of the user
  * @param {Object} widgets - All the widgets of the user
  * @param {number} page - Actual state of the page
- * @returns {Array} => attached:bool, text:String, type:String
+ * @returns {Array} => attached:bool, text:String, type:String, position: number, id: string
  */
 const _getRoomWidgets = ({rooms, widgets}, page) => {
     const roomId = rooms.pagination[page];

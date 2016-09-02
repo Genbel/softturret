@@ -7,7 +7,7 @@ import spies from 'chai-spies';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducers from '../public/reducers/reducerIndex.js';
+import store from './configureTestStore';
 import chaiJquery from 'chai-jquery';
 
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
@@ -18,7 +18,7 @@ const $ = _$(global.window);
 function renderComponent(ComponentClass, props, state){
 
 	const componentInstance = TestUtils.renderIntoDocument(
-		<Provider store={ createStore(reducers, state) }>
+		<Provider store={ store(state) }>
 			<ComponentClass { ...props } />
 		</Provider>
 	);

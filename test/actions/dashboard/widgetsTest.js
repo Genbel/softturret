@@ -6,21 +6,22 @@ import thunk from 'redux-thunk';
 import expect from 'expect';
 import { APIPath } from 'config/staticPaths';
 import { FETCH_WIDGETS_SUCCESS, FETCH_WIDGETS_REQUEST } from 'actions/dashboard/dashboardTypes';
+import { widgetsFetchedData } from '../../mockElements/dashboard/actions';
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
-describe('Widgets dashboard async actions', () => {
+describe('#dashboard-dnd-actions: Widgets actions (ActionCreator)', () => {
    afterEach(() => {
       nock.cleanAll()
    });
-   it('returns a successful fethWidgets mocked respose', () => {
+   it('creates FETCH_WIDGETS_SUCCESS when fetching widgets has been done. ASYNC', () => {
       nock(APIPath)
          .post('/fetch_widgets')
-         .reply(200, fetched_data );
+         .reply(200, widgetsFetchedData() );
       const expectedActions = [
          { type: FETCH_WIDGETS_REQUEST},
-         { type: FETCH_WIDGETS_SUCCESS, response: fetched_data }
+         { type: FETCH_WIDGETS_SUCCESS, response: widgetsFetchedData() }
       ];
       const store = mockStore({ dashboard: {} });
 
@@ -30,22 +31,3 @@ describe('Widgets dashboard async actions', () => {
          });
    });
 });
-
-const fetched_data = {
-   widgets: {
-      1: {
-         type: 'GS',
-         position: 1,
-         text: 'Lina Familly',
-         attached: true,
-         id: 1
-      }
-   },
-   rooms: {
-      'asdf2kf0asdfnasdf90': {
-         type: ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'],
-         text: 'Surrounding People',
-         widgets: [1]
-      }
-   }
-};

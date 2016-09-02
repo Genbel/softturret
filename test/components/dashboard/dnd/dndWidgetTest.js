@@ -1,7 +1,7 @@
 import { renderComponent, expect } from '../../../test_helper';
 import Dndwidget from 'components/dashboard/dnd/dndWidget';
 
-describe('#dnd: DnD Widget (Component). Main Component of the DnD', () => {
+describe('#dashboard-dnd: The board of DnD (Component, dndWidget.js).', () => {
 
     let component;
 
@@ -17,7 +17,12 @@ describe('#dnd: DnD Widget (Component). Main Component of the DnD', () => {
         expect(component.find('.headline')).to.exist;
     });
 
-    it('contains ActionBar container', () => {
-        expect(component.find('.main-dnd')).to.exist;
+    describe('-> renders the Component children', () => {
+        it('contains <ActionBoard> container', () => {
+            expect(component.find('.main-dnd')).to.exist;
+        });
+        it('contains <RoomPagination> container', () => {
+            expect(component.find('.room-pagination')).to.exist;
+        });
     });
 });

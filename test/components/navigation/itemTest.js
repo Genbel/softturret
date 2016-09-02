@@ -1,7 +1,7 @@
 import { renderComponent, expect } from '../../test_helper';
 import Item from '../../../public/components/navigation/item';
 
-describe('#Nav: NavigationItem (Component)', () => {
+describe('#dashboard-nav: NavigationItem (Component, item.js)', () => {
 
     let component;
 
@@ -15,8 +15,12 @@ describe('#Nav: NavigationItem (Component)', () => {
         expect(component).to.have.class('item');
     });
 
-    it('contains a Link component with the correct text', () => {
+    it('contains a <Link> component with the correct text', () => {
         expect(component.find('a')).to.contain('Drag & Drop');
+    });
+
+    it('contains a correct icon the text', () => {
+        expect(component.find('.fa.fa-th')).to.exist;
     });
 
     it('contains a Link component with the correct href. NOT WORKING. It has to check the href attr to pass the test', () => {

@@ -26,7 +26,7 @@ class RoomPagination extends Component {
               <div className="col-lg-5">
                   { prevButton }
               </div>
-              <div className="col-lg-2">
+              <div className="col-lg-2" id="pagination-text">
                   <p>{ actualRoom + 1 }/{ totalRooms + 1 }</p>
               </div>
               <div className="col-lg-5">

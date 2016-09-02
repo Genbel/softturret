@@ -3,14 +3,14 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchWidgets } from 'actions/dashboard/widgetActions';
-import { getRoomWidgets } from 'reducers/dashboard/roomReducer';
+import { fetchWidgets, widgetAttachedToTheRoom } from 'actions/dashboard/widgetActions';
+import { getRoomWidgets, getActualRoomName } from 'reducers/dashboard/roomReducer';
 import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
 import _ from 'lodash';
 
 import Dragelement from './../../../components/dashboard/dnd/dragBoard';
-import Dropelement from './dropBoard';
+import Dropelement from './../../../components/dashboard/dnd/dropBoard';
 
 class Actionboard extends Component {
 
@@ -23,10 +23,10 @@ class Actionboard extends Component {
     };
 
     render() {
-        const { disconnectedWidgets, attachedWidgets} = this.props;
+        const { disconnectedWidgets, attachedWidgets, widgetAttachedToTheRoom, roomName } = this.props;
         return (
             <div className="main-dnd">
-                <span>Name of the room</span>
+                <span>{roomName}</span>
                 <div className="col-lg-12 clearfix">
                     <div className="col-lg-9 clearfix">
                         <div className="drop-board clearfix">
@@ -34,7 +34,8 @@ class Actionboard extends Component {
                                 return <Dropelement type={widget.type}
                                                     key={index}
                                                     text={widget.text}
-                                                    attached={widget.attached}/>
+                                                    attached={widget.attached}
+                                                    widgetAttachedToTheRoom={widgetAttachedToTheRoom}/>
                             })}
                         </div>
                     </div>
@@ -56,12 +57,13 @@ class Actionboard extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchWidgets}, dispatch);
+    return bindActionCreators({ fetchWidgets, widgetAttachedToTheRoom }, dispatch);
 }
 const mapStateToProps = (state) => {
     return {
         attachedWidgets: getRoomWidgets(state.dashboard),
-        disconnectedWidgets: getDisconnectedWidgets(state.dashboard.widgets)
+        disconnectedWidgets: getDisconnectedWidgets(state.dashboard.widgets),
+        roomName: getActualRoomName(state.dashboard)
     }
 };
 

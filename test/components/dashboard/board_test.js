@@ -1,7 +1,7 @@
 import { renderComponent, expect } from '../../test_helper';
 import Dashboard from '../../../public/components/dashboard/board';
 
-describe('#dashboard: Dashboard (Component)', () => {
+describe('#dashboard: Dashboard (Component, board.js)', () => {
     let component;
 
     beforeEach(() => {
@@ -12,11 +12,12 @@ describe('#dashboard: Dashboard (Component)', () => {
        expect(component).to.have.class('dashboard');
     });
 
-   it('contains a sidebar component', () => {
-       expect(component.find('.side-bar')).to.exist;
-   });
-
-    it('contains a board component. NOT WORKING. It has to check if it has children', () => {
-        expect(component.find('.board')).to.exist;
+    describe('-> renders the component children', () => {
+        it('contains a <Sidebar> component', () => {
+            expect(component.find('.side-bar')).to.exist;
+        });
+        it('contains a board component. NOT WORKING. It has to check if it has children', () => {
+            expect(component.find('.board')).to.exist;
+        });
     });
 });
