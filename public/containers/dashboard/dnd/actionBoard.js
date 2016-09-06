@@ -14,14 +14,6 @@ import Dropelement from './../../../components/dashboard/dnd/dropBoard';
 
 class Actionboard extends Component {
 
-    componentDidMount(){
-        this.props.fetchWidgets();
-    }
-
-    static contextTypes = {
-        router: React.PropTypes.object
-    };
-
     render() {
         const { disconnectedWidgets, attachedWidgets, widgetAttachedToTheRoom, roomName } = this.props;
         return (
@@ -55,6 +47,10 @@ class Actionboard extends Component {
         );
     }
 }
+
+Actionboard.contextTypes = {
+    router: React.PropTypes.object
+};
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ fetchWidgets, widgetAttachedToTheRoom }, dispatch);

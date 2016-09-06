@@ -7,7 +7,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/app';
 import Dashboard from './components/dashboard/board';
 import Dealerboard from './components/dealerboard/dealerboard';
-import Dndwidget from './components/dashboard/dnd/dndWidget';
+import Dndwidget from './containers/dashboard/dnd/dndWidget';
 import Widgetboard from './containers/dashboard/widgetBoard';
 import Buttonboard from './containers/dashboard/buttonBoard';
 import Userboard from './containers/dashboard/userBoard';

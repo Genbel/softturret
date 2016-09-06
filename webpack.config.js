@@ -18,15 +18,18 @@ module.exports = {
 	],
 	module: {
 		loaders: [
-		{
-			test:[/\.jsx$/, /\.js$/],
-			loaders:['react-hot', 'babel'],
-			include: path.join(__dirname, 'public')
-		},
-		{
-			test: [/\.scss$/, /\.css$/],
-			loaders: ['style', 'css', 'sass']
-		}]
+			{
+				test:[/\.jsx$/, /\.js$/],
+				loaders:['react-hot', 'babel'],
+				include: path.join(__dirname, 'public')
+			},{
+				test: [/\.scss$/, /\.css$/],
+				loaders: ['style', 'css', 'sass']
+			},{
+				test: [/\.gif$/],
+				loaders:['file'],
+				include: path.join(__dirname, 'assets')
+			}]
 	},
 	resolve: {
 		root: path.resolve(__dirname),
@@ -36,7 +39,8 @@ module.exports = {
 			actions: 'public/actions',
 			reducers: 'public/reducers',
 			helpers: 'public/helpers',
-			config: 'public/config'
+			config: 'public/config',
+			assets: 'assets'
 		},
 		extensions: ['', '.js', '.jsx']
 	}

@@ -15,15 +15,22 @@ global.window = global.document.defaultView;
 
 const $ = _$(global.window);
 
-function renderComponent(ComponentClass, props, state){
-
-	const componentInstance = TestUtils.renderIntoDocument(
-		<Provider store={ store(state) }>
-			<ComponentClass { ...props } />
-		</Provider>
-	);
-
-	return $(ReactDOM.findDOMNode(componentInstance));
+function renderComponent(ComponentClass, props, state, rawComponent = false){
+	if(rawComponent){
+		const componentInstance_II = TestUtils.renderIntoDocument(
+			<Provider store={ store(state) }>
+				<ComponentClass { ...props } />
+			</Provider>
+		);
+		return {DOM: $(ReactDOM.findDOMNode(componentInstance_II)), rawComponent: componentInstance_II };
+	} else {
+		const componentInstance = TestUtils.renderIntoDocument(
+			<Provider store={ store(state) }>
+				<ComponentClass { ...props } />
+			</Provider>
+		);
+		return $(ReactDOM.findDOMNode(componentInstance));
+	}
 }
 
 $.fn.simulate = function(eventName, value = null) {
