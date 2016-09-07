@@ -30,9 +30,9 @@ class Dropboard extends Component {
         }
 
         return connectDropTarget(
-              <div className={className}>
-                  {text}
-              </div>
+            <div className={className}>
+                {text}
+            </div>
         );
     }
 }

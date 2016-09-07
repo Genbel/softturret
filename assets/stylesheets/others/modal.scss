@@ -1,0 +1,21 @@
+body .modal {
+  position: fixed;
+  background: rgba(0,0,0,.5);
+  overflow: auto;
+  display: block;
+  .modal-component {
+    position: fixed;
+    top: 100px;
+    left: 200px;
+    bottom: 200px;
+    right: 200px;
+    overflow: auto;
+    border-radius: 6px;
+    outline: none;
+    padding: 20px;
+    display: block;
+    background-color: white;
+    border: 2px solid black;
+  }
+}
+

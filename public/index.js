@@ -14,8 +14,8 @@ import Userboard from './containers/dashboard/userBoard';
 // Style loaders
 import bootstrap from '../assets/stylesheets/bootstrap.css';
 import style from '../assets/stylesheets/global.scss';
-// Prepare our Redux Store
-const store = ConfigureStore();
+// Prepare our Redux Store and make available the store
+export const store = ConfigureStore();
 
 ReactDOM.render( 
 	<Provider store={ store }>

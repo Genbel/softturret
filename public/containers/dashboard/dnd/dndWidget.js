@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import Actionboard from './actionBoard';
-import RoomPagination from 'containers/dashboard/dnd/pagination';
-import { fetchWidgets } from 'actions/dashboard/widgetActions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { fetchWidgets } from 'actions/dashboard/widgetActions';
+import { ADD_ROOM_MODAL_OPENED } from 'actions/dashboard/dashboardTypes';
+import Actionboard from './actionBoard';
+import ControlBoard from 'containers/dashboard/dnd/controlBoard';
+import RoomPagination from 'containers/dashboard/dnd/pagination';
 import spinner from '../../../../assets/img/gears.gif';
+
+import Colors from 'components/modal/color';
 
 class Dndwidget extends Component {
 
@@ -13,8 +17,8 @@ class Dndwidget extends Component {
 	}
 
 	renderDnDElements() {
-		if(this.props.isFetching){
-			const url = '../assets/img/gears.gif';
+		const { isFetching, toggleModal, addRoomModalIsOpen } = this.props;
+		if(isFetching){
 			let important = {
 				backgroundImage: `url("${spinner}")`,
 				width: '160px',
@@ -22,20 +26,21 @@ class Dndwidget extends Component {
 				marginTop: '150px',
 				marginLeft: '200px'
 			};
-			return (<div className="row col-lg-12" style={important}></div>);
+			return <div className="row col-lg-12" style={important}></div>;
 		} else {
 			return (
 				<div className="row">
 					<div className="col-lg-12">
 						<Actionboard />
 					</div>
-					<div className="col-lg-offset-8 col-lg-4">
-						<RoomPagination />
-					</div>
+					<ControlBoard />
+					<RoomPagination />
 				</div>
 			)
 		}
 	}
+
+	//{ addRoomModalIsOpen && this.renderModal() }
 
 	render() {
 		return (

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 import Sidebar from '../navigation/sidebar';
-
 import style from '../../../assets/stylesheets/dashboard/core.scss';
 
 const items = [

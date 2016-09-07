@@ -13,7 +13,7 @@ class RoomPagination extends Component {
     }
 
     displayButton(actualRoom, totalRoom, type){
-        return actualRoom === totalRoom || actualRoom === -1? null : <button id={type} onClick={ () => this.changeActualRoom(type) }>{type}</button>;
+        return actualRoom === totalRoom || actualRoom === -1? null : <button  className="btn btn-primary" id={type} onClick={ () => this.changeActualRoom(type) }>{type}</button>;
     }
 
     render() {
@@ -22,7 +22,7 @@ class RoomPagination extends Component {
         const nextButton = this.displayButton(actualRoom, totalRooms, 'NEXT');
 
         return (
-          <div className="room-pagination">
+          <div className="room-pagination col-lg-3">
               <div className="col-lg-5">
                   { prevButton }
               </div>

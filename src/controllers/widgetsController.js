@@ -51,8 +51,8 @@ exports.fetchWidgets = function(req, res){
         }
     };
 
-    /*return setTimeout(function(){
+    return setTimeout(function(){
         return res.status(200).json(data);
-    }, 2000);*/
-    return res.status(200).json(data);
+    }, 1000);
+    //return res.status(200).json(data);
 };

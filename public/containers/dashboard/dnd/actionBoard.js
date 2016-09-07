@@ -3,7 +3,7 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchWidgets, widgetAttachedToTheRoom } from 'actions/dashboard/widgetActions';
+import { widgetAttachedToTheRoom } from 'actions/dashboard/widgetActions';
 import { getRoomWidgets, getActualRoomName } from 'reducers/dashboard/roomReducer';
 import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
@@ -53,7 +53,7 @@ Actionboard.contextTypes = {
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchWidgets, widgetAttachedToTheRoom }, dispatch);
+    return bindActionCreators({ widgetAttachedToTheRoom }, dispatch);
 }
 const mapStateToProps = (state) => {
     return {
