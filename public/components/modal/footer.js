@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
-export default class ModalFooter extends Component {
+class ModalFooter extends Component {
     render(){
+        const { onCancel, onConfirm, cancelAction, roomInput } = this.props;
         return (
-            <div className="modal-footer-react">
-                <button className="btn btn-cancel">Cancel</button>
-                <button className="btn btn-success">Create</button>
+            <div className="modal-footer-react modal-footer">
+                <button className="btn btn-cancel" onClick={() => onCancel(cancelAction)}>Cancel</button>
+                <button className="btn btn-success" onClick={() => onConfirm(roomInput)}>Create</button>
             </div>
         );
     }
 }
+
+export default ModalFooter;
