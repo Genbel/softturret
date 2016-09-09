@@ -17,7 +17,7 @@ class Dndwidget extends Component {
 	}
 
 	renderDnDElements() {
-		const { isFetching, toggleModal, addRoomModalIsOpen } = this.props;
+		const { isFetching } = this.props;
 		if(isFetching){
 			let important = {
 				backgroundImage: `url("${spinner}")`,
@@ -26,7 +26,7 @@ class Dndwidget extends Component {
 				marginTop: '150px',
 				marginLeft: '200px'
 			};
-			return <div className="row col-lg-12" style={important}></div>;
+			return <div className="row col-lg-12" style={ important }></div>;
 		} else {
 			return (
 				<div className="row">
@@ -39,8 +39,6 @@ class Dndwidget extends Component {
 			)
 		}
 	}
-
-	//{ addRoomModalIsOpen && this.renderModal() }
 
 	render() {
 		return (
@@ -57,6 +55,12 @@ class Dndwidget extends Component {
 		);
 	}
 }
+
+Dndwidget.PropTypes = {
+	fetchWidgets: React.PropTypes.func.isRequired,
+	isFetching: React.PropTypes.bool.isRequired
+};
+
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ fetchWidgets }, dispatch);
 }

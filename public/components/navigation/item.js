@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-export default class Item extends Component {
-
+class Item extends Component {
 	render(){
 		return (
 			<div className="item">
@@ -16,3 +15,11 @@ export default class Item extends Component {
 		);
 	}
 }
+
+Item.PropTypes = {
+	path: React.PropTypes.string.isRequired,
+	icon: React.PropTypes.string.isRequired,
+	text: React.PropTypes.string.isRequired
+};
+
+export default Item;

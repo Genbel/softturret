@@ -1,4 +1,4 @@
-import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED, ROOM_CHANGED } from 'actions/dashboard/dashboardTypes';
+import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED, ROOM_CHANGED, ROOM_ADDED } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import { getWidget } from 'reducers/dashboard/widgetReducer';
 import _ from 'lodash';
@@ -11,6 +11,9 @@ const roomReducer = () => {
             case FETCH_WIDGETS_SUCCESS:
             case WIDGET_ATTACHED:
                 return response.rooms;
+            case ROOM_ADDED:
+                const id = _.keys(response)[0];
+                return {...state, [id]: response[id] };
             default:
                 return state;
         }
@@ -29,6 +32,8 @@ const roomReducer = () => {
         switch (action.type){
             case FETCH_WIDGETS_SUCCESS:
                 return createRoomPagination(action.response.rooms);
+            case ROOM_ADDED:
+                return [...state, _.keys(action.response)[0]];
             default:
                 return state;
         }
@@ -46,9 +51,12 @@ export const getRoomWidgets = (dashboard) => _getRoomWidgets(dashboard, dashboar
 export const getActualRoom = (state) => state.actual;
 export const getTotalRooms = (state) => _.size(state.pagination) - 1;
 export const getActualRoomName = (state) => _getActualRoomName(state.rooms.actual, state.rooms.pagination, state.rooms.byId);
+export const getActualRoomId = (state) => _getActualRoomId(state.actual, state.pagination);
 
 //************* Reducer getter functions *************//
-const getRoomType = (state, id) => state[id].type;
+const getRoomType = (state, id) => {
+    return state[id].type;
+};
 const _getActualRoomName = (pageNo, paginationElements, rooms) => !_.isEmpty(rooms)? rooms[paginationElements[pageNo]].text : null;
 
 //************* Reducer local functions *************//
@@ -99,5 +107,13 @@ const findActualRoom = (rooms, state) => {
  * @returns {Array} room ids
  */
 const createRoomPagination = (rooms) => _.isEmpty(rooms) ? null : _.keys(rooms);
+
+/**
+ * We get the actual room id
+ * @param {number} pageNumber: Actual room number selected
+ * @param {Array} roomPagination: All the rooms sorted by room number and roomId pair
+ * @return {number} roomId
+ */
+const _getActualRoomId = (pageNumber, roomPagination) => roomPagination[pageNumber];
 
 

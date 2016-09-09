@@ -29,6 +29,12 @@ class ActionBoard extends Component {
     }
 }
 
+ActionBoard.PropTypes = {
+    toggleModal: React.PropTypes.func.isRequired,
+    addRoomModalIsOpen: React.PropTypes.func.isRequired,
+    clearAllModalIsOpen: React.PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ toggleModal }, dispatch);
 };

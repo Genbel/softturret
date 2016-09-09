@@ -47,9 +47,14 @@ class Actionboard extends Component {
         );
     }
 }
-
+// It is to access the router contextType. Like this we will have all the functionalities
+// of that object. NOW WE DO NOT NEED HERE
 Actionboard.contextTypes = {
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
+    widgetAttachedToTheRoom: React.PropTypes.func.isRequired,
+    attachedWidgets: React.PropTypes.array.isRequired,
+    disconnectedWidgets: React.PropTypes.array.isRequired,
+    roomName: React.PropTypes.string.isRequired
 };
 
 function mapDispatchToProps(dispatch) {

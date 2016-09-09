@@ -1,8 +1,8 @@
 import { expect } from '../../../test_helper';
 import { FETCH_WIDGETS_SUCCESS, ROOM_CHANGED } from 'actions/dashboard/dashboardTypes';
-import roomReducer, { getRoomWidgets, getActualRoom, getTotalRooms, getActualRoomName } from 'reducers/dashboard/roomReducer';
+import roomReducer, { getRoomWidgets, getActualRoom, getTotalRooms, getActualRoomName, getActualRoomId } from 'reducers/dashboard/roomReducer';
 import { getRoomStateObject, getFullObjectOfTheState, getPaginationState } from '../../../mockElements/dashboard/states';
-import { widgetsFetchedData } from '../../../mockElements/dashboard/actions';
+import { widgetsFetchedData, newRoomAction } from '../../../mockElements/dashboard/actions';
 import { getWidgetOrderedForTheRoom } from '../../../mockElements/dashboard/selectors';
 
 // actual reducer that we get from roomReducer combineReducer object
@@ -18,8 +18,13 @@ describe('#dashboard-reducers: room reducer (Reducer, roomReducer.js)', () => {
             const newState = { byId: {}, actual: 1, pagination: [] };
             expect(reducer({}, { type: ROOM_CHANGED, page: 1 })).to.eql(newState);
         });
-        it('should handle WIDGET_ATTACHED action: PENDIENT, WE HAVE TO IMPLEMENT', () => {
-
+        it('--- PENDIENT --- should handle WIDGET_ATTACHED action: PENDIENT, WE HAVE TO IMPLEMENT', () => {
+            expect(true).to.be.false;
+        });
+        it('should handle ROOM_ADDED action', () => {
+            const action = newRoomAction();
+            const newState = getRoomStateObject();
+            expect(reducer({actual: 0}, action)).to.eql(newState);
         });
     });
     describe('-> reducer selectors', () => {
@@ -39,5 +44,9 @@ describe('#dashboard-reducers: room reducer (Reducer, roomReducer.js)', () => {
             const state = getFullObjectOfTheState();
             expect(getActualRoomName(state.dashboard)).to.equal('Surrounding People');
         });
+        it('should return the actual room id', () => {
+            const state = getFullObjectOfTheState();
+            expect(getActualRoomId(state.dashboard.rooms)).to.equal('asdf2kf0asdfnasdf90');
+        })
     });
 });

@@ -37,6 +37,12 @@ class RoomPagination extends Component {
     }
 }
 
+RoomPagination.PropTypes = {
+    actualRoom: React.PropTypes.number.isRequired,
+    totalRooms: React.PropTypes.number.isRequired,
+    changeRoom: React.PropTypes.func.isRequired
+};
+
 const mapDispatchToProps = (dispatch) => bindActionCreators({ changeRoom }, dispatch);
 const mapStateToProps = (state) => {
     return {

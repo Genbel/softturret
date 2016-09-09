@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Buttonboard extends Component {
+class Buttonboard extends Component {
 
 	render(){
 		return (
@@ -10,3 +10,5 @@ export default class Buttonboard extends Component {
 		);
 	}
 }
+
+export default Buttonboard;
