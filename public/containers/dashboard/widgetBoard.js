@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Widgetboard extends Component {
+class WidgetBoard extends Component {
 
 	render() {
 		return (
@@ -10,3 +10,5 @@ export default class Widgetboard extends Component {
 		);
 	}
 }
+
+export default WidgetBoard

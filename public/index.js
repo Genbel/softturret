@@ -6,11 +6,11 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // App Components
 import App from './components/app';
 import Dashboard from './components/dashboard/board';
-import Dealerboard from './components/dealerboard/dealerboard';
-import Dndwidget from './containers/dashboard/dnd/dndWidget';
-import Widgetboard from './containers/dashboard/widgetBoard';
-import Buttonboard from './containers/dashboard/buttonBoard';
-import Userboard from './containers/dashboard/userBoard';
+import DealerBoard from './components/dealerboard/dealerboard';
+import DnDWidget from './containers/dashboard/dnd/dndWidget';
+import WidgetBoard from './containers/dashboard/widgetBoard';
+import ButtonBoard from './containers/dashboard/buttonBoard';
+import UserBoard from './containers/dashboard/userBoard';
 // Style loaders
 import bootstrap from '../assets/stylesheets/bootstrap.css';
 import style from '../assets/stylesheets/global.scss';
@@ -22,12 +22,12 @@ ReactDOM.render(
 		<Router history={browserHistory}>
 			<Route path="/" component={App}>
 				<Route path="dashboard" component={Dashboard}>
-					<Route path="design-board" component={Dndwidget} />
-					<Route path="widget-board" component={Widgetboard} />
-					<Route path="button-board" component={Buttonboard} />
-					<Route path="user-board" component={Userboard} />
+					<Route path="design-board" component={DnDWidget} />
+					<Route path="widget-board" component={WidgetBoard} />
+					<Route path="button-board" component={ButtonBoard} />
+					<Route path="user-board" component={UserBoard} />
 				</Route>
-				<Route path="dealerboard" component={Dealerboard}>
+				<Route path="dealerboard" component={DealerBoard}>
 				</Route>
 			</Route>				
 		</Router>

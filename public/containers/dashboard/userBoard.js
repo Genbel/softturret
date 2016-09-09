@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Userboard extends Component {
+class UserBoard extends Component {
 
 	render() {
 		return (
@@ -10,3 +10,4 @@ export default class Userboard extends Component {
 		); 
 	}
 }
+export default UserBoard;

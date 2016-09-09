@@ -9,10 +9,10 @@ import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
 import _ from 'lodash';
 
-import Dragelement from './../../../components/dashboard/dnd/dragBoard';
-import Dropelement from './../../../components/dashboard/dnd/dropBoard';
+import DragElement from './../../../components/dashboard/dnd/dragBoard';
+import DropElement from './../../../components/dashboard/dnd/dropBoard';
 
-class Actionboard extends Component {
+class ActionBoard extends Component {
 
     render() {
         const { disconnectedWidgets, attachedWidgets, widgetAttachedToTheRoom, roomName } = this.props;
@@ -23,7 +23,7 @@ class Actionboard extends Component {
                     <div className="col-lg-9 clearfix">
                         <div className="drop-board clearfix">
                             { _.map(attachedWidgets, (widget, index) => {
-                                return <Dropelement type={widget.type}
+                                return <DropElement type={widget.type}
                                                     key={index}
                                                     text={widget.text}
                                                     attached={widget.attached}
@@ -34,7 +34,7 @@ class Actionboard extends Component {
                     <div className="col-lg-3 clearfix">
                         <div className="drag-board">
                             { _.map(disconnectedWidgets, (widget, index) => {
-                                return <Dragelement type={widget.type}
+                                return <DragElement type={widget.type}
                                              key={index}
                                              text={widget.text}
                                              id ={widget.id}
@@ -49,7 +49,7 @@ class Actionboard extends Component {
 }
 // It is to access the router contextType. Like this we will have all the functionalities
 // of that object. NOW WE DO NOT NEED HERE
-Actionboard.contextTypes = {
+ActionBoard.contextTypes = {
     router: React.PropTypes.object,
     widgetAttachedToTheRoom: React.PropTypes.func.isRequired,
     attachedWidgets: React.PropTypes.array.isRequired,
@@ -69,4 +69,4 @@ const mapStateToProps = (state) => {
 };
 
 Actionboard = DragDropContext(HTML5Backend)(Actionboard);
-export default connect(mapStateToProps, mapDispatchToProps)(Actionboard);
+export default connect(mapStateToProps, mapDispatchToProps)(ActionBoard);

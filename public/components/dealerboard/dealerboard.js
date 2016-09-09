@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Dealerboard extends Component {
+class DealerBoard extends Component {
 
     render() {
         return (
@@ -10,3 +10,4 @@ export default class Dealerboard extends Component {
         );
     }
 }
+export default DealerBoard;

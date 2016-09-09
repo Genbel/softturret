@@ -3,15 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchWidgets } from 'actions/dashboard/widgetActions';
 import { ADD_ROOM_MODAL_OPENED } from 'actions/dashboard/dashboardTypes';
-import Actionboard from './actionBoard';
+import ActionBoard from './actionBoard';
 import ControlBoard from 'containers/dashboard/dnd/controlBoard';
 import RoomPagination from 'containers/dashboard/dnd/pagination';
 import spinner from '../../../../assets/img/gears.gif';
 
-import Colors from 'components/modal/color';
-
-class Dndwidget extends Component {
-
+class DnDWidget extends Component {
 	componentDidMount(){
 		this.props.fetchWidgets();
 	}
@@ -31,7 +28,7 @@ class Dndwidget extends Component {
 			return (
 				<div className="row">
 					<div className="col-lg-12">
-						<Actionboard />
+						<ActionBoard />
 					</div>
 					<ControlBoard />
 					<RoomPagination />
@@ -56,7 +53,7 @@ class Dndwidget extends Component {
 	}
 }
 
-Dndwidget.PropTypes = {
+DnDWidget.PropTypes = {
 	fetchWidgets: React.PropTypes.func.isRequired,
 	isFetching: React.PropTypes.bool.isRequired
 };
@@ -70,4 +67,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dndwidget);
+export default connect(mapStateToProps, mapDispatchToProps)(DnDWidget);
