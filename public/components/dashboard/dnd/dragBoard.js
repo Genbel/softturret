@@ -21,8 +21,9 @@ function collect(connect, monitor) {
  */
 const widgetSource = {
     beginDrag(props) {
+        // We need the type property to know if we can drop the widget
         return {
-            id: props.id,
+            widgetId: props.id,
             type: props.type
         }
     },

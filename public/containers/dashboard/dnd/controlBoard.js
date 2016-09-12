@@ -14,7 +14,7 @@ class ActionBoard extends Component {
         return (
             <div className="control-board col-lg-6">
                 <div className="col-lg-4">
-                    <button className="btn btn-danger">Clear all</button>
+                    <button className="btn btn-danger">Erase Widget</button>
                 </div>
                 <div className="col-lg-4">
                     <button className="btn btn-danger" onClick={ () => toggleModal(CLEAR_ALL_MODAL_OPENED)}>Clear all</button>

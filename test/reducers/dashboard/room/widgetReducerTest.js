@@ -9,12 +9,12 @@ const reducer = widgetReducer();
 describe('#dashboard-reducers: widget reducer (Reducer, widgetReducer.js)', () => {
     describe('-> creating new state of the widget reducer', () => {
         it('should handle FETCH_WIDGETS_REQUEST action', () => {
-            const newState = { byId: {}, isFetching: true };
+            const newState = { byId: {}, isFetching: true, restQueue: {} };
             const action = { type: FETCH_WIDGETS_REQUEST };
             expect(reducer({}, action)).to.eql(newState);
         });
         it('should handle FETCH_WIDGETS_SUCCESS action', () => {
-            const state = { byId:{}, isFetching: true };
+            const state = { byId:{}, isFetching: true, restQueue: {} };
             const action = { type: FETCH_WIDGETS_SUCCESS, response: widgetsFetchedData()};
             const newState = getWidgetStateObject();
             expect(reducer(state, action)).to.eql(newState);

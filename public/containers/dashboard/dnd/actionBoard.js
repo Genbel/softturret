@@ -3,8 +3,8 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { widgetAttachedToTheRoom } from 'actions/dashboard/widgetActions';
-import { getRoomWidgets, getActualRoomName } from 'reducers/dashboard/roomReducer';
+import { widgetActionInTheRoom } from 'actions/dashboard/widgetActions';
+import { getRoomWidgets, getActualRoomName, getActualRoomId } from 'reducers/dashboard/roomReducer';
 import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
 import _ from 'lodash';
@@ -14,8 +14,14 @@ import DropElement from './../../../components/dashboard/dnd/dropBoard';
 
 class ActionBoard extends Component {
 
+    widgetActionInTheRoom(widgetInfo) {
+        const { roomId } = this.props;
+        _.assign(widgetInfo, { roomId });
+        this.props.widgetActionInTheRoom(widgetInfo);
+    }
+
     render() {
-        const { disconnectedWidgets, attachedWidgets, widgetAttachedToTheRoom, roomName } = this.props;
+        const { disconnectedWidgets, attachedWidgets, roomName } = this.props;
         return (
             <div className="main-dnd">
                 <span>{roomName}</span>
@@ -23,11 +29,12 @@ class ActionBoard extends Component {
                     <div className="col-lg-9 clearfix">
                         <div className="drop-board clearfix">
                             { _.map(attachedWidgets, (widget, index) => {
-                                return <DropElement type={widget.type}
-                                                    key={index}
-                                                    text={widget.text}
-                                                    attached={widget.attached}
-                                                    widgetAttachedToTheRoom={widgetAttachedToTheRoom}/>
+                                return <DropElement type={ widget.type }
+                                                    key={ index }
+                                                    position={ index }
+                                                    text={ widget.text }
+                                                    attached={ widget.attached }
+                                                    widgetActionInTheRoom={ this.widgetActionInTheRoom.bind(this) }/>
                             })}
                         </div>
                     </div>
@@ -50,23 +57,28 @@ class ActionBoard extends Component {
 // It is to access the router contextType. Like this we will have all the functionalities
 // of that object. NOW WE DO NOT NEED HERE
 ActionBoard.contextTypes = {
-    router: React.PropTypes.object,
-    widgetAttachedToTheRoom: React.PropTypes.func.isRequired,
+    router: React.PropTypes.object
+};
+
+ActionBoard.PropTypes = {
+    widgetActionInTheRoom: React.PropTypes.func.isRequired,
     attachedWidgets: React.PropTypes.array.isRequired,
     disconnectedWidgets: React.PropTypes.array.isRequired,
-    roomName: React.PropTypes.string.isRequired
+    roomName: React.PropTypes.string.isRequired,
+    roomId: React.PropTypes.string.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ widgetAttachedToTheRoom }, dispatch);
+    return bindActionCreators({ widgetActionInTheRoom }, dispatch);
 }
 const mapStateToProps = (state) => {
     return {
         attachedWidgets: getRoomWidgets(state.dashboard),
         disconnectedWidgets: getDisconnectedWidgets(state.dashboard.widgets),
-        roomName: getActualRoomName(state.dashboard)
+        roomName: getActualRoomName(state.dashboard),
+        roomId: getActualRoomId(state.dashboard.rooms)
     }
 };
 
-Actionboard = DragDropContext(HTML5Backend)(Actionboard);
+ActionBoard = DragDropContext(HTML5Backend)(ActionBoard);
 export default connect(mapStateToProps, mapDispatchToProps)(ActionBoard);

@@ -86,7 +86,8 @@ export const getWidgetStateObject = () => ({
             id: 1
         }
     },
-    isFetching: false
+    isFetching: false,
+    restQueue: {}
 });
 // We use getFullObjectOfTheState object and we have to extract all the disconnected widgets
 export const getDisconnectedWidgetsObject = () => {

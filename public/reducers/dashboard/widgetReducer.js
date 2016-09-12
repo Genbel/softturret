@@ -9,7 +9,12 @@ const widgetReducer = () => {
             case FETCH_WIDGETS_SUCCESS:
                 return action.response.widgets;
             case WIDGET_ATTACHED:
-                return action.response.widgets;
+                const { widgetId, attached, position } = action.response;
+                const newWidget = state[widgetId];
+                newWidget.position = position;
+                newWidget.attached = !attached;
+                console.log(newWidget);
+                return { ...state, [widgetId]: newWidget };
             default:
                 return state;
         }
@@ -25,9 +30,19 @@ const widgetReducer = () => {
                 return state;
         }
     };
+    const restQueue = (state = {}, action) => {
+        switch (action.type){
+            case WIDGET_ATTACHED:
+                return { ...state, [action.response.widgetId]: null };
+            default:
+                return state
+        }
+    };
+
     return combineReducers({
         byId,
-        isFetching
+        isFetching,
+        restQueue
     });
 };
 

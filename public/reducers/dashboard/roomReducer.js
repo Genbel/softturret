@@ -9,8 +9,12 @@ const roomReducer = () => {
     const byId = (state = {}, { type, response }) => {
         switch (type){
             case FETCH_WIDGETS_SUCCESS:
-            case WIDGET_ATTACHED:
                 return response.rooms;
+            case WIDGET_ATTACHED:
+                const { widgetId, roomId } = response;
+                const newRoom = state[roomId];
+                newRoom.widgets.push(widgetId);
+                return { ...state, [roomId]: newRoom };
             case ROOM_ADDED:
                 const id = _.keys(response)[0];
                 return {...state, [id]: response[id] };

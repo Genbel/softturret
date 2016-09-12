@@ -24,7 +24,9 @@ function collect(connect, monitor) {
  */
 const widgetTarget = {
     drop(props, monitor) {
-        props.widgetAttachedToTheRoom(monitor.getItem());
+        const droppedWidget = monitor.getItem();
+        const widgetInfo = { widgetId: droppedWidget.widgetId, attached: false, position: props.position };
+        props.widgetActionInTheRoom(widgetInfo);
     },
     canDrop(props, monitor) {
         return !!(props.type == monitor.getItem().type && !props.attached);
@@ -54,7 +56,8 @@ Dropboard.PropTypes = {
     attached: React.PropTypes.bool.isRequired,
     connectDropTarget: React.PropTypes.func.isRequired,
     canDrop: React.PropTypes.func.isRequired,
-    isOver: React.PropTypes.func.isRequired
+    isOver: React.PropTypes.func.isRequired,
+    widgetActionInTheRoom: React.PropTypes.func.isRequired
 };
 // Wrap your component with DropTarget to make it react to the compatible items being dragged, hovered, or dropped on it.
 // DropTarget is a higher-order component.
