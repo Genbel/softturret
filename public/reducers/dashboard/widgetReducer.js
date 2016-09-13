@@ -1,4 +1,6 @@
-import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED, FETCH_WIDGETS_REQUEST, FETCH_WIDGETS_FAILURE } from 'actions/dashboard/dashboardTypes';
+import {
+    FETCH_WIDGETS_SUCCESS, FETCH_WIDGETS_REQUEST, FETCH_WIDGETS_FAILURE,
+    UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import _ from 'lodash';
 
@@ -8,13 +10,18 @@ const widgetReducer = () => {
         switch (action.type){
             case FETCH_WIDGETS_SUCCESS:
                 return action.response.widgets;
-            case WIDGET_ATTACHED:
+            case UNIT_WIDGET_EDITED:
                 const { widgetId, attached, position } = action.response;
                 const newWidget = state[widgetId];
-                newWidget.position = position;
+                newWidget.position = attached? null : position;
                 newWidget.attached = !attached;
-                console.log(newWidget);
                 return { ...state, [widgetId]: newWidget };
+            case UNIT_WIDGET_FAILED:
+                const data = action.response;
+                const newObject = state[data.widgetId];
+                newObject.position = !data.attached? null : data.position;
+                newObject.attached = data.attached;
+                return { ...state, [data.widgetId]: newObject };
             default:
                 return state;
         }
@@ -30,10 +37,13 @@ const widgetReducer = () => {
                 return state;
         }
     };
-    const restQueue = (state = {}, action) => {
+    const restQueue = (state = [], action) => {
         switch (action.type){
-            case WIDGET_ATTACHED:
-                return { ...state, [action.response.widgetId]: null };
+            case UNIT_WIDGET_EDITED:
+                return [ ...state, action.response.widgetId];
+            case UNIT_WIDGET_SUCCESS:
+            case UNIT_WIDGET_FAILED:
+                return _.pull(state, action.response.widgetId);
             default:
                 return state
         }

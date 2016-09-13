@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeRoom } from 'actions/dashboard/roomsActions';
 import { getActualRoom, getTotalRooms } from 'reducers/dashboard/roomReducer';
+import FontAwesome from 'react-fontawesome';
 
 class RoomPagination extends Component {
 
@@ -13,7 +14,14 @@ class RoomPagination extends Component {
     }
 
     displayButton(actualRoom, totalRoom, type){
-        return actualRoom === totalRoom || actualRoom === -1? null : <button  className="btn btn-primary" id={type} onClick={ () => this.changeActualRoom(type) }>{type}</button>;
+        return actualRoom === totalRoom || actualRoom === -1?
+            null :
+            <button  className="btn btn-primary" id={type} onClick={ () => this.changeActualRoom(type) }>
+                {type === 'NEXT' ?
+                    <FontAwesome name="arrow-circle-o-right"/> :
+                    <FontAwesome name="arrow-circle-o-left"/>
+                }
+            </button>;
     }
 
     render() {
@@ -23,13 +31,13 @@ class RoomPagination extends Component {
 
         return (
           <div className="room-pagination col-lg-3">
-              <div className="col-lg-5">
+              <div className="col-lg-3">
                   { prevButton }
               </div>
-              <div className="col-lg-2" id="pagination-text">
+              <div className="col-lg-3" id="pagination-text">
                   <p>{ actualRoom + 1 }/{ totalRooms + 1 }</p>
               </div>
-              <div className="col-lg-5">
+              <div className="col-lg-3">
                   { nextButton }
               </div>
           </div>

@@ -1,4 +1,7 @@
-import { FETCH_WIDGETS_SUCCESS, WIDGET_ATTACHED, ROOM_CHANGED, ROOM_ADDED } from 'actions/dashboard/dashboardTypes';
+import {
+    FETCH_WIDGETS_SUCCESS, UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED,
+    ROOM_CHANGED, ROOM_ADDED,
+    TOGGLE_EDIT_ROOM } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import { getWidget } from 'reducers/dashboard/widgetReducer';
 import _ from 'lodash';
@@ -10,11 +13,15 @@ const roomReducer = () => {
         switch (type){
             case FETCH_WIDGETS_SUCCESS:
                 return response.rooms;
-            case WIDGET_ATTACHED:
-                const { widgetId, roomId } = response;
+            case UNIT_WIDGET_EDITED:
+                const { widgetId, roomId, attached } = response;
                 const newRoom = state[roomId];
-                newRoom.widgets.push(widgetId);
+                attached? _.pull(newRoom.widgets, widgetId): newRoom.widgets.push(widgetId);
                 return { ...state, [roomId]: newRoom };
+            case UNIT_WIDGET_FAILED:
+                const actualRoom = state[response.roomId];
+                !response.attached? _.pull(actualRoom.widgets, response.widgetId): actualRoom.widgets.push(response.widgetId);
+                return { ...state, [response.roomId]: actualRoom };
             case ROOM_ADDED:
                 const id = _.keys(response)[0];
                 return {...state, [id]: response[id] };
@@ -42,10 +49,19 @@ const roomReducer = () => {
                 return state;
         }
     };
+    const editMode = (state = false, action) => {
+        switch (action.type) {
+            case TOGGLE_EDIT_ROOM:
+                return !state;
+            default:
+                return state;
+        }
+    };
     return combineReducers({
         byId,
         actual,
-        pagination
+        pagination,
+        editMode
     });
 };
 export default roomReducer;
@@ -56,6 +72,7 @@ export const getActualRoom = (state) => state.actual;
 export const getTotalRooms = (state) => _.size(state.pagination) - 1;
 export const getActualRoomName = (state) => _getActualRoomName(state.rooms.actual, state.rooms.pagination, state.rooms.byId);
 export const getActualRoomId = (state) => _getActualRoomId(state.actual, state.pagination);
+export const getRoomEditModeState = (state) => state.editMode;
 
 //************* Reducer getter functions *************//
 const getRoomType = (state, id) => {

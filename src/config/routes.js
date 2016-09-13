@@ -1,6 +1,7 @@
 'use strict';
 /*var usersCtrl = require('./controllers/users.server.controller'),*/
-var widgetsCtrl = require('../controllers/widgetsController');
+var widgetCtrl = require('../controllers/widgetController');
+var roomCtrl = require('../controllers/roomController');
 var path = require('path'),
     _ = require('lodash');
 
@@ -12,12 +13,14 @@ var routes = [
         httpMethod: 'GET',
         middleware: [renderIndex]
     },{
-        path:'/api/dataservice/fetch_widgets',
+        path:'/api/dataservice/widget/fetch_widgets',
         httpMethod: 'POST',
-        middleware: [widgetsCtrl.fetchWidgets]
+        middleware: [widgetCtrl.fetchWidgets]
+    },{
+        path: '/api/dataservice/room/edit_rooom',
+        httpMethod: 'POST',
+        middleware: [roomCtrl.editRoom]
     }
-
-
 ];
 
 function renderIndex(req, res){

@@ -26,7 +26,7 @@ exports.fetchWidgets = function(req, res){
             },
             4: {
                 type: 'GS',
-                position: 3,
+                position: 2,
                 text: 'Lagunak',
                 attached: true,
                 id: 4
@@ -53,6 +53,6 @@ exports.fetchWidgets = function(req, res){
 
     return setTimeout(function(){
         return res.status(200).json(data);
-    }, 1000);
+    }, 2000);
     //return res.status(200).json(data);
 };

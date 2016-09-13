@@ -3,16 +3,21 @@
 .side-bar{
 	background-color: $dashboard-color;
 	//width: 300px;
+	height: 100%;
+	bottom:0;
 	padding-top: 50px;
 	ul {
 		list-style: none;
 		padding-left: 10px;
 		li {
-			padding: 10px 0px;
+			padding: 25px 0px;
 			a {
 				text-decoration: none;
-				font-size: 1em;
+				font-size: 1.15em;
 				color: white;
+				&:hover {
+					color: cornflowerblue;
+				}
 			}
 			i {
 				padding: 10px;

@@ -18,8 +18,8 @@ describe('#dashboard-dnd: RoomPagination (Container, pagination.js)', () => {
     });
 
     it('has all the pagination buttons', () => {
-        expect(container).to.contain('NEXT');
-        expect(container).to.contain('PREV');
+        expect(container.find(".fa-arrow-circle-o-right")).to.exist;
+        expect(container.find(".fa-arrow-circle-o-left")).to.exist;
     });
 
     it('displays the pagination amount', () => {

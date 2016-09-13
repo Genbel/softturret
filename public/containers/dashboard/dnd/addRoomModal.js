@@ -14,7 +14,6 @@ class AddRoomModal extends Component {
 
     createNewRoom() {
         if(this.roomInput.value === '') {
-            console.log('empty');
             this.roomInput.classList.add("focus");
         } else {
             const type = ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'];

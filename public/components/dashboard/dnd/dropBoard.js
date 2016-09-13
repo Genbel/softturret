@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DropTarget } from 'react-dnd';
+import FontAwesome from 'react-fontawesome';
+import classNames from 'classnames';
 import _ from 'lodash';
 
 /**
@@ -34,17 +36,26 @@ const widgetTarget = {
 };
 
 class Dropboard extends Component {
+
+    deleteWidget() {
+        const { position, widgetId, widgetActionInTheRoom } = this.props;
+        const widgetInfo = { widgetId: widgetId, attached: true, position: position };
+        widgetActionInTheRoom(widgetInfo);
+    }
+
     render() {
-        const { text, attached, connectDropTarget, canDrop, isOver } = this.props;
-        let className = attached?  'col-lg-3 filled clearfix drop': 'col-lg-3 empty clearfix drop';
-        if(canDrop && isOver){
-            className += ' allowed';
-        } else if( !canDrop && isOver) {
-            className += ' forbidden';
-        }
+        const { text, attached, connectDropTarget, canDrop, isOver, editMode } = this.props;
+        const className = classNames(
+            'col-lg-3', 'clearfix', 'drop',
+            { filled: attached, empty: !attached },
+            { 'shake-it': editMode },
+            { allowed: canDrop && isOver },
+            { forbidden: !canDrop && isOver }
+        );
 
         return connectDropTarget(
             <div className={className}>
+                { attached && editMode && <FontAwesome className="erase-widget" name="times-circle-o" size="2x" onClick={ () => this.deleteWidget() }/> }
                 {text}
             </div>
         );

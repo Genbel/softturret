@@ -15,9 +15,7 @@ export default class Dashboard extends Component {
 		return (
 			<div className="container-fluid dashboard">
 				<div className="row">
-					<div className="col-md-3">
-						<Sidebar items={items} />
-					</div>
+					<Sidebar items={items} />
 					<div className="col-md-9">
 						<div className="board">
 							{ this.props.children || "Welcome to the dashboard" }

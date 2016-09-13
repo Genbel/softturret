@@ -67,7 +67,21 @@ export const getRoomStateObject = () => ({
             text: 'Surrounding People',
             widgets: [1]
         }
-    }
+    },
+    editMode: false
+});
+// After UNIT_WIDGET_EDIT action, the new state of the reducer.
+export const getRoomStateAfterDisconnectTheWidget = () => ({
+    actual: 0,
+    pagination: ['asdf2kf0asdfnasdf90'],
+    byId: {
+        'asdf2kf0asdfnasdf90': {
+            type: ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'],
+            text: 'Surrounding People',
+            widgets: []
+        }
+    },
+    editMode: false
 });
 // Pagination state for the room selector in roomReducer test
 export const getPaginationState = () => ({
@@ -87,7 +101,7 @@ export const getWidgetStateObject = () => ({
         }
     },
     isFetching: false,
-    restQueue: {}
+    restQueue: []
 });
 // We use getFullObjectOfTheState object and we have to extract all the disconnected widgets
 export const getDisconnectedWidgetsObject = () => {
@@ -108,3 +122,31 @@ export const getDisconnectedWidgetsObject = () => {
         }
     ]
 };
+// Non attached a widget
+export const nonAttachedWidget = (restQueue) => ({
+    byId: {
+        1: {
+            type: 'GS',
+            position: null,
+            text: 'Lina Familly',
+            attached: false,
+            id: 1
+        }
+    },
+    isFetching: false,
+    restQueue
+});
+// Attach a widget
+export const attachedWidget = (restQueue) => ({
+    byId: {
+        1: {
+            type: 'GS',
+            position: 3,
+            text: 'Lina Familly',
+            attached: true,
+            id: 1
+        }
+    },
+    isFetching: false,
+    restQueue
+});
