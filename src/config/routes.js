@@ -2,6 +2,7 @@
 /*var usersCtrl = require('./controllers/users.server.controller'),*/
 var widgetCtrl = require('../controllers/widgetController');
 var roomCtrl = require('../controllers/roomController');
+var userCtrl = require('../controllers/userController');
 var path = require('path'),
     _ = require('lodash');
 
@@ -9,7 +10,7 @@ var path = require('path'),
 var routes = [
     // WARNING: IN SOME REQUEST WE NEED A requiresLogin function as middleware
     {
-        path: '/dashboard/design-board',
+        path: '/dashboard/user-board',
         httpMethod: 'GET',
         middleware: [renderIndex]
     },{
@@ -20,6 +21,10 @@ var routes = [
         path: '/api/dataservice/room/edit_rooom',
         httpMethod: 'POST',
         middleware: [roomCtrl.editRoom]
+    },{
+        path: '/api/dataservice/user/update_user',
+        httpMethod: 'POST',
+        middleware: [userCtrl.updateUser]
     }
 ];
 

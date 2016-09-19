@@ -61,6 +61,7 @@ export default widgetReducer;
 
 //************* Reducer selectors *************//
 export const getWidget = (state, id) => state[id];
+export const getAllWidgets = (state) => state.byId;
 export const getDisconnectedWidgets = (state) =>  !_.isEmpty(state.byId)? _.filter(state.byId, ({attached}) => !attached ): state.byId;
 
 //************* Reducer local functions *************//

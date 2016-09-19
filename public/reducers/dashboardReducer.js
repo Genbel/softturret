@@ -3,6 +3,7 @@ import widgetReducer from 'reducers/dashboard/widgetReducer';
 import roomReducer from 'reducers/dashboard/roomReducer';
 import modalReducer from 'reducers/dashboard/modalReducer';
 import errorReducer from 'reducers/dashboard/errorReducer';
+import userReducer from 'reducers/dashboard/userReducer';
 
 // Dashbord reducers
 const createDashboard = () => {
@@ -10,10 +11,8 @@ const createDashboard = () => {
         widgets: widgetReducer(),
         rooms: roomReducer(),
         modals: modalReducer(),
-        errors: errorReducer()
+        errors: errorReducer(),
+        user: userReducer()
     });
 };
 export default createDashboard;
-
-
-

@@ -1,4 +1,6 @@
-import { UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS } from 'actions/dashboard/dashboardTypes';
+import {
+    UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
+    USER_UPDATE_FAILURE, USER_UPDATE_SUCCESS } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 
 const errorReducer = () => {
@@ -13,8 +15,20 @@ const errorReducer = () => {
         }
     };
 
+    const userErrors = (state = null, action) => {
+        switch (action.type) {
+            case USER_UPDATE_FAILURE:
+                return action.response;
+            case USER_UPDATE_SUCCESS:
+                return null;
+            default:
+                return state;
+        }
+    };
+
     return combineReducers({
-        roomErrors
+        roomErrors,
+        userErrors
     });
 };
 
@@ -22,3 +36,4 @@ export default errorReducer;
 
 //************* Reducer selectors *************//
 export const getRoomError = (state) => state.roomErrors;
+export const getUserError = (state) => state.userErrors;

@@ -1,0 +1,58 @@
+.widget-board {
+  li.widget-item {
+    list-style-type: none;
+    margin-bottom: 20px;
+    padding: 10px;
+    display:flex;
+    &:hover {
+      cursor: pointer;
+      border: 2px solid lightgrey;
+      border-radius: 3px;
+      & span.true::before {
+        font-family: FontAwesome;
+        content: "\f023";
+        color: black;
+        margin-right: 10px;
+      }
+      & span.false::before {
+        font-family: FontAwesome;
+        content: "\f146";
+        color: crimson;
+        margin-right: 10px;
+      }
+      & span.widget-name::after, span.widget-name::after{
+        font-family: FontAwesome;
+        content: "\f040";
+        right: 50px;
+        position: absolute;
+        color: black;
+      }
+    }
+    & .widget-name {
+      width: 100%;
+    }
+    & .widget-type {
+      float:right;
+      margin-right: 60px;
+      color: #857c7c;
+    }
+    & form {
+      width: 90%;
+      & input {
+        background-color: #ffd79f;
+        border: none;
+      }
+      & span button.btn-edit {
+        background-color: #5F9EA0;
+        border: none;
+        border-radius: 7px;
+      }
+    }
+  }
+  .add-widget-button {
+    display:flex;
+    flex-direction: row-reverse;
+    margin-bottom: 30px;
+    margin-right: 50px;
+  }
+}

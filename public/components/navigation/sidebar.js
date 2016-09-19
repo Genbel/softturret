@@ -10,8 +10,10 @@ class Sidebar extends Component {
 	}
 	render() {
 		return (
-			<div className="col-lg-3 side-bar">
-				<ul> { this.renderItems() } </ul>
+			<div className="col-lg-3">
+				<div className="side-bar">
+					<ul> { this.renderItems() } </ul>
+				</div>
 			</div>
 		);
 	}

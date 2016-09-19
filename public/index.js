@@ -8,9 +8,9 @@ import App from './components/app';
 import Dashboard from './components/dashboard/board';
 import DealerBoard from './components/dealerboard/dealerboard';
 import DnDWidget from './containers/dashboard/dnd/dndWidget';
-import WidgetBoard from './containers/dashboard/widgetBoard';
+import WidgetBoard from './containers/dashboard/widget/widgetBoard';
 import ButtonBoard from './containers/dashboard/buttonBoard';
-import UserBoard from './containers/dashboard/userBoard';
+import UserBoard from './containers/dashboard/user/userBoard';
 // Style loaders
 import bootstrap from '../assets/stylesheets/bootstrap.css';
 import style from '../assets/stylesheets/global.scss';

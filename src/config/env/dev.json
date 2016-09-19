@@ -20,12 +20,12 @@
   "server": {
     "enableHTTPS": false,
     "schema": "https",
-    "domain": "192.168.0.2",
+    "domain": "localhost",
     "httpPort": 3001,
     "httpsPort": 3001
   },
   "webpackServer": {
-    "domain": "192.168.0.2",
+    "domain": "localhost",
     "port": "3000"
   },
   "ssl": {

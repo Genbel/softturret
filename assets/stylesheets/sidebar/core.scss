@@ -3,8 +3,8 @@
 .side-bar{
 	background-color: $dashboard-color;
 	//width: 300px;
-	height: 100%;
-	bottom:0;
+	height: 100vh;
+	display:flex;
 	padding-top: 50px;
 	ul {
 		list-style: none;

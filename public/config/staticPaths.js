@@ -1,6 +1,6 @@
 const params = {
     server: {
-        domain: '192.168.0.2',
+        domain: 'localhost',
         port: 3001,
         scheme: 'http'
     }

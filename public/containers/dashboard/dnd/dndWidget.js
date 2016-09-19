@@ -4,12 +4,13 @@ import { bindActionCreators } from 'redux';
 import { fetchWidgets } from 'actions/dashboard/widgetActions';
 import { ADD_ROOM_MODAL_OPENED } from 'actions/dashboard/dashboardTypes';
 import ActionBoard from './actionBoard';
-//import ControlBoard from 'containers/dashboard/dnd/controlBoard';
+import ControlBoard from 'containers/dashboard/dnd/controlBoard';
 import RoomPagination from 'containers/dashboard/dnd/pagination';
 import spinner from '../../../../assets/img/gears.gif';
 
 class DnDWidget extends Component {
 	componentDidMount(){
+		// this has to check first if we exec before the fetchWidgets
 		this.props.fetchWidgets();
 	}
 
@@ -30,7 +31,7 @@ class DnDWidget extends Component {
 					<div className="col-lg-12">
 						<ActionBoard />
 					</div>
-					{/*<ControlBoard />*/}
+					<ControlBoard />
 					<RoomPagination />
 				</div>
 			)
@@ -41,12 +42,10 @@ class DnDWidget extends Component {
 		return (
 			<div className="dnd-widget">
 				<div className="row">
-					<div className="col-lg-12">
-						<div className="col-lg-12 headline">
-							<h5> Drag the widget in the position that you wish </h5>
-						</div>
-						{ this.renderDnDElements() }
+					<div className="col-lg-12 headline">
+						<h5> Drag the widget in the position that you wish </h5>
 					</div>
+					{ this.renderDnDElements() }
 				</div>
 			</div>
 		);
