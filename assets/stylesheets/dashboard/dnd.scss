@@ -58,6 +58,38 @@
     }
   }
 }
+.widget-template-container {
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  overflow: auto;
+  justify-content: center;
+  .widget-templates {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .template {
+      width: 242px;
+      height: 107px;
+      margin: 0px 15px 15px;
+      @for $i from 1 through 5 {
+        &.type_#{$i} {
+          background: url("../../img/widget/type_#{$i}.svg") center center no-repeat;
+        }
+      }
+      &.selected {
+        border: 1px solid #838ea6;
+        border-radius: 3px;
+      }
+    }
+  }
+  .widget-template-page {
+    display: flex;
+    align-items: center;
+    margin: 0px 30px;
+  }
+}
+
 
 
 @-webkit-keyframes spaceboots {

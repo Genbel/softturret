@@ -26,7 +26,7 @@ module.exports = {
 				test: [/\.scss$/, /\.css$/],
 				loaders: ['style', 'css', 'sass']
 			},{
-				test: [/\.gif$/],
+				test: [/\.gif$/, /\.svg/],
 				loaders:['file'],
 				include: path.join(__dirname, 'assets')
 			}]

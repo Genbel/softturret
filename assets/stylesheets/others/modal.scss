@@ -1,4 +1,4 @@
-body .modal {
+body .custom-modal {
   position: fixed;
   background: rgba(0,0,0,.5);
   overflow: auto;
@@ -7,16 +7,26 @@ body .modal {
   height:100%;
   .modal-component {
     position: fixed;
-    top: 100px;
+    top: 50px;
     left: 200px;
     right: 200px;
     overflow: auto;
     border-radius: 6px;
     outline: none;
-    padding: 20px;
     display: block;
     background-color: white;
     border: 1px solid #a1a1a1;
+  }
+  .modal-custom-header {
+    padding: 10px;
+    color: white;
+    background: #838ea6;
+    border-bottom: 1px solid #838ea6;
+  }
+  .modal-custom-footer {
+    padding: 5px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
   }
 }
 

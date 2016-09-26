@@ -7,10 +7,26 @@ import { ADD_ROOM_MODAL_CLOSED } from 'actions/dashboard/dashboardTypes';
 import Modal from 'components/modal/main';
 import Header from 'components/modal/header';
 import Body from 'components/modal/body';
+import WidgetTemplate from 'components/dashboard/dnd/WidgetTemplate';
 import Footer from 'components/modal/Footer';
 
 
 class AddRoomModal extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedTemplate: 0
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.selectedTemplate === nextState.selectedTemplate;
+    }
+
+    setSelectedWidget(selectedTemplate) {
+        this.setState({ selectedTemplate });
+    }
 
     createNewRoom() {
         if(this.roomInput.value === '') {
@@ -19,9 +35,9 @@ class AddRoomModal extends Component {
             const type = ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'];
             this.props.addNewRoom(this.roomInput.value, type);
             this.roomInput.classList.remove("focus");
-            console.log(this.roomInput.value);
         }
     }
+
     // onConfirm is a functional property
     render(){
         const { toggleModal } = this.props;
@@ -34,6 +50,8 @@ class AddRoomModal extends Component {
                         <label htmlFor="room-name">Room Name</label>
                         <input type="text" className="form-control" id="room-name" ref={(node) => this.roomInput = node} />
                     </div>
+                    <h5>Choose the template that you want for your widget</h5>
+                    <WidgetTemplate setSelectedWidget = { this.setSelectedWidget.bind(this) }/>
                   </Body>
                   <Footer onCancel={ toggleModal } onConfirm={ this.createNewRoom.bind(this) } cancelAction={ ADD_ROOM_MODAL_CLOSED }/>
               </Modal>

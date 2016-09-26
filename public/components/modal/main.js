@@ -8,7 +8,7 @@ class Modal extends Component {
 
     componentDidMount() {
         this.modalTarget = document.createElement('div');
-        this.modalTarget.className = 'modal';
+        this.modalTarget.className = 'custom-modal';
         // Append to body tag
         document.body.appendChild(this.modalTarget);
         this._render();
