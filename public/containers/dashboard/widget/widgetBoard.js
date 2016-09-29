@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchWidgets } from 'actions/dashboard/widgetActions';
 import WidgetList from './widgetList';
+import style from '../../../../assets/stylesheets/dashboard/widget.scss';
 
 class WidgetBoard extends Component {
 
@@ -32,6 +33,10 @@ class WidgetBoard extends Component {
 		);
 	}
 }
+
+WidgetBoard.PropTypes = {
+	fetchWidgets: React.PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ fetchWidgets }, dispatch);

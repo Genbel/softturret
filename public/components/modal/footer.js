@@ -12,4 +12,11 @@ class ModalFooter extends Component {
     }
 }
 
+ModalFooter.PropTypes = {
+    onCancel: React.PropTypes.func.isRequired,
+    onConfrim: React.PropTypes.func.isRequired,
+    cancelAction: React.PropTypes.string.isRequired,
+    roomInput: React.PropTypes.string.isRequired
+};
+
 export default ModalFooter;

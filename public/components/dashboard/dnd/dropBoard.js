@@ -31,7 +31,7 @@ const widgetTarget = {
         props.widgetActionInTheRoom(widgetInfo);
     },
     canDrop(props, monitor) {
-        return !!(props.type == monitor.getItem().type && !props.attached);
+        return (props.type === monitor.getItem().type && !props.attached);
     }
 };
 
@@ -44,18 +44,19 @@ class Dropboard extends Component {
     }
 
     render() {
-        const { text, attached, connectDropTarget, canDrop, isOver, editMode } = this.props;
+        const { text, attached, connectDropTarget, canDrop, isOver, editMode, type } = this.props;
+        const GS = type === 'GS';
         const className = classNames(
-            'col-lg-3', 'clearfix', 'drop',
+            'clearfix', 'drop',
+            {'col-lg-3': GS, 'col-lg-6': !GS },
             { filled: attached, empty: !attached },
             { 'shake-it': editMode },
             { allowed: canDrop && isOver },
             { forbidden: !canDrop && isOver }
         );
-
         return connectDropTarget(
             <div className={className}>
-                { attached && editMode && <FontAwesome className="erase-widget" name="times-circle-o" size="2x" onClick={ () => this.deleteWidget() }/> }
+                { attached && editMode &&  <FontAwesome className="erase-widget" name="times-circle-o" size="2x" onClick={ () => this.deleteWidget() }/> }
                 {text}
             </div>
         );
@@ -67,12 +68,13 @@ Dropboard.PropTypes = {
     attached: React.PropTypes.bool.isRequired,
     connectDropTarget: React.PropTypes.func.isRequired,
     canDrop: React.PropTypes.func.isRequired,
+    editMode: React.PropTypes.bool.isRequired,
     isOver: React.PropTypes.func.isRequired,
     widgetActionInTheRoom: React.PropTypes.func.isRequired
 };
 // Wrap your component with DropTarget to make it react to the compatible items being dragged, hovered, or dropped on it.
 // DropTarget is a higher-order component.
-export default DropTarget(props => props.type, widgetTarget, collect)(Dropboard);
+export default DropTarget(['GS', 'GM'], widgetTarget, collect)(Dropboard);
 // CONNECT WITH THE REDUX STORE
 // Add the DropTarget to our component. Before it was a container, now it is a component
 //Dropboard = DropTarget(props => props.type, widgetTarget, collect)(Dropboard);

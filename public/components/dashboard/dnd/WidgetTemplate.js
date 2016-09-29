@@ -11,7 +11,7 @@ class WidgetTemplate extends Component {
         this.state = {
             actualPage: 0,
             templateArray: [1,2,3,4],
-            template: 13,
+            template: 12,
             selectedTemplate: 0
         };
     }
@@ -66,19 +66,17 @@ class WidgetTemplate extends Component {
             </div>
         );
     }
-
     renderPreviousButton() {
         if(this.state.actualPage !== 0) {
             return (
-                <div className="widget-template-page">
+                <div className="widget-template-page" onClick={ () => this.changeTemplatePage('prev') }>
                     <FontAwesome name="arrow-circle-left" size="2x" onClick={ () => this.changeTemplatePage('prev') }/>
                 </div>
             );
         }
     }
-
     renderNextButton() {
-        if(this.state.actualPage !== 4) {
+        if(this.state.actualPage !== 2) {
             return (
                 <div className="widget-template-page">
                     <FontAwesome name="arrow-circle-right" size="2x" onClick={ () => this.changeTemplatePage('next') }/>
@@ -87,6 +85,10 @@ class WidgetTemplate extends Component {
         }
     }
 }
+
+WidgetTemplate.PropTypes = {
+    setSelectedWidget: React.PropTypes.func.isRequired
+};
 
 WidgetTemplate.childContextTypes = {
     selectedTemplate: React.PropTypes.number

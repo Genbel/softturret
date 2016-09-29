@@ -1,5 +1,4 @@
 'use strict';
-/*var usersCtrl = require('./controllers/users.server.controller'),*/
 var widgetCtrl = require('../controllers/widgetController');
 var roomCtrl = require('../controllers/roomController');
 var userCtrl = require('../controllers/userController');
@@ -10,13 +9,17 @@ var path = require('path'),
 var routes = [
     // WARNING: IN SOME REQUEST WE NEED A requiresLogin function as middleware
     {
-        path: '/dashboard/design-board',
+        path: '/dashboard/widget-board',
         httpMethod: 'GET',
         middleware: [renderIndex]
     },{
         path:'/api/dataservice/widget/fetch_widgets',
         httpMethod: 'POST',
         middleware: [widgetCtrl.fetchWidgets]
+    },{
+        path:'/api/dataservice/widget/add_widget',
+        httpMethod: 'POST',
+        middleware: [widgetCtrl.addWidget]
     },{
         path: '/api/dataservice/room/edit_rooom',
         httpMethod: 'POST',

@@ -53,7 +53,6 @@ class UserBoard extends Component {
 				}
 			}
 		});
-		console.log(successful);
 		return successful;
 	}
 
@@ -136,6 +135,14 @@ class UserBoard extends Component {
 		);
 	}
 }
+
+UserBoard.PropTypes = {
+	fecthUserInformation: React.PropTypes.func.isRequired,
+	updateUserInfo: React.PropTypes.func.isRequired,
+	user: React.PropTypes.object.isRequired,
+	errorMessage: React.PropTypes.string,
+	isFetching: React.PropTypes.bool
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ fetchUserInformation, updateUserInfo }, dispatch);

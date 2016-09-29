@@ -25,7 +25,6 @@ class RoomName extends Component {
 
     changeRoomName(event) {
         event.preventDefault();
-        console.log(this.state.pageRoom);
         this.setState({ editing: false });
     }
 
@@ -33,7 +32,6 @@ class RoomName extends Component {
         if(!this.state.editing){
             return this.state.pageRoom;
         } else {
-            console.log(this.state.pageRoom);
             return (
                 <form onSubmit={ this.changeRoomName.bind(this) } className="input-group">
                     <input
@@ -64,5 +62,9 @@ class RoomName extends Component {
         );
     }
 }
+
+RoomName.PropTypes = {
+    roomName: React.PropTypes.string.isRequired
+};
 
 export default RoomName;

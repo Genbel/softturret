@@ -47,9 +47,9 @@ class ActionBoard extends Component {
                         <div className="drag-board">
                             { _.map(disconnectedWidgets, (widget, index) => {
                                 return <DragElement type={widget.type}
-                                             key={index}
-                                             text={widget.text}
-                                             id ={widget.id}
+                                                    key={index}
+                                                    text={widget.text}
+                                                    id ={widget.id}
                                 />
                             })}
                         </div>

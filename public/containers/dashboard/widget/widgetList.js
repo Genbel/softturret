@@ -4,7 +4,6 @@ import WidgetItem from 'components/dashboard/widget/widgetItem';
 import AddWidgetButton from 'containers/dashboard/widget/addWidgetButton';
 import { getAllWidgets } from 'reducers/dashboard/widgetReducer';
 import map from 'lodash/map';
-import style from '../../../../assets/stylesheets/dashboard/widget.scss';
 
 class WidgetList extends Component {
 
@@ -17,7 +16,7 @@ class WidgetList extends Component {
                 />
             );
         })
-    }
+    };
 
     renderList() {
         return (
@@ -38,6 +37,10 @@ class WidgetList extends Component {
         );
     }
 }
+
+WidgetList.PropTypes = {
+    widgets: React.PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state) => {
     return {

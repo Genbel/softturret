@@ -12,4 +12,8 @@ class ErrorMessage extends Component {
     }
 }
 
+ErrorMessage.PropTypes = {
+    error: React.PropTypes.string.isRequired
+};
+
 export default ErrorMessage;

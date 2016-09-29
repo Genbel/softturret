@@ -30,11 +30,14 @@ class AddRoomModal extends Component {
 
     createNewRoom() {
         if(this.roomInput.value === '') {
-            this.roomInput.classList.add("focus");
+            this.roomInput.classList.add("warning-focus");
+        } else if(this.state.selectedTemplate === 0) {
+            this.roomInput.classList.remove("warning-focus");
+            document.getElementsByClassName("widget-templates")[0].classList.add("warning-focus");
         } else {
-            const type = ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'];
-            this.props.addNewRoom(this.roomInput.value, type);
-            this.roomInput.classList.remove("focus");
+            const selectedTemplate = this.state.selectedTemplate;
+            this.props.addNewRoom(this.roomInput.value, selectedTemplate);
+            this.roomInput.classList.remove("warning-focus");
         }
     }
 

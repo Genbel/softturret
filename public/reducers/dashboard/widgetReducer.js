@@ -1,11 +1,14 @@
 import {
     FETCH_WIDGETS_SUCCESS, FETCH_WIDGETS_REQUEST, FETCH_WIDGETS_FAILURE,
-    UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS } from 'actions/dashboard/dashboardTypes';
+    UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
+    ADD_WIDGET, ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED
+} from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import _ from 'lodash';
 
 // Widget reducer
 const widgetReducer = () => {
+    // All the widgets sort by id
     const byId = (state = {}, action) => {
         switch (action.type){
             case FETCH_WIDGETS_SUCCESS:
@@ -26,6 +29,7 @@ const widgetReducer = () => {
                 return state;
         }
     };
+    // Request indicator if we fetch some data
     const isFetching = (state = false, action) => {
         switch (action.type){
             case FETCH_WIDGETS_REQUEST:
@@ -37,6 +41,20 @@ const widgetReducer = () => {
                 return state;
         }
     };
+    // When we do REST operations, to load the spinners
+    const sendingRequest = (state = false, action) => {
+        switch (action.type) {
+            case ADD_WIDGET:
+                return true;
+            case ADD_WIDGET_SUCCESS:
+            case ADD_WIDGET_FAILED:
+                return false;
+            default:
+                return state;
+        }
+    };
+    // Request controller, it queues a request and when is successful or failed
+    // we delete from the array
     const restQueue = (state = [], action) => {
         switch (action.type){
             case UNIT_WIDGET_EDITED:
@@ -52,6 +70,7 @@ const widgetReducer = () => {
     return combineReducers({
         byId,
         isFetching,
+        sendingRequest,
         restQueue
     });
 };
@@ -63,5 +82,6 @@ export default widgetReducer;
 export const getWidget = (state, id) => state[id];
 export const getAllWidgets = (state) => state.byId;
 export const getDisconnectedWidgets = (state) =>  !_.isEmpty(state.byId)? _.filter(state.byId, ({attached}) => !attached ): state.byId;
+export const sendingRequest = (state) => state.sendingRequest;
 
 //************* Reducer local functions *************//

@@ -44,6 +44,7 @@ class Dragboard extends Component {
 }
 
 Dragboard.PropTypes = {
+    id: React.PropTypes.string.isRequired,
     type: React.PropTypes.string.isRequired,
     text: React.PropTypes.string.isRequired,
     connectDragSource: React.PropTypes.func.isRequired,

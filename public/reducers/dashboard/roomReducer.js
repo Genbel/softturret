@@ -5,7 +5,7 @@ import {
 import { combineReducers } from 'redux';
 import { getWidget } from 'reducers/dashboard/widgetReducer';
 import _ from 'lodash';
-import { fillWidgetsInTheBoard } from 'helpers/widgetsHelpers';
+import { fillWidgetsInTheBoard } from 'helpers/local.widgetHelpers';
 
 // Room reducer
 const roomReducer = () => {

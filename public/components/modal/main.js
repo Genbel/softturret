@@ -28,9 +28,10 @@ class Modal extends Component {
     // We will render all the children that has this.modalTarget div
     // this.props.children it will render all the elements that are inside of that modal component
     _render() {
+        const className = `modal-component ${this.props.className}`;
         ReactDOM.render(
             <Provider store={store}>
-                <div className="modal-component">
+                <div className={ className }>
                     <div>{ this.props.children }</div>
                 </div>
             </Provider>,

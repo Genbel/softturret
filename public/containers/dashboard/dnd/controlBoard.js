@@ -37,7 +37,8 @@ ActionBoard.PropTypes = {
     toggleModal: React.PropTypes.func.isRequired,
     addRoomModalIsOpen: React.PropTypes.func.isRequired,
     clearAllModalIsOpen: React.PropTypes.func.isRequired,
-    toggleEditRoom: React.PropTypes.func.isRequired
+    toggleEditRoom: React.PropTypes.func.isRequired,
+    editMode: React.PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => {
