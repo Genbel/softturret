@@ -5,7 +5,7 @@ import { fetchUserInformation, updateUserInfo } from 'actions/dashboard/userActi
 import { getUserInfo, isFetching } from 'reducers/dashboard/userReducer';
 import { getUserError } from 'reducers/dashboard/errorReducer';
 import FormField from 'components/dashboard/user/formComponent';
-import ErrorMessage from 'components/general/errors/errorMessage';
+import ErrorMessage from 'containers/general/errors/errorMessage';
 import style from '../../../../assets/stylesheets/dashboard/user.scss';
 import spinner from '../../../../assets/img/updating.gif';
 import foreach from 'lodash/forEach';

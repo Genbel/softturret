@@ -11,7 +11,7 @@ exports.createNewWidget = function(widgetName, type) {
         position: null,
         text: widgetName,
         attached: false,
-        id: uuid.v1(),
+        widgetId: uuid.v4(),
         buttons: buttons
     };
 };

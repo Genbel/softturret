@@ -56,7 +56,7 @@ class WidgetItem extends Component {
                 <span
                     className="widget-name"
                     onClick={ () => this.changeToEditState(widget.text) }>
-                        { this.state.widgetName } { this.state.hover && <span className="widget-type">{ widget.type } widget</span> }
+                    { this.state.widgetName } { this.state.hover && <span className="widget-type">{ widget.type } widget</span> }
                 </span>
             </li>
         )

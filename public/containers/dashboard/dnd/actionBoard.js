@@ -10,7 +10,7 @@ import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
 import _ from 'lodash';
 import RoomName from 'components/dashboard/dnd/roomName';
-import ErrorMessage from 'components/general/errors/errorMessage';
+import ErrorMessage from 'containers/general/errors/errorMessage';
 import DragElement from './../../../components/dashboard/dnd/dragBoard';
 import DropElement from './../../../components/dashboard/dnd/dropBoard';
 

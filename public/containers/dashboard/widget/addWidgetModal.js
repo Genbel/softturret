@@ -6,7 +6,9 @@ import Modal from 'components/modal/main';
 import Header from 'components/modal/header';
 import Body from 'components/modal/body';
 import Footer from 'components/modal/Footer';
+import ErrorMessage from 'containers/general/errors/errorMessage';
 import { addWidget } from 'actions/dashboard/widgetActions';
+import { getWidgetError } from 'reducers/dashboard/errorReducer';
 import { ADD_WIDGET, ADD_WIDGET_MODAL_CLOSED } from 'actions/dashboard/dashboardTypes';
 
 class AddWidgetModal extends Component {
@@ -40,11 +42,13 @@ class AddWidgetModal extends Component {
 
     render(){
         const { toggleModal } = this.props;
+        console.log('componennt re-rendered');
         return (
             <div className="add-widget-modal-root">
                 <Modal className="add-widget-modal">
                     <Header tittle="Add new widget to add new channels" />
                     <Body>
+                        <ErrorMessage reducerSelector={ getWidgetError }/>
                         <div className="form-group">
                             <label htmlFor="widget-name">Widget Name</label>
                             <input type="text" className="form-control" id="widget-name" ref={(node) => this.widgetInput = node} />
@@ -60,7 +64,10 @@ class AddWidgetModal extends Component {
                             </select>
                         </div>
                     </Body>
-                    <Footer onCancel={ toggleModal } onConfirm={ this.createNewWidget.bind(this) } cancelAction={ ADD_WIDGET_MODAL_CLOSED } />
+                    <Footer
+                        onCancel={ toggleModal }
+                        onConfirm={ this.createNewWidget.bind(this) }
+                        cancelAction={ ADD_WIDGET_MODAL_CLOSED } />
                 </Modal>
             </div>
         );

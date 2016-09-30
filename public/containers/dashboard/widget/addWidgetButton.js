@@ -12,7 +12,7 @@ class AddWidgetButton extends Component {
         return (
             <div className="add-widget-button">
                 <button className="btn btn-info" onClick={ () => toggleModal(ADD_WIDGET_MODAL_OPENED) }> Add Widget </button>
-                { addWidgetModalIsOpen && <AddWidgetModal /> }
+                { addWidgetModalIsOpen && <AddWidgetModal hello="how are you?"/> }
             </div>
         );
     }

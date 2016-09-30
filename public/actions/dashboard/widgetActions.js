@@ -37,7 +37,6 @@ export const addWidget = (widgetInfo) => (dispatch) => {
             dispatch({ type: ADD_WIDGET_SUCCESS, response: data});
         })
         .catch(({ response }) => {
-            assign(widgetInfo, { errorMessage: response.data });
-            dispatch({ type: ADD_WIDGET_FAILED });
+            dispatch({ type: ADD_WIDGET_FAILED, response: response.data });
         });
 };

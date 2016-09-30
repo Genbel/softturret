@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import {
     ADD_ROOM_MODAL_OPENED, ADD_ROOM_MODAL_CLOSED,
     CLEAR_ALL_MODAL_OPENED, CLEAR_ALL_MODAL_CLOSED,
-    ADD_WIDGET_MODAL_OPENED, ADD_WIDGET_MODAL_CLOSED
+    ADD_WIDGET_MODAL_OPENED, ADD_WIDGET_MODAL_CLOSED, ADD_WIDGET_SUCCESS
 } from 'actions/dashboard/dashboardTypes';
 
 const modalReducer = () => {
@@ -31,6 +31,7 @@ const modalReducer = () => {
             case ADD_WIDGET_MODAL_OPENED:
                 return true;
             case ADD_WIDGET_MODAL_CLOSED:
+            case ADD_WIDGET_SUCCESS:
                 return false;
             default:
                 return state;

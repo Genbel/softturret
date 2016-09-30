@@ -25,6 +25,8 @@ const widgetReducer = () => {
                 newObject.position = !data.attached? null : data.position;
                 newObject.attached = data.attached;
                 return { ...state, [data.widgetId]: newObject };
+            case ADD_WIDGET_SUCCESS:
+                return { ...state, [action.response.widgetId]: action.response };
             default:
                 return state;
         }
