@@ -1,7 +1,8 @@
 import {
     FETCH_WIDGETS_SUCCESS, FETCH_WIDGETS_REQUEST, FETCH_WIDGETS_FAILURE,
     UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
-    ADD_WIDGET, ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED
+    ADD_WIDGET, ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED,
+    CHANGE_WIDGET_NAME, CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED
 } from './dashboardTypes';
 import axios from 'axios';
 import {APIPath} from 'config/staticPaths';
@@ -39,4 +40,8 @@ export const addWidget = (widgetInfo) => (dispatch) => {
         .catch(({ response }) => {
             dispatch({ type: ADD_WIDGET_FAILED, response: response.data });
         });
+};
+
+export const changeWidgetName = (widgetInfo) => (dispatch) => {
+    dispatch({ type: CHANGE_WIDGET_NAME, response: widgetInfo });
 };

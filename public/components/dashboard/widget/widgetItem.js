@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { changeWidgetName } from 'actions/dashboard/widgetActions';
+import { getWidgetUpdateState } from 'reducers/dashboard/widgetReducer';
 
 class WidgetItem extends Component {
 
@@ -27,9 +31,12 @@ class WidgetItem extends Component {
     changeWidgetName(event) {
         event.preventDefault();
         if( this.state.widgetName === '' ) {
+            // It should be good to add a in the placeholder that message
             console.log(' You cannot save that widget name because is empty')
         } else {
-            this.setState({ editMode: false });
+            // that one should be when the request is successful
+            //this.setState({ editMode: false });
+            this.props.changeWidgetName({ widgetId: this.props.widget.id, widgetName: this.state.widgetName });
         }
     }
 
@@ -72,9 +79,9 @@ class WidgetItem extends Component {
                         value={ this.state.widgetName }
                         onChange={ this.onInputChange.bind(this) }/>
                         <span className="input-group-btn">
-                            <button type="submit" className="btn btn-primary btn-edit">
+                            { this.props.updating === undefined && <button type="submit" className="btn btn-primary btn-edit">
                                 <FontAwesome name="check-circle-o" />
-                            </button>
+                            </button> }
                         </span>
                 </form>
             </li>
@@ -82,6 +89,7 @@ class WidgetItem extends Component {
     }
 
     render() {
+        console.log('widgetIsUpdating: ', this.props.updating, ', widgetId: ', this.props.widget.id);
         return !this.state.editMode?
             this.renderNotEditElement():
             this.renderEditElement();
@@ -89,4 +97,14 @@ class WidgetItem extends Component {
     }
 }
 
-export default WidgetItem;
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ changeWidgetName }, dispatch);
+};
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        updating: getWidgetUpdateState(state.dashboard.widgets, ownProps.widget.id)
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WidgetItem);

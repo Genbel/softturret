@@ -1,7 +1,8 @@
 import {
     FETCH_WIDGETS_SUCCESS, FETCH_WIDGETS_REQUEST, FETCH_WIDGETS_FAILURE,
     UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
-    ADD_WIDGET, ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED
+    ADD_WIDGET, ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED,
+    CHANGE_WIDGET_NAME
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import _ from 'lodash';
@@ -60,7 +61,8 @@ const widgetReducer = () => {
     const restQueue = (state = [], action) => {
         switch (action.type){
             case UNIT_WIDGET_EDITED:
-                return [ ...state, action.response.widgetId];
+            case CHANGE_WIDGET_NAME:
+                return [ ...state, Number(action.response.widgetId)];
             case UNIT_WIDGET_SUCCESS:
             case UNIT_WIDGET_FAILED:
                 return _.pull(state, action.response.widgetId);
@@ -85,5 +87,11 @@ export const getWidget = (state, id) => state[id];
 export const getAllWidgets = (state) => state.byId;
 export const getDisconnectedWidgets = (state) =>  !_.isEmpty(state.byId)? _.filter(state.byId, ({attached}) => !attached ): state.byId;
 export const sendingRequest = (state) => state.sendingRequest;
+export const getWidgetUpdateState = (state, id) => _findWidgetState(state.restQueue, id);
 
 //************* Reducer local functions *************//
+const _findWidgetState = (updatingIds, id) => {
+    return _.find(updatingIds, (elem) => {
+        return elem == id;
+    });
+};
