@@ -2,7 +2,8 @@ import {
     UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
     USER_UPDATE_FAILURE, USER_UPDATE_SUCCESS,
     ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED,
-    CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED
+    CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED,
+    CHANGE_BUTTON_NAME_SUCCESS, CHANGE_BUTTON_NAME_FAILED
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 
@@ -41,11 +42,21 @@ const errorReducer = () => {
                 return state;
         }
     };
-
+    const buttonErrors = (state = null, action) => {
+        switch (action.type) {
+            case CHANGE_BUTTON_NAME_SUCCESS:
+                return null;
+            case CHANGE_BUTTON_NAME_FAILED:
+                return action.response.errorMessage;
+            default:
+                return state;
+        }
+    };
     return combineReducers({
         roomErrors,
         userErrors,
-        widgetErrors
+        widgetErrors,
+        buttonErrors
     });
 };
 

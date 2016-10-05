@@ -2,9 +2,11 @@ import {
     FETCH_WIDGETS_SUCCESS, FETCH_WIDGETS_REQUEST, FETCH_WIDGETS_FAILURE,
     UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
     ADD_WIDGET, ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED,
-    CHANGE_WIDGET_NAME, CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED
+    CHANGE_WIDGET_NAME, CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED,
+    CHANGE_BUTTON_NAME, CHANGE_BUTTON_NAME_SUCCESS, CHANGE_BUTTON_NAME_FAILED
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
+import { _findElementState } from 'helpers/local.dashboardHelpers';
 import _ from 'lodash';
 
 // Widget reducer
@@ -66,12 +68,9 @@ const widgetReducer = () => {
     const restQueue = (state = [], action) => {
         switch (action.type){
             case UNIT_WIDGET_EDITED:
-            case CHANGE_WIDGET_NAME:
                 return [ ...state, Number(action.response.widgetId)];
             case UNIT_WIDGET_SUCCESS:
             case UNIT_WIDGET_FAILED:
-            case CHANGE_WIDGET_NAME_SUCCESS:
-            case CHANGE_WIDGET_NAME_FAILED:
                 return _.remove(state, (elem) => { return elem !== Number(action.response.widgetId) });
             default:
                 return state
@@ -94,18 +93,7 @@ export const getWidget = (state, id) => state[id];
 export const getAllWidgets = (state) => state.byId;
 export const getDisconnectedWidgets = (state) =>  !_.isEmpty(state.byId)? _.filter(state.byId, ({attached}) => !attached ): state.byId;
 export const sendingRequest = (state) => state.sendingRequest;
-export const getWidgetUpdateState = (state, id) => _findWidgetState(state.restQueue, id);
+export const getWidgetUpdateState = (state, id) => _findElementState(state.restQueue, id);
 export const getWidgetButtons = (state, id) => state.byId[id];
 
 //************* Reducer local functions *************//
-/**
- * check if the widget update request state
- * @param {array} updatingIds: all the widgets that are updating
- * @param {number} id: widgetId
- * @returns {boolean}
- */
-const _findWidgetState = (updatingIds, id) => {
-    return  _.find(updatingIds, (elem) => {
-                return elem == id;
-            }) !== undefined;
-};

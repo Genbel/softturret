@@ -4,6 +4,7 @@ import roomReducer from 'reducers/dashboard/roomReducer';
 import modalReducer from 'reducers/dashboard/modalReducer';
 import errorReducer from 'reducers/dashboard/errorReducer';
 import userReducer from 'reducers/dashboard/userReducer';
+import buttonReducer from 'reducers/dashboard/buttonReducer';
 
 // Dashbord reducers
 const createDashboard = () => {
@@ -12,7 +13,8 @@ const createDashboard = () => {
         rooms: roomReducer(),
         modals: modalReducer(),
         errors: errorReducer(),
-        user: userReducer()
+        user: userReducer(),
+        buttons: buttonReducer()
     });
 };
 export default createDashboard;

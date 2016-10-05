@@ -3,8 +3,7 @@ import createDashboard from './dashboardReducer';
 
 // Root reducer of the app
 const rootReducer = combineReducers({
-    dashboard: createDashboard(),
-
+    dashboard: createDashboard()
 });
 
 export default rootReducer;

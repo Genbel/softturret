@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeButtonName } from 'actions/dashboard/widgetActions';
+import { changeButtonName } from 'actions/dashboard/buttonActions';
 import ButtonItem from 'containers/dashboard/button/buttonItem';
 import { getWidgetButtons } from 'reducers/dashboard/widgetReducer';
 import map from 'lodash/map';
