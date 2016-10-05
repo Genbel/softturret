@@ -13,18 +13,22 @@ exports.fetchWidgets = function(req, res){
                 buttons: {
                     fa9asdf9asd: {
                         channel_ref: null,
+                        display_text: null,
                         position: 1
                     },
                     fa9aasf9asd: {
-                        channel_ref: 'Agne Jonikaite',
+                        channel_ref: 'Lina Family, Klaipeda, SIP',
+                        display_text: 'Agne Jonikaite',
                         position: 2
                     },
                     fa9asdfassd: {
-                        channel_ref: 'Justes Jonikas',
+                        channel_ref: 'Lina Family, Kvedarna, PORT 3 CH4',
+                        display_text: 'Justinas Jonikas',
                         position: 3
                     },
                     fa9asdf9a132d: {
                         channel_ref: null,
+                        display_text: null,
                         position: 4
                     }
                 }
@@ -38,18 +42,22 @@ exports.fetchWidgets = function(req, res){
                 buttons: {
                     fa9asdf9asd: {
                         channel_ref: null,
+                        display_text: null,
                         position: 1
                     },
                     fa9aasf9asd: {
-                        channel_ref: 'Joxe Iraola',
+                        channel_ref: 'Iraolatarrak, Hernani, SIP Trunk',
+                        display_text: 'Joxe Iraola',
                         position: 2
                     },
                     fa9asdfassd: {
                         channel_ref: null,
+                        display_text: null,
                         position: 3
                     },
                     fa9asdf9a132d: {
-                        channel_ref: 'Maite Iraola',
+                        channel_ref: 'Iraolatarrak, Hernani, Family Conference Bridge',
+                        display_text: 'Maite Iraola',
                         position: 4
                     }
                 }
@@ -62,20 +70,44 @@ exports.fetchWidgets = function(req, res){
                 id: 3,
                 buttons: {
                     fa9asdf9asd: {
-                        channel_ref: 'Maria Intxausti',
+                        channel_ref: 'Genbeltzutarrak, Martindegi, SIP',
+                        display_text: 'Maria Intxausti',
                         position: 1
                     },
                     fa9aasf9asd: {
-                        channel_ref: 'Joxe Juan',
+                        channel_ref: 'Genbeltzutarrak, Martindegi, Help Conference Bridge',
+                        display_text: 'Joxe Juan Genbeltzu',
                         position: 2
                     },
                     fa9asdfassd: {
                         channel_ref: null,
+                        display_text: null,
                         position: 3
                     },
                     fa9asdf9a132d: {
                         channel_ref: null,
+                        display_text: null,
                         position: 4
+                    },
+                    fa9adsdf9asd: {
+                        channel_ref: 'Genbeltzutarrak, Martindegi, SIP',
+                        display_text: 'Maria Intxausti',
+                        position: 5
+                    },
+                    fa9aasfs9asd: {
+                        channel_ref: 'Genbeltzutarrak, Martindegi, Help Conference Bridge',
+                        display_text: 'Joxe Juan Genbeltzu',
+                        position: 6
+                    },
+                    fa9asadfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 7
+                    },
+                    fa9asgdf9a132d: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 8
                     }
                 }
             },
@@ -87,19 +119,23 @@ exports.fetchWidgets = function(req, res){
                 id: 4,
                 buttons: {
                     fa9asdf9asd: {
-                        channel_ref: 'Amin Kheireddine',
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
                         position: 1
                     },
                     fa9aasf9asd: {
                         channel_ref: null,
+                        display_text: null,
                         position: 2
                     },
                     fa9asdfassd: {
                         channel_ref: null,
+                        display_text: null,
                         position: 3
                     },
                     fa9asdf9a132d: {
-                        channel_ref: 'Gorka Ugarte',
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
                         position: 4
                     }
                 }
@@ -141,6 +177,16 @@ exports.addWidget = function(req, res) {
         if(result > 7){
             return res.status(200).json(newWidget);
         }
-        return res.status(400).json('It was an error while we were saving, try it again!');
+        return res.status(400).json('It was an error while we were saving the new widget, try it again!');
+    }, 1000);
+};
+
+exports.changeWidgetName = function(req, res) {
+    return setTimeout(function(){
+        var result = Math.floor(Math.random() * 6) + 1;
+        if(result > 7){
+            return res.status(200).json('ok');
+        }
+        return res.status(400).json('It was an error while we were saving the ' + req.body.widgetName + ' widget , try it again!');
     }, 1000);
 };

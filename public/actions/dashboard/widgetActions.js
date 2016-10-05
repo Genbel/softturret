@@ -38,10 +38,22 @@ export const addWidget = (widgetInfo) => (dispatch) => {
             dispatch({ type: ADD_WIDGET_SUCCESS, response: data});
         })
         .catch(({ response }) => {
-            dispatch({ type: ADD_WIDGET_FAILED, response: response.data });
+            dispatch({ type: ADD_WIDGET_FAILED, response: { errorMessage: response.data }});
         });
 };
 
 export const changeWidgetName = (widgetInfo) => (dispatch) => {
     dispatch({ type: CHANGE_WIDGET_NAME, response: widgetInfo });
+    return axios.post(`${APIPath}/widget/change_widget_name`, widgetInfo)
+        .then(() => {
+            dispatch({ type: CHANGE_WIDGET_NAME_SUCCESS, response: widgetInfo });
+        })
+        .catch(({ response }) => {
+            assign(widgetInfo, { errorMessage: response.data });
+            dispatch({ type: CHANGE_WIDGET_NAME_FAILED, response: widgetInfo });
+        });
+};
+
+export const changeButtonName = (widgetInfo) => (dispatch) => {
+    console.log(widgetInfo);
 };

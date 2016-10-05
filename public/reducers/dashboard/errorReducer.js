@@ -1,7 +1,8 @@
 import {
     UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
     USER_UPDATE_FAILURE, USER_UPDATE_SUCCESS,
-    ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED
+    ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED,
+    CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 
@@ -31,8 +32,10 @@ const errorReducer = () => {
     const widgetErrors = (state = null, action) => {
         switch (action.type) {
             case ADD_WIDGET_FAILED:
-                return action.response;
+            case CHANGE_WIDGET_NAME_FAILED:
+                return action.response.errorMessage;
             case ADD_WIDGET_SUCCESS:
+            case CHANGE_WIDGET_NAME_SUCCESS:
                 return null;
             default:
                 return state;

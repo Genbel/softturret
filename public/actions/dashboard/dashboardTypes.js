@@ -1,3 +1,7 @@
+// Action types related with the buttons
+export const CHANGE_BUTTON_NAME = 'CHANGE_BUTTON_NAME';
+export const CHANGE_BUTTON_NAME_SUCCESS = 'CHANGE_BUTTON_NAME_SUCCESS';
+export const CHANGE_BUTTON_NAME_FAILED = 'CHANGE_BUTTON_NAME_FAILED';
 // Action types related with the widgets
 export const FETCH_WIDGETS_REQUEST = 'FETCH_WIDGETS_REQUEST';
 export const FETCH_WIDGETS_SUCCESS = 'FETCH_WIDGETS_SUCCESS';
@@ -11,7 +15,6 @@ export const ADD_WIDGET_FAILED = 'ADD_WIDGET_FAILED';
 export const CHANGE_WIDGET_NAME = 'CHANGE_WIDGET_NAME';
 export const CHANGE_WIDGET_NAME_SUCCESS = 'CHANGE_WIDGET_NAME_SUCCESS';
 export const CHANGE_WIDGET_NAME_FAILED = 'CHANGE_WIDGET_NAME_FAILED';
-
 // Action types related with the rooms
 export const ROOM_ADDED = 'ROOM_ADDED';
 export const ROOM_CHANGED = 'ROOM_CHANGED';

@@ -2,7 +2,7 @@ import {
     FETCH_WIDGETS_SUCCESS, FETCH_WIDGETS_REQUEST, FETCH_WIDGETS_FAILURE,
     UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
     ADD_WIDGET, ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED,
-    CHANGE_WIDGET_NAME
+    CHANGE_WIDGET_NAME, CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import _ from 'lodash';
@@ -14,6 +14,13 @@ const widgetReducer = () => {
         switch (action.type){
             case FETCH_WIDGETS_SUCCESS:
                 return action.response.widgets;
+            case ADD_WIDGET_SUCCESS:
+                return { ...state, [action.response.widgetId]: action.response };
+            case CHANGE_WIDGET_NAME_SUCCESS:
+                const { widgetName } = action.response;
+                const newNameWidget = state[action.response.widgetId];
+                newNameWidget.text = widgetName;
+                return { ...state, [action.response.widgetId]: newNameWidget };
             case UNIT_WIDGET_EDITED:
                 const { widgetId, attached, position } = action.response;
                 const newWidget = state[widgetId];
@@ -26,8 +33,6 @@ const widgetReducer = () => {
                 newObject.position = !data.attached? null : data.position;
                 newObject.attached = data.attached;
                 return { ...state, [data.widgetId]: newObject };
-            case ADD_WIDGET_SUCCESS:
-                return { ...state, [action.response.widgetId]: action.response };
             default:
                 return state;
         }
@@ -65,7 +70,9 @@ const widgetReducer = () => {
                 return [ ...state, Number(action.response.widgetId)];
             case UNIT_WIDGET_SUCCESS:
             case UNIT_WIDGET_FAILED:
-                return _.pull(state, action.response.widgetId);
+            case CHANGE_WIDGET_NAME_SUCCESS:
+            case CHANGE_WIDGET_NAME_FAILED:
+                return _.remove(state, (elem) => { return elem !== Number(action.response.widgetId) });
             default:
                 return state
         }
@@ -88,10 +95,17 @@ export const getAllWidgets = (state) => state.byId;
 export const getDisconnectedWidgets = (state) =>  !_.isEmpty(state.byId)? _.filter(state.byId, ({attached}) => !attached ): state.byId;
 export const sendingRequest = (state) => state.sendingRequest;
 export const getWidgetUpdateState = (state, id) => _findWidgetState(state.restQueue, id);
+export const getWidgetButtons = (state, id) => state.byId[id];
 
 //************* Reducer local functions *************//
+/**
+ * check if the widget update request state
+ * @param {array} updatingIds: all the widgets that are updating
+ * @param {number} id: widgetId
+ * @returns {boolean}
+ */
 const _findWidgetState = (updatingIds, id) => {
-    return _.find(updatingIds, (elem) => {
-        return elem == id;
-    });
+    return  _.find(updatingIds, (elem) => {
+                return elem == id;
+            }) !== undefined;
 };

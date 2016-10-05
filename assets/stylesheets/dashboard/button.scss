@@ -1,4 +1,7 @@
 .button-board {
+  .back-button {
+    margin-top: 200px;
+  }
   li.widget-item {
     list-style-type: none;
     margin-bottom: 20px;
@@ -18,6 +21,55 @@
     }
     span {
       width: 100%;
+    }
+  }
+  .button-list ul li.button-item {
+    list-style-type: none;
+    margin-bottom: 30px;
+    padding: 10px;
+    &:hover {
+      border: 2px solid #c7c4c4;
+    }
+    .button-content {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      li {
+        list-style-type: none;
+      }
+      .action-content {
+        display: flex;
+        height: 80%;
+        justify-content: flex-end;
+        width: 20%;
+      }
+      .text {
+        width: 80%;
+        .custom, .not-assigned {
+          color: dodgerblue;
+          font-weight: 600;
+          font-size: 1.1em;
+          & input {
+            background-color: transparent;
+            border: none;
+            padding-left: 0px;
+            opacity: 0.8;
+            color: dodgerblue;
+          }
+        }
+        .not-assigned {
+          opacity: 0.6;
+        }
+        .default {
+          color: #fff8dc;
+          font-size: 0.9em;
+        }
+      }
+      .number {
+        display: flex;
+        align-items: center;
+        color: #c7c4c4;
+      }
     }
   }
 }
