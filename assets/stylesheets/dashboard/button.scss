@@ -1,0 +1,23 @@
+.button-board {
+  li.widget-item {
+    list-style-type: none;
+    margin-bottom: 20px;
+    padding: 10px;
+    display:flex;
+    &:hover {
+      cursor: pointer;
+      border: 2px solid lightgrey;
+      border-radius: 3px;
+      & span::after {
+        font-family: FontAwesome;
+        content: "\f138";
+        color: black;
+        right: 50px;
+        position: absolute;
+      }
+    }
+    span {
+      width: 100%;
+    }
+  }
+}

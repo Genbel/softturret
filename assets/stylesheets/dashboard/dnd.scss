@@ -1,0 +1,121 @@
+// DragAndDrop room name
+.room-name {
+  margin-left: 15px;
+  font-size: 20px;
+  margin-bottom: 100px;
+  font-family: monospace;
+  display: flex;
+}
+// DragAndDrop widget panel
+.widget-border{
+  border: 2px solid black;
+  margin: 2px 0;
+}
+.drop-board {
+  @media (min-width: 992px){
+    .col-lg-3 {
+      width: 23%;
+    }
+    .col-lg-6 {
+      width: 46%;
+    }
+  }
+  .drop {
+    height: 100px;
+    border-radius: 5px;
+    padding: 10px;
+    vertical-align:middle;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    &.empty {
+      margin: 2px;
+      border: 2px dotted royalblue;
+      &.forbidden {
+        border: 2px solid #d9534f;
+        background-color: #e4b9b9;
+      }
+    }
+    &.filled {
+      margin: 2px;
+      border: 2px solid black;
+      background-color: antiquewhite;
+      .erase-widget{
+        position: absolute;
+        right: 5px;
+        top: -15px;
+        color: #d9534f;
+        cursor: pointer;
+      }
+      &.shake-it {
+        animation-name: spaceboots;
+        animation-duration: .8s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      &.forbidden {
+        border: 2px solid #d9534f;
+        background-color: #e4b9b9;
+      }
+    }
+    &.allowed {
+      border: 2px solid green;
+      background-color: #a3d7a3;
+    }
+  }
+}
+// Shake effect
+@-webkit-keyframes spaceboots {
+  0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+  10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+  30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+  40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+  50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+  70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+  80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+  90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+  100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+.control-board, .room-pagination{
+  margin-top: 25px;
+}
+// Add room modal
+.widget-template-container {
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  overflow: auto;
+  justify-content: center;
+  .widget-templates {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .template {
+      width: 242px;
+      height: 107px;
+      margin: 0px 15px 15px;
+      @for $i from 1 through 12 {
+        &.type_#{$i} {
+          background: url("../../img/widget/type_#{$i}.svg") center center no-repeat;
+        }
+      }
+      &.selected {
+        border: 1px solid #838ea6;
+        border-radius: 3px;
+      }
+    }
+  }
+  .widget-template-page {
+    display: flex;
+    align-items: center;
+    margin: 0px 30px;
+  }
+}
+input.warning-focus, .widget-templates.warning-focus {
+  border: 1px solid #ef3d56;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(239, 61, 86,.6);
+  border-radius: 4px;
+
+}

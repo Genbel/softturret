@@ -1,7 +1,7 @@
 import { renderComponent, expect } from '../test_helper';
 import App from '../../public/components/app';
 
-describe('App', () => {
+describe('App. ROOT component', () => {
 
 	let component;
 

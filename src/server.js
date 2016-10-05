@@ -1,19 +1,10 @@
-var express = require('express');
-var path = require('path');
+// As default will be development environment
+process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+var express = require('./config/modules/express');
 
 module.exports = {
-	app: function() {
-
-		const app = express();
-
-		const indexPath = path.join(__dirname, '../index.html');
-		const publicPath = express.static(path.join(__dirname, 'public'));
-
-		app.use('/public', publicPath);
-		app.get('/', function(req, res){ res.sendFile(indexPath) });
-
-		app.listen(3001);
-
-		return app;
-	}
-}
+    app: function(){
+        return express.app();
+    }
+};
+//express.app();
