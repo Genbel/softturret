@@ -5,7 +5,7 @@ import WidgetList from 'components/dashboard/button/widgetList';
 import ButtonList from 'containers/dashboard/button/buttonList';
 import FontAwesome from 'react-fontawesome';
 import { fetchWidgets } from 'actions/dashboard/widgetActions';
-import { getAllWidgets } from 'reducers/dashboard/widgetReducer';
+import { getAllWidgets, getWidgetButtons } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/button.scss';
 import spinner from '../../../../assets/img/gears.gif';
 
@@ -58,7 +58,8 @@ class ButtonBoard extends Component {
                     widgetSelected={ (widgetId) => this.widgetSelected(widgetId) }/>;
             } else {
                 return <ButtonList
-                    widgetId={ this.state.widgetId } />;
+                    widgetId={ this.state.widgetId }
+                    buttonList={ this.props.buttons }/>;
             }
         }
     }
@@ -70,13 +71,14 @@ class ButtonBoard extends Component {
                     <div className="col-lg-12 headline">
                         <h5> Choose the widget and set the tag in the button </h5>
                     </div>
-                    <div className="col-lg-2">
+                    <div className="col-lg-1">
                         {
                             !this.state.widgetMode &&
                             <FontAwesome
                                 name="chevron-circle-left"
-                                size="3x"
-                                onClick={ () => this.showWidgetList() } />
+                                size="2x"
+                                onClick={ () => this.showWidgetList() }
+                                className="back-button"/>
                         }
                     </div>
                     <div className="col-lg-10">

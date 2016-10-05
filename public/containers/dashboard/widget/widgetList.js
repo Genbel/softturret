@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import WidgetItem from 'components/dashboard/widget/widgetItem';
+import ErrorMessage from 'containers/general/errors/errorMessage';
+import WidgetItem from 'containers/dashboard/widget/widgetItem';
 import AddWidgetButton from 'containers/dashboard/widget/addWidgetButton';
 import { getAllWidgets } from 'reducers/dashboard/widgetReducer';
+import { getWidgetError } from 'reducers/dashboard/errorReducer';
 import map from 'lodash/map';
 
 class WidgetList extends Component {
@@ -30,6 +32,7 @@ class WidgetList extends Component {
     render() {
         return (
             <div className="col-lg-12 widget-list">
+                <ErrorMessage reducerSelector={ getWidgetError }/>
                 <ul>
                     { this.renderList() }
                 </ul>

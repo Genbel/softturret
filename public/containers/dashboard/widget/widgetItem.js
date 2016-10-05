@@ -12,12 +12,14 @@ class WidgetItem extends Component {
         this.state = {
             hover: false,
             editMode: false,
-            widgetName: props.widget.text
+            widgetName: props.button.display_text
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ widgetName: nextProps.widget.text });
+        !nextProps.updating && this.setState({ widgetName: nextProps.widget.text });
+        // Our item has been updated so set the item to not editMode
+        this.props.updating && !nextProps.updating && this.setState({ editMode: false });
     }
 
     onInputChange(event) {
@@ -34,8 +36,6 @@ class WidgetItem extends Component {
             // It should be good to add a in the placeholder that message
             console.log(' You cannot save that widget name because is empty')
         } else {
-            // that one should be when the request is successful
-            //this.setState({ editMode: false });
             this.props.changeWidgetName({ widgetId: this.props.widget.id, widgetName: this.state.widgetName });
         }
     }
@@ -69,6 +69,20 @@ class WidgetItem extends Component {
         )
     }
 
+    renderItemAction() {
+            if(!this.props.updating) {
+                return (
+                    <button type="submit" className="btn btn-primary btn-edit">
+                        <FontAwesome name="check-circle-o" />
+                    </button>
+                );
+            } else {
+                return (
+                    <div className="save-spinner"></div>
+                )
+            }
+    }
+
     renderEditElement() {
         return (
             <li className="widget-item">
@@ -78,18 +92,15 @@ class WidgetItem extends Component {
                         className="form-control"
                         value={ this.state.widgetName }
                         onChange={ this.onInputChange.bind(this) }/>
-                        <span className="input-group-btn">
-                            { this.props.updating === undefined && <button type="submit" className="btn btn-primary btn-edit">
-                                <FontAwesome name="check-circle-o" />
-                            </button> }
-                        </span>
+                    <span className="input-group-btn">
+                        { this.renderItemAction() }
+                    </span>
                 </form>
             </li>
         );
     }
 
     render() {
-        console.log('widgetIsUpdating: ', this.props.updating, ', widgetId: ', this.props.widget.id);
         return !this.state.editMode?
             this.renderNotEditElement():
             this.renderEditElement();
@@ -97,14 +108,10 @@ class WidgetItem extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ changeWidgetName }, dispatch);
-};
-
 const mapStateToProps = (state, ownProps) => {
     return {
         updating: getWidgetUpdateState(state.dashboard.widgets, ownProps.widget.id)
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WidgetItem);
+export default connect(mapStateToProps)(WidgetItem);

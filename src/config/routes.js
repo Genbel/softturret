@@ -9,7 +9,7 @@ var path = require('path'),
 var routes = [
     // WARNING: IN SOME REQUEST WE NEED A requiresLogin function as middleware
     {
-        path: '/dashboard/widget-board',
+        path: '/dashboard/button-board',
         httpMethod: 'GET',
         middleware: [renderIndex]
     },{
@@ -20,6 +20,10 @@ var routes = [
         path:'/api/dataservice/widget/add_widget',
         httpMethod: 'POST',
         middleware: [widgetCtrl.addWidget]
+    },{
+        path: '/api/dataservice/widget/change_widget_name',
+        httpMethod: 'POST',
+        middleware: [widgetCtrl.changeWidgetName]
     },{
         path: '/api/dataservice/room/edit_rooom',
         httpMethod: 'POST',
