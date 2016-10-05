@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { getButtonUpdateState } from 'reducers/dashboard/buttonReducer';
 import FontAwesome from 'react-fontawesome';
 import Classnames from 'classnames';
 
@@ -14,6 +15,15 @@ class ButtonItem extends Component {
             editMode: false,
             buttonName: name
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.updating) {
+            const name = nextProps.button.display_text === null? '' : nextProps.button.display_text;
+            !nextProps.updating && this.setState({ buttonName: name });
+        }
+        // Our item has been updated so set the item to not editMode
+        this.props.updating && !nextProps.updating && this.setState({ editMode: false });
     }
 
     onEnter() {
@@ -32,10 +42,10 @@ class ButtonItem extends Component {
     }
 
     changeButtonName(event) {
-        console.log(this.state.buttonName);
         event.preventDefault();
-        this.props.changeButtonName(this.state.buttonName, this.props.id);
-        this.setState({ editMode: false });
+        if(this.state.buttonName !== ''){
+            this.props.changeButtonName(this.state.buttonName, this.props.id);
+        }
     }
 
     getButtonTextToDisplay(displayText, channelRef, position) {
@@ -43,7 +53,10 @@ class ButtonItem extends Component {
             return { display: 'Not assigned', channel: 'Button ' + position, customClass: false };
         } else {
             if( displayText === null) {
-                return { display: 'Set the custom tag', channel: channelRef, customClass: false };
+                const display = this.state.buttonName === '' ?
+                    'Set the custom tag' :
+                    this.state.buttonName;
+                return { display: display, channel: channelRef, customClass: false };
             } else {
                 return { display: this.state.buttonName, channel: channelRef, customClass: true };
             }
@@ -83,14 +96,17 @@ class ButtonItem extends Component {
                 <div className="save-spinner"></div>
             )
         }*/
-
-        return (
-            <div className="action-content">
-                <button type="submit" className="btn btn-primary btn-edit">
-                    <FontAwesome name="check-circle-o" />
-                </button>
-            </div>
-        );
+        if(!this.props.updating) {
+            return (
+                <div className="action-content">
+                    <button type="submit" className="btn btn-primary btn-edit">
+                        <FontAwesome name="check-circle-o"/>
+                    </button>
+                </div>
+            );
+        } else {
+            return <div className="save-spinner"></div>;
+        }
     }
 
     renderEditItem(text, customClassName) {
@@ -143,15 +159,13 @@ class ButtonItem extends Component {
 ButtonItem.PropTypes = {
     button: React.PropTypes.object.isRequired,
     id: React.PropTypes.string.isRequired,
-    changeButtonName: React.PropTypes.func.isRequired
+    changeButtonName: React.PropTypes.func.isRequired,
+    getButtonUpdateState: React.PropTypes.bool.isRequired
 };
 
-/*const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        updating: getButtonUpdateState(state.dashboard.widgets, ownProps.id)
+        updating: getButtonUpdateState(state.dashboard.buttons, ownProps.id)
     }
 };
- ,
- getButtonUpdateState: React.PropTypes.bool.isRequired
-export default connect(mapStateToProps)(ButtonItem);*/
-export default ButtonItem;
+export default connect(mapStateToProps)(ButtonItem);

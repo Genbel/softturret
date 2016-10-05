@@ -10,9 +10,10 @@ class ErrorMessage extends Component {
     render() {
         console.log('errorMessage re-render');
         const { errorMessage } = this.props;
+        const style = { float: 'none' };
         if( errorMessage !== null) {
             return (
-                <div className="col-md-12 error-message clearfix">
+                <div className="col-md-12 error-message clearfix" style={ style }>
                     <div className="alert alert-danger">
                         <b>{ errorMessage }</b>
                     </div>

@@ -3,7 +3,8 @@ import {
     UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED, UNIT_WIDGET_SUCCESS,
     ADD_WIDGET, ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED,
     CHANGE_WIDGET_NAME, CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED,
-    CHANGE_BUTTON_NAME, CHANGE_BUTTON_NAME_SUCCESS, CHANGE_BUTTON_NAME_FAILED
+    CHANGE_BUTTON_NAME_SUCCESS,
+    REMOVE_WIDGET_ID, REMOVE_WIDGET_SUCCESS, REMOVE_WIDGET, REMOVE_WIDGET_FAILED
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import { _findElementState } from 'helpers/local.dashboardHelpers';
@@ -35,6 +36,13 @@ const widgetReducer = () => {
                 newObject.position = !data.attached? null : data.position;
                 newObject.attached = data.attached;
                 return { ...state, [data.widgetId]: newObject };
+            case CHANGE_BUTTON_NAME_SUCCESS:
+                const newValues = action.response;
+                const newWidgetObj = state[newValues.widgetId];
+                newWidgetObj['buttons'][newValues.buttonId]['display_text'] = newValues.buttonName;
+                return { ...state, [newValues.widgetId]: newWidgetObj };
+            case REMOVE_WIDGET_SUCCESS:
+                return _.filter(state, (elem, key) => { return key !== action.widgetId });
             default:
                 return state;
         }
@@ -55,9 +63,12 @@ const widgetReducer = () => {
     const sendingRequest = (state = false, action) => {
         switch (action.type) {
             case ADD_WIDGET:
+            case REMOVE_WIDGET:
                 return true;
             case ADD_WIDGET_SUCCESS:
             case ADD_WIDGET_FAILED:
+            case REMOVE_WIDGET_SUCCESS:
+            case REMOVE_WIDGET_FAILED:
                 return false;
             default:
                 return state;
@@ -71,17 +82,28 @@ const widgetReducer = () => {
                 return [ ...state, Number(action.response.widgetId)];
             case UNIT_WIDGET_SUCCESS:
             case UNIT_WIDGET_FAILED:
-                return _.remove(state, (elem) => { return elem !== Number(action.response.widgetId) });
+                return _.omitBy(state, (elem, index) => { return Number(index) === Number(action.response.widgetId) });
             default:
                 return state
         }
     };
-
+    // The widget that we are going to remove
+    const removedWidgetId = (state = null, action) => {
+        switch (action.type) {
+            case REMOVE_WIDGET_ID:
+                return action.widgetId;
+            case REMOVE_WIDGET_SUCCESS:
+                return null;
+            default:
+                return state;
+        }
+    };
     return combineReducers({
         byId,
         isFetching,
         sendingRequest,
-        restQueue
+        restQueue,
+        removedWidgetId
     });
 };
 
@@ -95,5 +117,6 @@ export const getDisconnectedWidgets = (state) =>  !_.isEmpty(state.byId)? _.filt
 export const sendingRequest = (state) => state.sendingRequest;
 export const getWidgetUpdateState = (state, id) => _findElementState(state.restQueue, id);
 export const getWidgetButtons = (state, id) => state.byId[id];
+export const getRemovedWidgetId = (state) => state.removedWidgetId;
 
 //************* Reducer local functions *************//

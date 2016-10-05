@@ -2,6 +2,7 @@
 var widgetCtrl = require('../controllers/widgetController');
 var roomCtrl = require('../controllers/roomController');
 var userCtrl = require('../controllers/userController');
+var buttonCtrl = require('../controllers/buttonController');
 var path = require('path'),
     _ = require('lodash');
 
@@ -9,9 +10,13 @@ var path = require('path'),
 var routes = [
     // WARNING: IN SOME REQUEST WE NEED A requiresLogin function as middleware
     {
-        path: '/dashboard/button-board',
+        path: '/dashboard/widget-board',
         httpMethod: 'GET',
         middleware: [renderIndex]
+    },{
+        path:'/api/dataservice/button/change_button_name',
+        httpMethod: 'POST',
+        middleware: [buttonCtrl.changeButtonName]
     },{
         path:'/api/dataservice/widget/fetch_widgets',
         httpMethod: 'POST',
@@ -24,6 +29,10 @@ var routes = [
         path: '/api/dataservice/widget/change_widget_name',
         httpMethod: 'POST',
         middleware: [widgetCtrl.changeWidgetName]
+    },{
+        path: '/api/dataservice/widget/remove_widget',
+        httpMethod: 'POST',
+        middleware: [widgetCtrl.removeWidget]
     },{
         path: '/api/dataservice/room/edit_rooom',
         httpMethod: 'POST',

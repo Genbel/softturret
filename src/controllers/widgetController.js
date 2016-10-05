@@ -174,10 +174,20 @@ exports.addWidget = function(req, res) {
 
     return setTimeout(function(){
         var result = Math.floor(Math.random() * 6) + 1;
-        if(result > 7){
+        if(result > 0){
             return res.status(200).json(newWidget);
         }
         return res.status(400).json('It was an error while we were saving the new widget, try it again!');
+    }, 1000);
+};
+
+exports.removeWidget = function(req, res) {
+    return setTimeout(function(){
+        var result = Math.floor(Math.random() * 6) + 1;
+        if(result > 0){
+            return res.status(200).json('ok');
+        }
+        return res.status(400).json('It was an error while we were deleting the widget , try it again!');
     }, 1000);
 };
 

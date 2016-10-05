@@ -8,7 +8,7 @@ import Modal from 'components/modal/main';
 import Header from 'components/modal/header';
 import Body from 'components/modal/body';
 import WidgetTemplate from 'components/dashboard/dnd/WidgetTemplate';
-import Footer from 'components/modal/Footer';
+import Footer from 'components/modal/modalFooter';
 
 
 class AddRoomModal extends Component {

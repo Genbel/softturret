@@ -8,10 +8,11 @@ const buttonReducer = () => {
     return (state = [], action) => {
         switch (action.type) {
             case CHANGE_BUTTON_NAME:
+                console.log(action);
                 return [...state, action.response.buttonId];
             case CHANGE_BUTTON_NAME_FAILED:
             case CHANGE_BUTTON_NAME_SUCCESS:
-                return remove(state, (elem) => { return elem !== Number(action.response.buttonId) });
+                return remove(state, (elem) => { return elem !== action.response.buttonId });
             default:
                 return state;
         }
@@ -21,6 +22,6 @@ const buttonReducer = () => {
 export default buttonReducer;
 
 //************* Reducer selectors *************//
-export const getWidgetUpdateState = (state, id) => _findElementState(state, id);
+export const getButtonUpdateState = (state, id) => _findElementState(state, id);
 
 //************* Reducer local functions *************//

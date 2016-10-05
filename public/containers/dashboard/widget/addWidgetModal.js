@@ -5,7 +5,7 @@ import { toggleModal } from 'actions/dashboard/modalActions';
 import Modal from 'components/modal/main';
 import Header from 'components/modal/header';
 import Body from 'components/modal/body';
-import Footer from 'components/modal/Footer';
+import Footer from 'components/modal/modalFooter';
 import ErrorMessage from 'containers/general/errors/errorMessage';
 import { addWidget } from 'actions/dashboard/widgetActions';
 import { getWidgetError } from 'reducers/dashboard/errorReducer';

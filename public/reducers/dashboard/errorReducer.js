@@ -66,3 +66,4 @@ export default errorReducer;
 export const getRoomError = (state) => state.roomErrors;
 export const getUserError = (state) => state.userErrors;
 export const getWidgetError = (state) => state.widgetErrors;
+export const getButtonError = (state) => state.buttonErrors;

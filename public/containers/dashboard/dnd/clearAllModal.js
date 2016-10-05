@@ -7,7 +7,7 @@ import { getActualRoomId } from 'reducers/dashboard/roomReducer';
 import { CLEAR_ALL_MODAL_CLOSED } from 'actions/dashboard/dashboardTypes';
 import Modal from 'components/modal/main';
 import Header from 'components/modal/header';
-import Footer from 'components/modal/Footer';
+import Footer from 'components/modal/modalFooter';
 
 class ClearAllModal extends Component {
 

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchWidgets } from 'actions/dashboard/widgetActions';
+import { getModalState } from 'reducers/dashboard/modalReducer';
 import WidgetList from './widgetList';
+import RemoveWidgetModal from './removeWidgetModal';
 import style from '../../../../assets/stylesheets/dashboard/widget.scss';
 
 class WidgetBoard extends Component {
@@ -16,6 +18,7 @@ class WidgetBoard extends Component {
 		return (
 			<div className="widget-board">
 				<WidgetList />
+				{ this.props.removeWidgetModalIsOpen && <RemoveWidgetModal />}
 			</div>
 		)
 	}
@@ -35,11 +38,18 @@ class WidgetBoard extends Component {
 }
 
 WidgetBoard.PropTypes = {
-	fetchWidgets: React.PropTypes.func.isRequired
+	fetchWidgets: React.PropTypes.func.isRequired,
+	removeWidgetModalIsOpen: React.PropTypes.bool.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ fetchWidgets }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(WidgetBoard);
+const mapStateToProps = (state) => {
+	return {
+		removeWidgetModalIsOpen: getModalState(state.dashboard.modals, 'removeWidget')
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WidgetBoard);

@@ -38,9 +38,6 @@
         list-style-type: none;
       }
       .action-content {
-        display: flex;
-        height: 80%;
-        justify-content: flex-end;
         width: 20%;
       }
       .text {
@@ -71,5 +68,12 @@
         color: #c7c4c4;
       }
     }
+  }
+  .save-spinner {
+    background: url("../../img/updating.gif") center center no-repeat;
+    background-color: #5F9EA0;
+    width: 45px;
+    height: 36px;
+    border-radius: 5px;
   }
 }

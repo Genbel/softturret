@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import WidgetList from 'components/dashboard/button/widgetList';
 import ButtonList from 'containers/dashboard/button/buttonList';
+import ErrorMessage from 'containers/general/errors/errorMessage';
 import FontAwesome from 'react-fontawesome';
 import { fetchWidgets } from 'actions/dashboard/widgetActions';
 import { getAllWidgets, getWidgetButtons } from 'reducers/dashboard/widgetReducer';
+import { getButtonError } from 'reducers/dashboard/errorReducer';
 import style from '../../../../assets/stylesheets/dashboard/button.scss';
 import spinner from '../../../../assets/img/gears.gif';
 
@@ -82,6 +84,7 @@ class ButtonBoard extends Component {
                         }
                     </div>
                     <div className="col-lg-10">
+                        <ErrorMessage reducerSelector={ getButtonError } />
                         { this.renderWidgetList() }
                     </div>
                 </div>

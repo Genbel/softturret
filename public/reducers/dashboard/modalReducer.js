@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import {
     ADD_ROOM_MODAL_OPENED, ADD_ROOM_MODAL_CLOSED,
     CLEAR_ALL_MODAL_OPENED, CLEAR_ALL_MODAL_CLOSED,
-    ADD_WIDGET_MODAL_OPENED, ADD_WIDGET_MODAL_CLOSED, ADD_WIDGET_SUCCESS
+    ADD_WIDGET_MODAL_OPENED, ADD_WIDGET_MODAL_CLOSED, ADD_WIDGET_SUCCESS,
+    REMOVE_WIDGET_MODAL_OPENED, REMOVE_WIDGET_MODAL_CLOSED
 } from 'actions/dashboard/dashboardTypes';
 
 const modalReducer = () => {
@@ -37,10 +38,21 @@ const modalReducer = () => {
                 return state;
         }
     };
+    const removeWidgetModalIsOpen = (state = false, action) => {
+        switch (action.type) {
+            case REMOVE_WIDGET_MODAL_OPENED:
+                return true;
+            case REMOVE_WIDGET_MODAL_CLOSED:
+                return false;
+            default:
+                return state;
+        }
+    };
     return combineReducers({
         addRoomModalIsOpen,
         clearAllModalIsOpen,
-        addWidgetModalIsOpen
+        addWidgetModalIsOpen,
+        removeWidgetModalIsOpen
     });
 };
 
@@ -67,6 +79,8 @@ const _getModalState = (state, type) => {
             return state.clearAllModalIsOpen;
         case 'addWidget':
             return state.addWidgetModalIsOpen;
+        case 'removeWidget':
+            return state.removeWidgetModalIsOpen;
         case undefined:
             throw new Error('Unknow modal type in _getModalState undefined. Set the proper one.');
         default:

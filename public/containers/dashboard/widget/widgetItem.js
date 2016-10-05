@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeWidgetName } from 'actions/dashboard/widgetActions';
+import { changeWidgetName, showWidgetRemoveModal } from 'actions/dashboard/widgetActions';
 import { getWidgetUpdateState } from 'reducers/dashboard/widgetReducer';
+import { REMOVE_WIDGET_MODAL_OPENED } from 'actions/dashboard/dashboardTypes';
 
 class WidgetItem extends Component {
 
@@ -12,7 +13,7 @@ class WidgetItem extends Component {
         this.state = {
             hover: false,
             editMode: false,
-            widgetName: props.button.display_text
+            widgetName: props.widget.text
         };
     }
 
@@ -26,20 +27,6 @@ class WidgetItem extends Component {
         this.setState({ widgetName: event.target.value });
     }
 
-    spanClicked(text) {
-        // we have to display the modal
-    }
-
-    changeWidgetName(event) {
-        event.preventDefault();
-        if( this.state.widgetName === '' ) {
-            // It should be good to add a in the placeholder that message
-            console.log(' You cannot save that widget name because is empty')
-        } else {
-            this.props.changeWidgetName({ widgetId: this.props.widget.id, widgetName: this.state.widgetName });
-        }
-    }
-
     changeToEditState(event) {
         this.setState({ editMode: true });
     }
@@ -48,6 +35,20 @@ class WidgetItem extends Component {
     }
     onLeave() {
         this.setState({ hover: false });
+    }
+
+    spanClicked() {
+        const{ attached, id } = this.props.widget;
+        if(!attached) {
+            this.props.showWidgetRemoveModal(id);
+        }
+    }
+
+    changeWidgetName(event) {
+        event.preventDefault();
+        if( this.state.widgetName !== '' ) {
+            this.props.changeWidgetName({ widgetId: this.props.widget.id, widgetName: this.state.widgetName });
+        }
     }
 
     renderNotEditElement() {
@@ -59,7 +60,7 @@ class WidgetItem extends Component {
                 onMouseLeave={ () => this.onLeave() } >
                 <span
                     className={ widget.attached }
-                    onClick={ () => this.spanClicked(widget.text) }/>
+                    onClick={ () => this.spanClicked() }/>
                 <span
                     className="widget-name"
                     onClick={ () => this.changeToEditState(widget.text) }>
@@ -108,10 +109,14 @@ class WidgetItem extends Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ showWidgetRemoveModal, changeWidgetName }, (dispatch));
+};
+
 const mapStateToProps = (state, ownProps) => {
     return {
         updating: getWidgetUpdateState(state.dashboard.widgets, ownProps.widget.id)
     }
 };
 
-export default connect(mapStateToProps)(WidgetItem);
+export default connect(mapStateToProps, mapDispatchToProps)(WidgetItem);
