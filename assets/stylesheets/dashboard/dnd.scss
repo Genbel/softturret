@@ -22,17 +22,25 @@
   }
   .drop {
     height: 100px;
-    border-radius: 5px;
-    padding: 10px;
-    vertical-align:middle;
+    border-radius: 10px;
+    padding: 20px;
+    vertical-align: middle;
     background-color: #f8f8f8;
-    display: flex;
-    align-items: center;
+    text-align: center;
+    span {
+      margin-top: 10px;
+      &.fa {
+        color: lightgrey;
+      }
+      &.widget-name {
+        color:black;
+      }
+    }
     &.empty {
-      margin: 2px;
-      border: 2px dotted royalblue;
+      margin: 5px 5px 10px;
+      border: 2px dashed #b8b8b8;
       &.forbidden {
-        border: 2px solid #d9534f;
+        border: 2px dotted #d9534f;
         background-color: #e4b9b9;
       }
     }
@@ -40,6 +48,7 @@
       margin: 2px;
       border: 2px solid black;
       background-color: antiquewhite;
+      margin-bottom: 15px;
       .erase-widget{
         position: absolute;
         right: 5px;
@@ -54,12 +63,12 @@
         animation-timing-function: linear;
       }
       &.forbidden {
-        border: 2px solid #d9534f;
+        border: 2px dotted #d9534f;
         background-color: #e4b9b9;
       }
     }
     &.allowed {
-      border: 2px solid green;
+      border: 2px dotted green;
       background-color: #a3d7a3;
     }
   }
@@ -80,6 +89,10 @@
 }
 .control-board, .room-pagination{
   margin-top: 25px;
+}
+.control-board .btn-container{
+  display: inline-block;
+  margin-right:15px;
 }
 // Add room modal
 .widget-template-container {

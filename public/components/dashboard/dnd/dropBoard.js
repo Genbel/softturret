@@ -44,6 +44,14 @@ class Dropboard extends Component {
         widgetActionInTheRoom(widgetInfo);
     }
 
+    setDropContent(text, attached) {
+        if(attached) {
+            return <span className="widget-name">{ text }</span>
+        } else {
+            return <FontAwesome name="plus-circle" size="2x" />
+        }
+    }
+
     render() {
         const { text, attached, connectDropTarget, canDrop, isOver, editMode, type } = this.props;
         const GS = type === 'GS';
@@ -58,7 +66,7 @@ class Dropboard extends Component {
         return connectDropTarget(
             <div className={className}>
                 { attached && editMode &&  <FontAwesome className="erase-widget" name="times-circle-o" size="2x" onClick={ () => this.deleteWidget() }/> }
-                {text}
+                { this.setDropContent(text, attached)}
             </div>
         );
     }

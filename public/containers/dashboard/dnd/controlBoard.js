@@ -15,16 +15,16 @@ class ActionBoard extends Component {
         const { toggleModal, addRoomModalIsOpen, clearAllModalIsOpen, toggleEditRoom, editMode } = this.props;
         return (
             <div className="control-board col-lg-6">
-                <div className="col-lg-4">
+                <div className="btn-container">
+                    <button className="btn btn-danger" onClick={ () => toggleModal(CLEAR_ALL_MODAL_OPENED)}>Delete Page</button>
+                    { clearAllModalIsOpen && <ClearAllModal /> }
+                </div>
+                <div className="btn-container">
                     <button className="btn btn-danger" onClick={ () => toggleEditRoom() }>
                         { editMode? 'Save' : 'Erase Widget' }
                     </button>
                 </div>
-                <div className="col-lg-4">
-                    <button className="btn btn-danger" onClick={ () => toggleModal(CLEAR_ALL_MODAL_OPENED)}>Clear all</button>
-                    { clearAllModalIsOpen && <ClearAllModal /> }
-                </div>
-                <div className="col-lg-4">
+                <div className="btn-container">
                     <button className="btn btn-info" onClick={ () => toggleModal(ADD_ROOM_MODAL_OPENED)}> Add </button>
                     { addRoomModalIsOpen && <AddRoomModal /> }
                 </div>
