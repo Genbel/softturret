@@ -38,8 +38,8 @@ class WidgetItem extends Component {
     }
 
     spanClicked() {
-        const{ attached, id } = this.props.widget;
-        if(!attached) {
+        const{ buttonsAttached, id } = this.props.widget;
+        if(!buttonsAttached) {
             this.props.showWidgetRemoveModal(id);
         }
     }
@@ -59,7 +59,7 @@ class WidgetItem extends Component {
                 onMouseEnter={ () => this.onEnter() }
                 onMouseLeave={ () => this.onLeave() } >
                 <span
-                    className={ widget.attached }
+                    className={ widget.buttonsAttached }
                     onClick={ () => this.spanClicked() }/>
                 <span
                     className="widget-name"

@@ -27,7 +27,7 @@ class ActionBoard extends Component {
         return (
             <div className="main-dnd">
                 <RoomName roomName={ roomName } />
-                { roomErrorMessage !== null && <ErrorMessage error={ roomErrorMessage } /> }
+                { roomErrorMessage !== null && <ErrorMessage reducerSelector={ getRoomError } /> }
                 <div className="col-lg-12 clearfix">
                     <div className="col-lg-9 clearfix">
                         <div className="drop-board clearfix">
@@ -46,6 +46,8 @@ class ActionBoard extends Component {
                     <div className="col-lg-3 clearfix">
                         <div className="drag-board">
                             { _.map(disconnectedWidgets, (widget, index) => {
+                                console.log(widget);
+                                console.log(index);
                                 return <DragElement type={widget.type}
                                                     key={index}
                                                     text={widget.text}
@@ -71,8 +73,7 @@ ActionBoard.PropTypes = {
     disconnectedWidgets: React.PropTypes.array.isRequired,
     roomName: React.PropTypes.string.isRequired,
     roomId: React.PropTypes.string.isRequired,
-    editMode: React.PropTypes.bool.isRequired,
-    roomErrorMessage: React.PropTypes.string
+    editMode: React.PropTypes.bool.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
@@ -84,8 +85,7 @@ const mapStateToProps = (state) => {
         disconnectedWidgets: getDisconnectedWidgets(state.dashboard.widgets),
         roomName: getActualRoomName(state.dashboard),
         roomId: getActualRoomId(state.dashboard.rooms),
-        editMode: getRoomEditModeState(state.dashboard.rooms),
-        roomErrorMessage: getRoomError(state.dashboard.errors)
+        editMode: getRoomEditModeState(state.dashboard.rooms)
     }
 };
 

@@ -14,6 +14,7 @@ class RemoveWidgetModal extends Component {
 
     removeWidget() {
         const { removedWidgetId, removeWidget } = this.props;
+        console.log(removedWidgetId);
         removeWidget(removedWidgetId);
     }
     render() {
@@ -22,9 +23,6 @@ class RemoveWidgetModal extends Component {
             <div className="remove-widget-modal" >
                 <Modal>
                     <Header tittle="Are you sure that you want to delete that widget?"/>
-                    <Body>
-                        <h1> Delete the widget</h1>
-                    </Body>
                     <Footer
                         onCancel={ toggleModal }
                         onConfirm={ this.removeWidget.bind(this) }

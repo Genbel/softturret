@@ -4,12 +4,13 @@ var widgetModel = require('../models/widgetModel');
 exports.fetchWidgets = function(req, res){
     var data = {
         widgets: {
-            1: {
+            'c81bca8f-d2ea-49a7-91a6-f5a88b6cce0d': {
                 type: 'GM',
-                position: 1,
+                position: null,
                 text: 'Lina Familly',
                 attached: false,
-                id: 1,
+                buttonsAttached: true,
+                id: 'c81bca8f-d2ea-49a7-91a6-f5a88b6cce0d',
                 buttons: {
                     fa9asdf9asd: {
                         channel_ref: null,
@@ -33,12 +34,13 @@ exports.fetchWidgets = function(req, res){
                     }
                 }
             },
-            2: {
+            'c8oica8f-d2ea-49a7-91a6-f5a88berce0d': {
                 type: 'GS',
                 position: null,
                 text: 'Iraolatarrak',
                 attached: false,
-                id: 2,
+                buttonsAttached: true,
+                id: 'c8oica8f-d2ea-49a7-91a6-f5a88berce0d',
                 buttons: {
                     fa9asdf9asd: {
                         channel_ref: null,
@@ -62,12 +64,13 @@ exports.fetchWidgets = function(req, res){
                     }
                 }
             },
-            3: {
+            'c81bca8f-dlia-49a7-91a6-f5a88b6ccnad': {
                 type: 'GS',
                 position: null,
                 text: 'Genbeltzutarrak',
                 attached: false,
-                id: 3,
+                buttonsAttached: true,
+                id: 'c81bca8f-dlia-49a7-91a6-f5a88b6ccnad',
                 buttons: {
                     fa9asdf9asd: {
                         channel_ref: 'Genbeltzutarrak, Martindegi, SIP',
@@ -111,12 +114,13 @@ exports.fetchWidgets = function(req, res){
                     }
                 }
             },
-            4: {
+            'c81bca8f-gara-49a7-91a6-f5a88b6cce0d': {
                 type: 'GS',
-                position: 2,
+                position: null,
                 text: 'Lagunak',
-                attached: true,
-                id: 4,
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
                 buttons: {
                     fa9asdf9asd: {
                         channel_ref: 'Kuadrila, London, SIP',
@@ -145,7 +149,7 @@ exports.fetchWidgets = function(req, res){
             'asdf2kf0asdfnasdf90': {
                 type: ['GS', 'GM', 'GS', 'GS', 'GS', 'GS', 'GS'],
                 text: 'Surrounding People',
-                widgets: [4]
+                widgets: []
             },
             'pqioerp0923klfqpsd890u2n': {
                 type: ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'],
