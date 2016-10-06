@@ -7,7 +7,7 @@ import {
     REMOVE_WIDGET_ID, REMOVE_WIDGET_SUCCESS, REMOVE_WIDGET, REMOVE_WIDGET_FAILED
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
-import { _findElementState } from 'helpers/local.dashboardHelpers';
+import { _findElementState, removeElementFromTheState } from 'helpers/local.dashboardHelpers';
 import _ from 'lodash';
 
 // Widget reducer
@@ -16,7 +16,6 @@ const widgetReducer = () => {
     const byId = (state = {}, action) => {
         switch (action.type){
             case FETCH_WIDGETS_SUCCESS:
-                console.log(action.response.widgets);
                 return action.response.widgets;
             case ADD_WIDGET_SUCCESS:
                 return { ...state, [action.response.id]: action.response };
@@ -43,7 +42,7 @@ const widgetReducer = () => {
                 newWidgetButton['buttons'][newValues.buttonId]['display_text'] = newValues.buttonName;
                 return { ...state, [newValues.widgetId]: newWidgetButton };
             case REMOVE_WIDGET_SUCCESS:
-                return removeWidgetFromTheState(state, action.widgetId);
+                return removeElementFromTheState(state, action.widgetId);
             default:
                 return state;
         }
@@ -121,18 +120,3 @@ export const getWidgetButtons = (state, id) => state.byId[id];
 export const getRemovedWidgetId = (state) => state.removedWidgetId;
 
 //************* Reducer local functions *************//
-/**
- * Delete the given widget from the widget object
- * @param {object} state: Actual state of the widgets object
- * @param {string} widgetId: The widget that we want to delete
- * @returns {{object}}: Widget object
- */
-const removeWidgetFromTheState = (state, widgetId) => {
-    const newById = {};
-    _.forEach(state, (widget, index) => {
-        if(String(index) !== String(widgetId)) {
-            newById[index] = widget;
-        }
-    });
-    return newById;
-};

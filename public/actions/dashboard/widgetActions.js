@@ -15,11 +15,9 @@ export const fetchWidgets = () => (dispatch, getState) => {
     dispatch({ type: FETCH_WIDGETS_REQUEST });
     return axios.post(`${APIPath}/widget/fetch_widgets`)
         .then(({ data }) => {
-            console.log('success');
             dispatch({ type: FETCH_WIDGETS_SUCCESS, response: data });
         })
         .catch(({ response }) => {
-            console.log('fail');
             dispatch({ type: FETCH_WIDGETS_FAILURE, response: response.data.message });
         });
 };
@@ -69,12 +67,10 @@ export const removeWidget = ( widgetId ) => (dispatch) => {
     dispatch({ type: REMOVE_WIDGET });
     axios.post(`${APIPath}/widget/remove_widget`, widgetId)
         .then(() => {
-            console.log('success');
             dispatch({ type: REMOVE_WIDGET_SUCCESS, widgetId });
             dispatch({ type: REMOVE_WIDGET_MODAL_CLOSED });
         })
         .catch(() => {
-            console.log('fail');
             dispatch({ type: REMOVE_WIDGET_FAILED });
         });
 };

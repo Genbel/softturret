@@ -1,11 +1,14 @@
 import {
     FETCH_WIDGETS_SUCCESS, UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED,
     ROOM_CHANGED, ROOM_ADDED,
-    TOGGLE_EDIT_ROOM } from 'actions/dashboard/dashboardTypes';
+    REMOVE_ROOM_ID, REMOVE_ROOM, REMOVE_ROOM_SUCCESS, REMOVE_ROOM_FAILED,
+    REMOVE_ROOM_MODAL_CLOSED,
+    TOGGLE_EDIT_ROOM
+} from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import { getWidget } from 'reducers/dashboard/widgetReducer';
 import _ from 'lodash';
-import { fillWidgetsInTheBoard } from 'helpers/local.dashboardHelpers';
+import { fillWidgetsInTheBoard, removeElementFromTheState } from 'helpers/local.dashboardHelpers';
 
 // Room reducer
 const roomReducer = () => {
@@ -25,6 +28,8 @@ const roomReducer = () => {
             case ROOM_ADDED:
                 const id = _.keys(response)[0];
                 return {...state, [id]: response[id] };
+            case REMOVE_ROOM_SUCCESS:
+                return removeElementFromTheState(state, response.roomId);
             default:
                 return state;
         }
@@ -35,6 +40,8 @@ const roomReducer = () => {
                 return findActualRoom(action.response.rooms, state);
             case ROOM_CHANGED:
                 return action.page;
+            case REMOVE_ROOM_SUCCESS:
+                return action.response.actualPage;
             default:
                 return state;
         }
@@ -45,6 +52,8 @@ const roomReducer = () => {
                 return createRoomPagination(action.response.rooms);
             case ROOM_ADDED:
                 return [...state, _.keys(action.response)[0]];
+            case REMOVE_ROOM_SUCCESS:
+                return _.filter(state, (roomId) => { return String(roomId) !== String(action.response.roomId) });
             default:
                 return state;
         }
@@ -57,11 +66,37 @@ const roomReducer = () => {
                 return state;
         }
     };
+    // The room that we are going to remove
+    const removedRoomId = (state = null, action) => {
+        switch (action.type) {
+            case REMOVE_ROOM_ID:
+                return action.roomId;
+            case REMOVE_ROOM_SUCCESS:
+            case REMOVE_ROOM_MODAL_CLOSED:
+                return null;
+            default:
+                return state;
+        }
+    };
+    // When we do REST operations, to load the spinners
+    const sendingRequest = (state = false, action) => {
+        switch (action.type) {
+            case REMOVE_ROOM:
+                return true;
+            case REMOVE_ROOM_SUCCESS:
+            case REMOVE_ROOM_FAILED:
+                return false;
+            default:
+                return state;
+        }
+    };
     return combineReducers({
         byId,
         actual,
         pagination,
-        editMode
+        editMode,
+        removedRoomId,
+        sendingRequest
     });
 };
 export default roomReducer;

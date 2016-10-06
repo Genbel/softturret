@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import {
     ADD_ROOM_MODAL_OPENED, ADD_ROOM_MODAL_CLOSED,
-    CLEAR_ALL_MODAL_OPENED, CLEAR_ALL_MODAL_CLOSED,
+    REMOVE_ROOM_MODAL_OPENED, REMOVE_ROOM_MODAL_CLOSED,
     ADD_WIDGET_MODAL_OPENED, ADD_WIDGET_MODAL_CLOSED, ADD_WIDGET_SUCCESS,
     REMOVE_WIDGET_MODAL_OPENED, REMOVE_WIDGET_MODAL_CLOSED
 } from 'actions/dashboard/dashboardTypes';
@@ -17,11 +17,11 @@ const modalReducer = () => {
                 return state;
         }
     };
-    const clearAllModalIsOpen = (state = false, action) => {
+    const removeRoomModalIsOpen = (state = false, action) => {
         switch (action.type) {
-            case CLEAR_ALL_MODAL_OPENED:
+            case REMOVE_ROOM_MODAL_OPENED:
                 return true;
-            case CLEAR_ALL_MODAL_CLOSED:
+            case REMOVE_ROOM_MODAL_CLOSED:
                 return false;
             default:
                 return state;
@@ -50,7 +50,7 @@ const modalReducer = () => {
     };
     return combineReducers({
         addRoomModalIsOpen,
-        clearAllModalIsOpen,
+        removeRoomModalIsOpen,
         addWidgetModalIsOpen,
         removeWidgetModalIsOpen
     });
@@ -75,8 +75,8 @@ const _getModalState = (state, type) => {
     switch (type) {
         case 'addModal':
             return state.addRoomModalIsOpen;
-        case 'clearAll':
-            return state.clearAllModalIsOpen;
+        case 'removeRoom':
+            return state.removeRoomModalIsOpen;
         case 'addWidget':
             return state.addWidgetModalIsOpen;
         case 'removeWidget':

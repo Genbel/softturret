@@ -69,7 +69,7 @@ exports.fetchWidgets = function(req, res){
                 position: null,
                 text: 'Genbeltzutarrak',
                 attached: false,
-                buttonsAttached: true,
+                buttonsAttached: false,
                 id: 'c81bca8f-dlia-49a7-91a6-f5a88b6ccnad',
                 buttons: {
                     fa9asdf9asd: {

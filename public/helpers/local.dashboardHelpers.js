@@ -27,3 +27,21 @@ export const _findElementState = (updatingIds, id) => {
             return elem == id;
         }) !== undefined;
 };
+
+/**
+ * Delete the given element from the state object. It can be a room or widget
+ * @param {object} state: Actual state of the element object
+ * @param {string} elementId: The element that we want to delete
+ * @returns {{object}}: Widget object
+ */
+export const removeElementFromTheState = (state, elementId) => {
+    console.log(elementId);
+    const newById = {};
+    _.forEach(state, (element, index) => {
+        if(String(index) !== String(elementId)) {
+            newById[index] = element;
+        }
+    });
+    console.log(newById);
+    return newById;
+};

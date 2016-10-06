@@ -16,6 +16,10 @@ import DropElement from './../../../components/dashboard/dnd/dropBoard';
 
 class ActionBoard extends Component {
 
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
+
     widgetActionInTheRoom(widgetInfo) {
         const { roomId } = this.props;
         _.assign(widgetInfo, { roomId });
@@ -46,8 +50,6 @@ class ActionBoard extends Component {
                     <div className="col-lg-3 clearfix">
                         <div className="drag-board">
                             { _.map(disconnectedWidgets, (widget, index) => {
-                                console.log(widget);
-                                console.log(index);
                                 return <DragElement type={widget.type}
                                                     key={index}
                                                     text={widget.text}
