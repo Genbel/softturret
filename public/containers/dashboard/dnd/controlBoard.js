@@ -16,11 +16,11 @@ class ActionBoard extends Component {
         return (
             <div className="control-board col-lg-6">
                 <div className="btn-container">
-                    <button className="btn btn-danger" onClick={ () => showRemoveRoomModal(roomId) }>Delete Page</button>
+                    <button className="btn btn-danger" onClick={ () => showRemoveRoomModal(roomId) } disabled={roomId === undefined}>Delete Page</button>
                     { removeRoomModalIsOpen && <RemoveRoomModal /> }
                 </div>
                 <div className="btn-container">
-                    <button className="btn btn-danger" onClick={ () => toggleEditRoom() }>
+                    <button className="btn btn-danger" onClick={ () => toggleEditRoom() } disabled={roomId === undefined} >
                         { editMode? 'Save' : 'Erase Widget' }
                     </button>
                 </div>

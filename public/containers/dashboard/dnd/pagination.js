@@ -26,22 +26,25 @@ class RoomPagination extends Component {
 
     render() {
         const { totalRooms, actualRoom } = this.props;
-        const prevButton = this.displayButton(actualRoom, 0, 'PREV');
-        const nextButton = this.displayButton(actualRoom, totalRooms, 'NEXT');
-
-        return (
-          <div className="room-pagination col-lg-3">
-              <div className="col-lg-3">
-                  { prevButton }
-              </div>
-              <div className="col-lg-3" id="pagination-text">
-                  <p>{ actualRoom + 1 }/{ totalRooms + 1 }</p>
-              </div>
-              <div className="col-lg-3">
-                  { nextButton }
-              </div>
-          </div>
-        );
+        if(actualRoom === null) {
+            return <noscript></noscript>
+        } else {
+            const prevButton = this.displayButton(actualRoom, 0, 'PREV');
+            const nextButton = this.displayButton(actualRoom, totalRooms, 'NEXT');
+            return (
+                <div className="room-pagination col-lg-3">
+                    <div className="col-lg-3">
+                        { prevButton }
+                    </div>
+                    <div className="col-lg-3" id="pagination-text">
+                        <p>{ actualRoom + 1 }/{ totalRooms + 1 }</p>
+                    </div>
+                    <div className="col-lg-3">
+                        { nextButton }
+                    </div>
+                </div>
+            );
+        }
     }
 }
 

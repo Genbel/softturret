@@ -4,7 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { widgetActionInTheRoom } from 'actions/dashboard/widgetActions';
-import { getRoomWidgets, getActualRoomName, getActualRoomId, getRoomEditModeState } from 'reducers/dashboard/roomReducer';
+import { getRoomWidgets, getActualRoomName, getActualRoomId, getRoomEditModeState, getActualRoom } from 'reducers/dashboard/roomReducer';
 import { getRoomError } from 'reducers/dashboard/errorReducer';
 import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
@@ -27,10 +27,10 @@ class ActionBoard extends Component {
     }
 
     render() {
-        const { disconnectedWidgets, attachedWidgets, roomName, editMode, roomErrorMessage } = this.props;
+        const { disconnectedWidgets, attachedWidgets, roomName, editMode, roomErrorMessage, actualRoom } = this.props;
         return (
             <div className="main-dnd">
-                <RoomName roomName={ roomName } />
+                { actualRoom !== null && <RoomName roomName={ roomName }/> }
                 { roomErrorMessage !== null && <ErrorMessage reducerSelector={ getRoomError } /> }
                 <div className="col-lg-12 clearfix">
                     <div className="col-lg-9 clearfix">
@@ -87,7 +87,8 @@ const mapStateToProps = (state) => {
         disconnectedWidgets: getDisconnectedWidgets(state.dashboard.widgets),
         roomName: getActualRoomName(state.dashboard),
         roomId: getActualRoomId(state.dashboard.rooms),
-        editMode: getRoomEditModeState(state.dashboard.rooms)
+        editMode: getRoomEditModeState(state.dashboard.rooms),
+        actualRoom: getActualRoom(state.dashboard.rooms)
     }
 };
 
