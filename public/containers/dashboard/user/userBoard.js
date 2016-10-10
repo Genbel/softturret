@@ -12,10 +12,6 @@ import foreach from 'lodash/forEach';
 
 class UserBoard extends Component {
 
-	shouldComponentUpdate(nextProps) {
-		return !this.props.isFetching && nextProps.isFetching? false : true;
-	}
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -89,7 +85,6 @@ class UserBoard extends Component {
 
 	render() {
 		const user = this.state;
-		console.log(this.state);
 		return (
 			<div className="row">
 				<div className="col-lg-12 headline">
