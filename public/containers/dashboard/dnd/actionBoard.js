@@ -9,16 +9,12 @@ import { getRoomError } from 'reducers/dashboard/errorReducer';
 import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
 import _ from 'lodash';
-import RoomName from 'components/dashboard/dnd/roomName';
+import RoomName from 'containers/dashboard/dnd/roomName';
 import ErrorMessage from 'containers/general/errors/errorMessage';
 import DragElement from './../../../components/dashboard/dnd/dragBoard';
 import DropElement from './../../../components/dashboard/dnd/dropBoard';
 
 class ActionBoard extends Component {
-
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
-    }
 
     widgetActionInTheRoom(widgetInfo) {
         const { roomId } = this.props;
@@ -32,7 +28,7 @@ class ActionBoard extends Component {
             <div className="main-dnd">
                 { actualRoom !== null && <RoomName roomName={ roomName }/> }
                 { roomErrorMessage !== null && <ErrorMessage reducerSelector={ getRoomError } /> }
-                <div className="col-lg-12 clearfix">
+                <div className="col-lg-12 dnd-grids">
                     <div className="col-lg-9 clearfix">
                         <div className="drop-board clearfix">
                             { _.map(attachedWidgets, (widget, index) => {

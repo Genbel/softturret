@@ -1,27 +1,30 @@
 import {
-    ROOM_CHANGED, ROOM_ADDED, CLEAR_ALL_WIDGETS, TOGGLE_EDIT_ROOM,
+    ROOM_CHANGED, CLEAR_ALL_WIDGETS, TOGGLE_EDIT_ROOM,
     REMOVE_ROOM_ID, REMOVE_ROOM, REMOVE_ROOM_FAILED, REMOVE_ROOM_SUCCESS,
-    REMOVE_ROOM_MODAL_OPENED, REMOVE_ROOM_MODAL_CLOSED
+    REMOVE_ROOM_MODAL_OPENED, REMOVE_ROOM_MODAL_CLOSED,
+    ROOM_ADDED, ROOM_ADDED_SUCCESS, ROOM_ADDED_FAILED
 } from './dashboardTypes';
 import axios from 'axios';
 import { APIPath } from 'config/staticPaths';
 import assign from 'lodash/assign';
 
-export const changeRoom = (page) => ({
+export const paginateRoom = (page) => ({
     type: ROOM_CHANGED,
     page
 });
 
-export const addNewRoom = (name, roomType) => {
-    // Has to be async data
-    const data = {
-        'asdf2kkdi8k2asdf90': {
-            type: roomType,
-            text: name,
-            widgets: []
-        }
-    };
-    return { type: ROOM_ADDED, response: data };
+export const addNewRoom = (newRoom) => (dispatch, getState) => {
+    dispatch({ type: ROOM_ADDED });
+    axios.post(`${APIPath}/room/add_room`, newRoom)
+        .then(({ data }) => {
+            const actualPage = getState().dashboard.rooms.pagination.length;
+            dispatch({ type: ROOM_ADDED_SUCCESS, response: { room: data, actualPage }});
+        })
+        .catch(({ response }) => {
+            assign(newRoom, { errorMessage: response.data });
+            console.log(newRoom);
+            dispatch({ type: ROOM_ADDED_FAILED, response: newRoom });
+        });
 };
 
 export const showRemoveRoomModal = (roomId) => (dispatch) => {

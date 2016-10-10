@@ -1,32 +1,85 @@
 body .custom-modal {
+  transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
   position: fixed;
   background: rgba(0,0,0,.5);
   overflow: auto;
   display: block;
   width:100%;
   height:100%;
-  .modal-component {
+  .modal-component-md {
     position: fixed;
-    top: 50px;
-    left: 200px;
-    right: 200px;
+    top: 100px;
+    left: 20%;
+    right: 20%;
     overflow: auto;
     border-radius: 6px;
     outline: none;
     display: block;
     background-color: white;
-    border: 1px solid #a1a1a1;
+  }
+  .modal-component-sm {
+    position: fixed;
+    top: 200px;
+    left: 30%;
+    right: 30%;
+    overflow: auto;
+    border-radius: 6px;
+    outline: none;
+    display: block;
+    background-color: white;
   }
   .modal-custom-header {
-    padding: 10px;
-    color: white;
-    background: #838ea6;
-    border-bottom: 1px solid #838ea6;
+    padding: 8px;
+    font-size: 1em;
+    font-weight: 100;
+    &.add {
+      color: white;
+      background: #37b455;
+    }
+    &.delete {
+      color: white;
+      background: #cd4f4f;
+    }
+    span {
+      margin-left: 10px;
+    }
   }
   .modal-custom-footer {
     padding: 5px;
     text-align: right;
     border-top: 1px solid #e5e5e5;
+    button {
+      margin-left: 20px;
+      font-size: 1em;
+      padding: 5px 10px;
+      &.delete {
+        background-color: #cd4f4f;
+        border-color: #cd4f4f;
+        font-weight: 100;
+        &.waiting {
+          background: url("../../img/updating.gif") center center no-repeat;
+          background-color: #cd4f4f;
+          width: 70px;
+          height: 30px;
+        }
+      }
+      &.add {
+        color: white;
+        font-weight: 100;
+        background: #37b455;
+        &.waiting {
+          background: url("../../img/updating.gif") center center no-repeat;
+          background-color: transparent;
+          background-color: #37b455;
+          width: 70px;
+          height: 30px;
+        }
+      }
+      &.btn-cancel {
+        background-color: #393939;
+        color: white;
+      }
+    }
   }
 }
 

@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 import { toggleModal } from 'actions/dashboard/modalActions';
 import { addNewRoom } from 'actions/dashboard/roomsActions';
 import { ADD_ROOM_MODAL_CLOSED } from 'actions/dashboard/dashboardTypes';
+import { getRoomError } from 'reducers/dashboard/errorReducer';
+import { sendingRequest } from 'reducers/dashboard/roomReducer';
 import Modal from 'components/modal/main';
 import Header from 'components/modal/header';
 import Body from 'components/modal/body';
+import ErrorMessage from 'containers/general/errors/errorMessage';
 import WidgetTemplate from 'components/dashboard/dnd/WidgetTemplate';
 import Footer from 'components/modal/modalFooter';
 
@@ -36,7 +39,7 @@ class AddRoomModal extends Component {
             document.getElementsByClassName("widget-templates")[0].classList.add("warning-focus");
         } else {
             const selectedTemplate = this.state.selectedTemplate;
-            this.props.addNewRoom(this.roomInput.value, selectedTemplate);
+            this.props.addNewRoom({ roomText: this.roomInput.value, roomType: selectedTemplate });
             this.roomInput.classList.remove("warning-focus");
         }
     }
@@ -46,9 +49,12 @@ class AddRoomModal extends Component {
         const { toggleModal } = this.props;
         return (
           <div className="add-room-modal">
-              <Modal>
-                  <Header tittle='Add Room in your soft turret' />
+              <Modal className="modal-component-md">
+                  <Header
+                      className="add"
+                      tittle="Choose the page type that you want to add in your soft turret"/>
                   <Body className="red">
+                    <ErrorMessage reducerSelector={ getRoomError } />
                     <div className="form-group">
                         <label htmlFor="room-name">Room Name</label>
                         <input type="text" className="form-control" id="room-name" ref={(node) => this.roomInput = node} />
@@ -56,7 +62,14 @@ class AddRoomModal extends Component {
                     <h5>Choose the template that you want for your widget</h5>
                     <WidgetTemplate setSelectedWidget = { this.setSelectedWidget.bind(this) }/>
                   </Body>
-                  <Footer onCancel={ toggleModal } onConfirm={ this.createNewRoom.bind(this) } cancelAction={ ADD_ROOM_MODAL_CLOSED }/>
+                  <Footer
+                      onCancel={ toggleModal }
+                      onConfirm={ this.createNewRoom.bind(this) }
+                      cancelAction={ ADD_ROOM_MODAL_CLOSED }
+                      comfirmButtonClass="add"
+                      actionText="Create"
+                      reducerSelector={ sendingRequest }
+                      reducerType="rooms"/>
               </Modal>
           </div>
         );

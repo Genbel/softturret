@@ -34,11 +34,14 @@ var routes = [
         httpMethod: 'POST',
         middleware: [widgetCtrl.removeWidget]
     },{
+        path: '/api/dataservice/room/add_room',
+        httpMethod: 'POST',
+        middleware: [roomCtrl.addRoom]
+    },{
         path: '/api/dataservice/room/edit_rooom',
         httpMethod: 'POST',
         middleware: [roomCtrl.editRoom]
-    },
-    {
+    },{
         path:'/api/dataservice/room/remove_room',
         httpMethod: 'POST',
         middleware: [roomCtrl.removeRoom]

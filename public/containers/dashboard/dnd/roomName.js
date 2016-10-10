@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import { sendingRequest } from 'reducers/dashboard/roomReducer';
 
 class RoomName extends Component {
 
@@ -28,22 +30,32 @@ class RoomName extends Component {
         this.setState({ editing: false });
     }
 
-    showRoomElement() {
-        if(!this.state.editing){
-            return this.state.pageRoom;
+    renderActionButton() {
+        if( !this.props.isSending ) {
+            return (
+                <button type="submit" className="btn btn-primary">
+                    <FontAwesome name="check-circle-o" />
+                </button>
+            );
         } else {
             return (
-                <form onSubmit={ this.changeRoomName.bind(this) } className="input-group">
+                <button className="btn btn-danger spinner">Hello</button>
+            );
+        }
+    }
+
+    showRoomElement() {
+        if(!this.state.editing){
+            return `Page Room: ${this.state.pageRoom}`;
+        } else {
+            return (
+                <form onSubmit={ this.changeRoomName.bind(this) } >
                     <input
                         placeholder="What kind of name would you like for that page?"
                         className="form-control"
                         onChange={ this.onInputChange.bind(this) }
                         value= { this.state.pageRoom }/>
-                    <span className="input-group-btn">
-                        <button type="submit" className="btn btn-primary">
-                            <FontAwesome name="check-circle-o" />
-                        </button>
-                    </span>
+                        { this.renderActionButton() }
                 </form>
             );
         }
@@ -64,7 +76,14 @@ class RoomName extends Component {
 }
 
 RoomName.PropTypes = {
-    roomName: React.PropTypes.string.isRequired
+    roomName: React.PropTypes.string.isRequired,
+    isSending: React.PropTypes.bool.isRequired
 };
 
-export default RoomName;
+const mapStateToProps = (state) => {
+    return {
+        isSending: sendingRequest(state.dashboard.rooms)
+    }
+};
+
+export default connect(mapStateToProps)(RoomName);

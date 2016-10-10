@@ -1,5 +1,5 @@
-exports.getRoomTemplate = function(widgetId) {
-    switch (widgetId) {
+exports.getRoomTemplate = function(roomId) {
+    switch (roomId) {
         case 1:
             return ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'];
         case 2:

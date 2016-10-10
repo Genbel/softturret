@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { toggleModal } from 'actions/dashboard/modalActions';
 import { removeRoom } from 'actions/dashboard/roomsActions';
 import { getActualRoomId } from 'reducers/dashboard/roomReducer';
+import { sendingRequest } from 'reducers/dashboard/roomReducer';
 import { REMOVE_ROOM_MODAL_CLOSED } from 'actions/dashboard/dashboardTypes';
 import Modal from 'components/modal/main';
+import Body from 'components/modal/body';
 import Header from 'components/modal/header';
 import Footer from 'components/modal/modalFooter';
 
@@ -19,9 +21,21 @@ class RemoveRoomModal extends Component {
         const { toggleModal } = this.props;
         return (
             <div className="clear-all-modal">
-                <Modal>
-                    <Header tittle='Clear all the widget from the room' />
-                    <Footer onCancel={ toggleModal } onConfirm={ this.handleClearAllRoom.bind(this) } cancelAction={ REMOVE_ROOM_MODAL_CLOSED } />
+                <Modal className="modal-component-sm">
+                    <Header
+                        className="delete"
+                        tittle='Are you sure that you want to delete the page?' />
+                    <Body>
+                        <div className="empty-div" />
+                    </Body>
+                    <Footer
+                        onCancel={ toggleModal }
+                        onConfirm={ this.handleClearAllRoom.bind(this) }
+                        cancelAction={ REMOVE_ROOM_MODAL_CLOSED }
+                        comfirmButtonClass="delete"
+                        actionText="Accept"
+                        reducerSelector={ sendingRequest }
+                        reducerType="rooms"/>
                 </Modal>
             </div>
         );

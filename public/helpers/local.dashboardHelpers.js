@@ -35,13 +35,11 @@ export const _findElementState = (updatingIds, id) => {
  * @returns {{object}}: Widget object
  */
 export const removeElementFromTheState = (state, elementId) => {
-    console.log(elementId);
     const newById = {};
     _.forEach(state, (element, index) => {
         if(String(index) !== String(elementId)) {
             newById[index] = element;
         }
     });
-    console.log(newById);
     return newById;
 };

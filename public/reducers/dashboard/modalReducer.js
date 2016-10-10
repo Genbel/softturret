@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {
-    ADD_ROOM_MODAL_OPENED, ADD_ROOM_MODAL_CLOSED,
+    ADD_ROOM_MODAL_OPENED, ADD_ROOM_MODAL_CLOSED, ROOM_ADDED_SUCCESS,
     REMOVE_ROOM_MODAL_OPENED, REMOVE_ROOM_MODAL_CLOSED,
     ADD_WIDGET_MODAL_OPENED, ADD_WIDGET_MODAL_CLOSED, ADD_WIDGET_SUCCESS,
     REMOVE_WIDGET_MODAL_OPENED, REMOVE_WIDGET_MODAL_CLOSED
@@ -12,6 +12,7 @@ const modalReducer = () => {
             case ADD_ROOM_MODAL_OPENED:
                 return true;
             case ADD_ROOM_MODAL_CLOSED:
+            case ROOM_ADDED_SUCCESS:
                 return false;
             default:
                 return state;

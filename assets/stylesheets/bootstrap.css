@@ -4484,10 +4484,11 @@ a.tag:focus, a.tag:hover {
 }
 
 .alert {
-  padding: 15px;
+  padding: 8px;
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+  width: 90%;
 }
 
 .alert-heading {
@@ -4552,9 +4553,9 @@ a.tag:focus, a.tag:hover {
 }
 
 .alert-danger {
-  background-color: #f2dede;
-  border-color: #ebcccc;
-  color: #a94442;
+  background-color: #ff8686;
+  border-color: #d1d1d1;
+  color: #ffe4e3;
 }
 
 .alert-danger hr {

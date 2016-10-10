@@ -1,6 +1,7 @@
 import {
     FETCH_WIDGETS_SUCCESS, UNIT_WIDGET_EDITED, UNIT_WIDGET_FAILED,
-    ROOM_CHANGED, ROOM_ADDED,
+    ROOM_CHANGED,
+    ROOM_ADDED, ROOM_ADDED_SUCCESS, ROOM_ADDED_FAILED,
     REMOVE_ROOM_ID, REMOVE_ROOM, REMOVE_ROOM_SUCCESS, REMOVE_ROOM_FAILED,
     REMOVE_ROOM_MODAL_CLOSED,
     TOGGLE_EDIT_ROOM
@@ -25,9 +26,8 @@ const roomReducer = () => {
                 const actualRoom = state[response.roomId];
                 !response.attached? _.pull(actualRoom.widgets, response.widgetId): actualRoom.widgets.push(response.widgetId);
                 return { ...state, [response.roomId]: actualRoom };
-            case ROOM_ADDED:
-                const id = _.keys(response)[0];
-                return {...state, [id]: response[id] };
+            case ROOM_ADDED_SUCCESS:
+                return {...state, [response.room._id]: response.room };
             case REMOVE_ROOM_SUCCESS:
                 return removeElementFromTheState(state, response.roomId);
             default:
@@ -42,6 +42,8 @@ const roomReducer = () => {
                 return action.page;
             case REMOVE_ROOM_SUCCESS:
                 return action.response.actualPage;
+            case ROOM_ADDED_SUCCESS:
+                return action.response.actualPage;
             default:
                 return state;
         }
@@ -50,8 +52,8 @@ const roomReducer = () => {
         switch (action.type){
             case FETCH_WIDGETS_SUCCESS:
                 return createRoomPagination(action.response.rooms);
-            case ROOM_ADDED:
-                return [...state, _.keys(action.response)[0]];
+            case ROOM_ADDED_SUCCESS:
+                return [...state, action.response.room._id];
             case REMOVE_ROOM_SUCCESS:
                 return _.filter(state, (roomId) => { return String(roomId) !== String(action.response.roomId) });
             default:
@@ -82,9 +84,12 @@ const roomReducer = () => {
     const sendingRequest = (state = false, action) => {
         switch (action.type) {
             case REMOVE_ROOM:
+            case ROOM_ADDED:
                 return true;
             case REMOVE_ROOM_SUCCESS:
             case REMOVE_ROOM_FAILED:
+            case ROOM_ADDED_SUCCESS:
+            case ROOM_ADDED_FAILED:
                 return false;
             default:
                 return state;
@@ -108,6 +113,8 @@ export const getTotalRooms = (state) => _.size(state.pagination) - 1;
 export const getActualRoomName = (state) => _getActualRoomName(state.rooms.actual, state.rooms.pagination, state.rooms.byId);
 export const getActualRoomId = (state) => _getActualRoomId(state.actual, state.pagination);
 export const getRoomEditModeState = (state) => state.editMode;
+export const getRoomAttachedState = (state) => _getRoomAttachedState(state);
+export const sendingRequest = (state) => state.sendingRequest;
 
 //************* Reducer getter functions *************//
 const getRoomType = (state, id) => {
@@ -116,6 +123,21 @@ const getRoomType = (state, id) => {
 const _getActualRoomName = (pageNo, paginationElements, rooms) => !_.isEmpty(rooms)? rooms[paginationElements[pageNo]].text : null;
 
 //************* Reducer local functions *************//
+/**
+ * Check if actual room has an attached widgets
+ * @param {int} actual: Actual page number
+ * @param {Array} pagination: roomIds
+ * @param {Object} byId: all the room details
+ * @returns {boolean}
+ * @private
+ */
+const _getRoomAttachedState = ({ actual, pagination, byId}) => {
+    const roomId = pagination[actual];
+    console.log(roomId);
+    return roomId !== undefined?
+        byId[roomId].widgets.length !== 0 :
+        false;
+};
 /**
  * Get the room widgets sort by widgets position.
  * @param {Object} rooms - All the rooms of the user

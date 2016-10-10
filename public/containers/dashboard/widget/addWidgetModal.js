@@ -8,6 +8,7 @@ import Body from 'components/modal/body';
 import Footer from 'components/modal/modalFooter';
 import ErrorMessage from 'containers/general/errors/errorMessage';
 import { addWidget } from 'actions/dashboard/widgetActions';
+import { sendingRequest } from 'reducers/dashboard/widgetReducer';
 import { getWidgetError } from 'reducers/dashboard/errorReducer';
 import { ADD_WIDGET, ADD_WIDGET_MODAL_CLOSED } from 'actions/dashboard/dashboardTypes';
 
@@ -45,8 +46,10 @@ class AddWidgetModal extends Component {
         console.log('componennt re-rendered');
         return (
             <div className="add-widget-modal-root">
-                <Modal className="add-widget-modal">
-                    <Header tittle="Add new widget to add new channels" />
+                <Modal className="modal-component-sm add-widget-modal">
+                    <Header
+                        className="add"
+                        tittle="Add new widget to add new channels" />
                     <Body>
                         <ErrorMessage reducerSelector={ getWidgetError }/>
                         <div className="form-group">
@@ -67,7 +70,11 @@ class AddWidgetModal extends Component {
                     <Footer
                         onCancel={ toggleModal }
                         onConfirm={ this.createNewWidget.bind(this) }
-                        cancelAction={ ADD_WIDGET_MODAL_CLOSED } />
+                        cancelAction={ ADD_WIDGET_MODAL_CLOSED }
+                        comfirmButtonClass="add"
+                        actionText="Create"
+                        reducerSelector={ sendingRequest }
+                        reducerType="widgets"/>
                 </Modal>
             </div>
         );

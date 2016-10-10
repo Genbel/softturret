@@ -12,6 +12,10 @@ import foreach from 'lodash/forEach';
 
 class UserBoard extends Component {
 
+	shouldComponentUpdate(nextProps) {
+		return !this.props.isFetching && nextProps.isFetching? false : true;
+	}
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -85,14 +89,14 @@ class UserBoard extends Component {
 
 	render() {
 		const user = this.state;
-		const { errorMessage } = this.props;
+		console.log(this.state);
 		return (
 			<div className="row">
 				<div className="col-lg-12 headline">
 					<h5> Change your profile information </h5>
 				</div>
 				<div className="col-md-10">
-					{ errorMessage !== null && <ErrorMessage error={ errorMessage } /> }
+					<ErrorMessage reducerSelector={ getUserError } />
 				</div>
 				<div className="user-board col-lg-6">
 					<form onSubmit={ this.handleFormSubmit.bind(this) }>
@@ -151,7 +155,6 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
 	return {
 		user: getUserInfo(state.dashboard.user),
-		errorMessage: getUserError(state.dashboard.errors),
 		isFetching: isFetching(state.dashboard.user)
 	}
 };

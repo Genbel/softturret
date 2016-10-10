@@ -3,7 +3,8 @@ import {
     USER_UPDATE_FAILURE, USER_UPDATE_SUCCESS,
     ADD_WIDGET_SUCCESS, ADD_WIDGET_FAILED,
     CHANGE_WIDGET_NAME_SUCCESS, CHANGE_WIDGET_NAME_FAILED,
-    CHANGE_BUTTON_NAME_SUCCESS, CHANGE_BUTTON_NAME_FAILED
+    CHANGE_BUTTON_NAME_SUCCESS, CHANGE_BUTTON_NAME_FAILED,
+    ROOM_ADDED_FAILED
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 
@@ -11,6 +12,7 @@ const errorReducer = () => {
     const roomErrors = (state = null, action) => {
         switch (action.type) {
             case UNIT_WIDGET_FAILED:
+            case ROOM_ADDED_FAILED:
                 return action.response.errorMessage;
             case UNIT_WIDGET_SUCCESS:
                 return null;

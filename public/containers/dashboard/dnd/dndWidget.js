@@ -31,8 +31,10 @@ class DnDWidget extends Component {
 					<div className="col-lg-12">
 						<ActionBoard />
 					</div>
-					<ControlBoard />
-					<RoomPagination />
+					<div className="dnd-control">
+						<ControlBoard />
+						<RoomPagination />
+					</div>
 				</div>
 			)
 		}

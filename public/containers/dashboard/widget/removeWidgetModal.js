@@ -7,6 +7,7 @@ import Body from 'components/modal/body';
 import Footer from 'components/modal/modalFooter';
 import { toggleModal } from 'actions/dashboard/modalActions';
 import { removeWidget } from 'actions/dashboard/widgetActions';
+import { sendingRequest } from 'reducers/dashboard/widgetReducer';
 import { getRemovedWidgetId } from 'reducers/dashboard/widgetReducer';
 import { REMOVE_WIDGET_MODAL_CLOSED } from 'actions/dashboard/dashboardTypes';
 
@@ -21,12 +22,21 @@ class RemoveWidgetModal extends Component {
         const { toggleModal } = this.props;
         return (
             <div className="remove-widget-modal" >
-                <Modal>
-                    <Header tittle="Are you sure that you want to delete that widget?"/>
+                <Modal className="modal-component-sm">
+                    <Header
+                        tittle="Are you sure that you want to delete that widget?"
+                        className="delete"/>
+                    <Body>
+                        <div className="empty-div" />
+                    </Body>
                     <Footer
                         onCancel={ toggleModal }
                         onConfirm={ this.removeWidget.bind(this) }
-                        cancelAction={ REMOVE_WIDGET_MODAL_CLOSED } />
+                        cancelAction={ REMOVE_WIDGET_MODAL_CLOSED }
+                        comfirmButtonClass="delete"
+                        actionText="Accept"
+                        reducerSelector={ sendingRequest }
+                        reducerType="widgets"/>
                 </Modal>
             </div>
         )

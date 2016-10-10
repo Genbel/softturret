@@ -21,6 +21,8 @@ export const REMOVE_WIDGET_SUCCESS = 'REMOVE_WIDGET_SUCCESS';
 export const REMOVE_WIDGET_FAILED = 'REMOVE_WIDGET_FAILED';
 // Action types related with the rooms
 export const ROOM_ADDED = 'ROOM_ADDED';
+export const ROOM_ADDED_SUCCESS = 'ROOM_ADDED_SUCCESS';
+export const ROOM_ADDED_FAILED = 'ROOM_ADDED_FAILED';
 export const ROOM_CHANGED = 'ROOM_CHANGED';
 export const CLEAR_ALL_WIDGETS = 'CLEAR_ALL_WIDGETS';
 export const TOGGLE_EDIT_ROOM = 'TOGGLE_EDIT_ROOM';
