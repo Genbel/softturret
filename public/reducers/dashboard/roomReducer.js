@@ -4,7 +4,8 @@ import {
     ROOM_ADDED, ROOM_ADDED_SUCCESS, ROOM_ADDED_FAILED,
     REMOVE_ROOM_ID, REMOVE_ROOM, REMOVE_ROOM_SUCCESS, REMOVE_ROOM_FAILED,
     REMOVE_ROOM_MODAL_CLOSED,
-    TOGGLE_EDIT_ROOM
+    TOGGLE_EDIT_ROOM,
+    ROOM_NAME_CHANGED, ROOM_NAME_CHANGED_SUCCESS, ROOM_NAME_CHANGED_FAILED
 } from 'actions/dashboard/dashboardTypes';
 import { combineReducers } from 'redux';
 import { getWidget } from 'reducers/dashboard/widgetReducer';
@@ -30,6 +31,10 @@ const roomReducer = () => {
                 return {...state, [response.room._id]: response.room };
             case REMOVE_ROOM_SUCCESS:
                 return removeElementFromTheState(state, response.roomId);
+            case ROOM_NAME_CHANGED_SUCCESS:
+                const newNameRoom = state[response.roomId];
+                newNameRoom.text = response.roomName;
+                return { ...state, [response.roomId]: newNameRoom };
             default:
                 return state;
         }
@@ -85,11 +90,14 @@ const roomReducer = () => {
         switch (action.type) {
             case REMOVE_ROOM:
             case ROOM_ADDED:
+            case ROOM_NAME_CHANGED:
                 return true;
             case REMOVE_ROOM_SUCCESS:
             case REMOVE_ROOM_FAILED:
             case ROOM_ADDED_SUCCESS:
             case ROOM_ADDED_FAILED:
+            case ROOM_NAME_CHANGED_SUCCESS:
+            case ROOM_NAME_CHANGED_FAILED:
                 return false;
             default:
                 return state;
@@ -133,7 +141,6 @@ const _getActualRoomName = (pageNo, paginationElements, rooms) => !_.isEmpty(roo
  */
 const _getRoomAttachedState = ({ actual, pagination, byId}) => {
     const roomId = pagination[actual];
-    console.log(roomId);
     return roomId !== undefined?
         byId[roomId].widgets.length !== 0 :
         false;

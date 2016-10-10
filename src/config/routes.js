@@ -42,6 +42,10 @@ var routes = [
         httpMethod: 'POST',
         middleware: [roomCtrl.editRoom]
     },{
+        path: '/api/dataservice/room/change_room_name',
+        httpMethod: 'POST',
+        middleware: [roomCtrl.changeRoomName]
+    },{
         path:'/api/dataservice/room/remove_room',
         httpMethod: 'POST',
         middleware: [roomCtrl.removeRoom]

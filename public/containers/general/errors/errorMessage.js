@@ -9,7 +9,6 @@ class ErrorMessage extends Component {
     }
 
     render() {
-        console.log('errorMessage re-render');
         const { errorMessage } = this.props;
         const style = { float: 'none' };
         const spanStyle = { marginLeft: '15px' };

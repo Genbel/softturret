@@ -31,7 +31,6 @@ ModalFooter.PropTypes = {
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(ownProps);
     return {
         isSending: ownProps.reducerSelector(state.dashboard[ownProps.reducerType])
     }

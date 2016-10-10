@@ -23,11 +23,11 @@ class ActionBoard extends Component {
     }
 
     render() {
-        const { disconnectedWidgets, attachedWidgets, roomName, editMode, roomErrorMessage, actualRoom } = this.props;
+        const { disconnectedWidgets, attachedWidgets, roomName, editMode, roomErrorMessage, actualRoom, roomId } = this.props;
         return (
             <div className="main-dnd">
-                { actualRoom !== null && <RoomName roomName={ roomName }/> }
                 { roomErrorMessage !== null && <ErrorMessage reducerSelector={ getRoomError } /> }
+                { actualRoom !== null && <RoomName roomId={ roomId } roomName={ roomName }/> }
                 <div className="col-lg-12 dnd-grids">
                     <div className="col-lg-9 clearfix">
                         <div className="drop-board clearfix">

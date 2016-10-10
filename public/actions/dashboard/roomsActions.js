@@ -2,7 +2,8 @@ import {
     ROOM_CHANGED, CLEAR_ALL_WIDGETS, TOGGLE_EDIT_ROOM,
     REMOVE_ROOM_ID, REMOVE_ROOM, REMOVE_ROOM_FAILED, REMOVE_ROOM_SUCCESS,
     REMOVE_ROOM_MODAL_OPENED, REMOVE_ROOM_MODAL_CLOSED,
-    ROOM_ADDED, ROOM_ADDED_SUCCESS, ROOM_ADDED_FAILED
+    ROOM_ADDED, ROOM_ADDED_SUCCESS, ROOM_ADDED_FAILED,
+    ROOM_NAME_CHANGED, ROOM_NAME_CHANGED_SUCCESS, ROOM_NAME_CHANGED_FAILED
 } from './dashboardTypes';
 import axios from 'axios';
 import { APIPath } from 'config/staticPaths';
@@ -22,7 +23,6 @@ export const addNewRoom = (newRoom) => (dispatch, getState) => {
         })
         .catch(({ response }) => {
             assign(newRoom, { errorMessage: response.data });
-            console.log(newRoom);
             dispatch({ type: ROOM_ADDED_FAILED, response: newRoom });
         });
 };
@@ -42,6 +42,7 @@ export const removeRoom = (roomId) => (dispatch, getState) => {
         })
         .catch(({ response }) => {
             dispatch({ type: REMOVE_ROOM_FAILED, response: { roomId, errorMessage: response.data }});
+            dispatch({ type: REMOVE_ROOM_MODAL_CLOSED });
         });
 };
 
@@ -55,3 +56,14 @@ const getActualPage = (actual, pagination) => {
 export const toggleEditRoom = () => ({
     type: TOGGLE_EDIT_ROOM
 });
+
+export const changeRoomName = (roomInfo) => (dispatch) => {
+    dispatch({ type: ROOM_NAME_CHANGED });
+    axios.post(`${APIPath}/room/change_room_name`, roomInfo)
+        .then(() => {
+            dispatch({ type: ROOM_NAME_CHANGED_SUCCESS, response: roomInfo });
+        })
+        .catch(({ response }) => {
+            dispatch({ type: ROOM_NAME_CHANGED_FAILED, response: { errorMessage: response.data }});
+        });
+};

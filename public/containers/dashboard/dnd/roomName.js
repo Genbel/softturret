@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import FontAwesome from 'react-fontawesome';
+import { changeRoomName } from 'actions/dashboard/roomsActions';
 import { sendingRequest } from 'reducers/dashboard/roomReducer';
 
 class RoomName extends Component {
@@ -14,7 +16,11 @@ class RoomName extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ pageRoom: nextProps.roomName });
+        nextProps.isSending?
+            this.setState({ pageRoom: this.state.pageRoom }) :
+            this.setState({ pageRoom: nextProps.roomName });
+        this.props.isSending && !nextProps.isSending && this.setState({ editing: false});
+        this.props.roomId !== nextProps.roomId && this.setState({ editing: false });
     }
 
     changeEditState() {
@@ -26,8 +32,9 @@ class RoomName extends Component {
     }
 
     changeRoomName(event) {
+        const { changeRoomName, roomId } = this.props;
         event.preventDefault();
-        this.setState({ editing: false });
+        changeRoomName({ roomId, roomName: this.state.pageRoom });
     }
 
     renderActionButton() {
@@ -77,7 +84,12 @@ class RoomName extends Component {
 
 RoomName.PropTypes = {
     roomName: React.PropTypes.string.isRequired,
-    isSending: React.PropTypes.bool.isRequired
+    isSending: React.PropTypes.bool.isRequired,
+    changeRoomName: React.PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ changeRoomName }, dispatch);
 };
 
 const mapStateToProps = (state) => {
@@ -86,4 +98,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps)(RoomName);
+export default connect(mapStateToProps, mapDispatchToProps)(RoomName);

@@ -40,7 +40,6 @@ class Dropboard extends Component {
     deleteWidget() {
         const { position, widgetId, widgetActionInTheRoom } = this.props;
         const widgetInfo = { widgetId: widgetId, attached: true, position: position };
-        console.log(widgetInfo);
         widgetActionInTheRoom(widgetInfo);
     }
 
