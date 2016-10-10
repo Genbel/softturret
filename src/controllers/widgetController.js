@@ -18,7 +18,7 @@ exports.addWidget = function(req, res) {
 
     return setTimeout(function(){
         var result = Math.floor(Math.random() * 6) + 1;
-        if(result > 7){
+        if(result > 0){
             return res.status(200).json(newWidget);
         }
         return res.status(400).json('It was an error while we were saving the ' + name + ' widget, try it again!');
@@ -38,7 +38,7 @@ exports.removeWidget = function(req, res) {
 exports.changeWidgetName = function(req, res) {
     return setTimeout(function(){
         var result = Math.floor(Math.random() * 6) + 1;
-        if(result > 7){
+        if(result > 0){
             return res.status(200).json('ok');
         }
         return res.status(400).json('It was an error while we were saving the ' + req.body.widgetName + ' widget , try it again!');

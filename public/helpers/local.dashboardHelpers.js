@@ -23,8 +23,8 @@ export const fillWidgetsInTheBoard = (widgets, roomType) => {
  * @returns {boolean}
  */
 export const _findElementState = (updatingIds, id) => {
-    return  _.find(updatingIds, (elem) => {
-            return elem == id;
+    return _.find(updatingIds, (elem) => {
+            return String(elem) == String(id);
         }) !== undefined;
 };
 

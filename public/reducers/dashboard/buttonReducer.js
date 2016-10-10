@@ -8,7 +8,6 @@ const buttonReducer = () => {
     return (state = [], action) => {
         switch (action.type) {
             case CHANGE_BUTTON_NAME:
-                console.log(action);
                 return [...state, action.response.buttonId];
             case CHANGE_BUTTON_NAME_FAILED:
             case CHANGE_BUTTON_NAME_SUCCESS:

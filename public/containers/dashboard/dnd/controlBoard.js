@@ -11,26 +11,25 @@ import RemoveRoomModal from 'containers/dashboard/dnd/removeRoomModal';
 
 class ActionBoard extends Component {
 
-    _hasToDisableButton() {
+    _hasToDisableButton(buttonType = null) {
         const { roomId, hasWidgetAttatched, editMode } = this.props;
         return roomId === undefined ?
             true :
             editMode?
-                false :
-                !hasWidgetAttatched;
+                buttonType === 'deleteRoom' :
+                buttonType === 'deleteRoom' ? hasWidgetAttatched : !hasWidgetAttatched;
     }
 
     render(){
         const { toggleModal, addRoomModalIsOpen, removeRoomModalIsOpen, toggleEditRoom, editMode, showRemoveRoomModal, roomId } = this.props;
-        const disableBtn = this._hasToDisableButton();
         return (
             <div className="control-board col-lg-6">
                 <div className="btn-container">
-                    <button className="btn btn-danger" onClick={ () => showRemoveRoomModal(roomId) } disabled={ editMode || roomId === undefined }>Delete Page</button>
+                    <button className="btn btn-danger" onClick={ () => showRemoveRoomModal(roomId) } disabled={ this._hasToDisableButton('deleteRoom') }>Delete Page</button>
                     { removeRoomModalIsOpen && <RemoveRoomModal /> }
                 </div>
                 <div className="btn-container">
-                    <button className="btn btn-danger" onClick={ () => toggleEditRoom() } disabled={ disableBtn } >
+                    <button className="btn btn-danger" onClick={ () => toggleEditRoom() } disabled={ this._hasToDisableButton() } >
                         { editMode? 'Save' : 'Erase Widget' }
                     </button>
                 </div>

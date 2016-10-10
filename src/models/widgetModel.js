@@ -175,6 +175,7 @@ exports.createNewWidget = function(widgetName, type) {
         position: null,
         text: widgetName,
         attached: false,
+        buttonsAttached: false,
         id: uuid.v4(),
         buttons: buttons
     };

@@ -79,10 +79,14 @@ const widgetReducer = () => {
     const restQueue = (state = [], action) => {
         switch (action.type){
             case UNIT_WIDGET_EDITED:
-                return [ ...state, Number(action.response.widgetId)];
+            case CHANGE_WIDGET_NAME:
+                return [ ...state, String(action.response.widgetId)];
             case UNIT_WIDGET_SUCCESS:
             case UNIT_WIDGET_FAILED:
-                return _.omitBy(state, (elem, index) => { return Number(index) === Number(action.response.widgetId) });
+                return _.omitBy(state, (elem, index) => { return String(index) === String(action.response.widgetId) });
+            case CHANGE_WIDGET_NAME_SUCCESS:
+            case CHANGE_WIDGET_NAME_FAILED:
+                return _.remove(state, (elem) => { return elem !== action.response.widgetId });
             default:
                 return state
         }
