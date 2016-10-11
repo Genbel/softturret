@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 import { fetchWidgets } from 'actions/dashboard/widgetActions';
 import { ADD_ROOM_MODAL_OPENED } from 'actions/dashboard/dashboardTypes';
 import ActionBoard from './actionBoard';
-import ControlBoard from 'containers/dashboard/dnd/controlBoard';
-import RoomPagination from 'containers/dashboard/dnd/pagination';
 import spinner from '../../../../assets/img/gears.gif';
 
 class DnDWidget extends Component {
@@ -30,10 +28,6 @@ class DnDWidget extends Component {
 				<div className="row">
 					<div className="col-lg-12">
 						<ActionBoard />
-					</div>
-					<div className="dnd-control">
-						<ControlBoard />
-						<RoomPagination />
 					</div>
 				</div>
 			)

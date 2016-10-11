@@ -23,7 +23,7 @@ class ActionBoard extends Component {
     render(){
         const { toggleModal, addRoomModalIsOpen, removeRoomModalIsOpen, toggleEditRoom, editMode, showRemoveRoomModal, roomId } = this.props;
         return (
-            <div className="control-board col-lg-6">
+            <div className="control-board col-lg-8">
                 <div className="btn-container">
                     <button className="btn btn-danger" onClick={ () => showRemoveRoomModal(roomId) } disabled={ this._hasToDisableButton('deleteRoom') }>Delete Page</button>
                     { removeRoomModalIsOpen && <RemoveRoomModal /> }

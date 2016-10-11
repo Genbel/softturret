@@ -20,14 +20,12 @@ export const store = ConfigureStore();
 ReactDOM.render( 
 	<Provider store={ store }>
 		<Router history={browserHistory}>
-			<Route path="/" component={App}>
+			<Route path="/" component={DealerBoard}>
 				<Route path="dashboard" component={Dashboard}>
 					<Route path="design-board" component={DnDWidget} />
 					<Route path="widget-board" component={WidgetBoard} />
 					<Route path="button-board" component={ButtonBoard} />
 					<Route path="user-board" component={UserBoard} />
-				</Route>
-				<Route path="dealerboard" component={DealerBoard}>
 				</Route>
 			</Route>				
 		</Router>

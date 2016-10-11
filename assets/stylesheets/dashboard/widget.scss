@@ -1,4 +1,8 @@
 .widget-board {
+  .widget-list {
+    max-height: 75vh;
+    overflow: scroll;
+  }
   li.widget-item {
     list-style-type: none;
     margin-bottom: 20px;
@@ -20,11 +24,10 @@
         color: crimson;
         margin-right: 10px;
       }
-      & span.widget-name::after, span.widget-name::after{
+      & span.widget-type::after, span.widget-type::after{
         font-family: FontAwesome;
         content: "\f040";
-        right: 50px;
-        position: absolute;
+        margin-left: 20px;
         color: black;
       }
     }

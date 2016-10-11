@@ -34,6 +34,10 @@
   border: 2px solid black;
   margin: 2px 0;
 }
+.drag-board {
+  max-height: 52vh;
+  overflow: scroll;
+}
 .drop-board {
   @media (min-width: 992px){
     .col-lg-3 {
