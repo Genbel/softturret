@@ -83,7 +83,7 @@ const widgetReducer = () => {
                 return [ ...state, String(action.response.widgetId)];
             case UNIT_WIDGET_SUCCESS:
             case UNIT_WIDGET_FAILED:
-                return _.omitBy(state, (elem, index) => { return String(index) === String(action.response.widgetId) });
+                return _.remove(state, (elem) => { return String(elem) !== String(action.response.widgetId) });
             case CHANGE_WIDGET_NAME_SUCCESS:
             case CHANGE_WIDGET_NAME_FAILED:
                 return _.remove(state, (elem) => { return elem !== action.response.widgetId });

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ErrorMessage from 'containers/general/errors/errorMessage';
 import WidgetItem from 'containers/dashboard/widget/widgetItem';
-import AddWidgetButton from 'containers/dashboard/widget/addWidgetButton';
 import { getAllWidgets } from 'reducers/dashboard/widgetReducer';
 import { getWidgetError } from 'reducers/dashboard/errorReducer';
 import map from 'lodash/map';
@@ -23,7 +22,6 @@ class WidgetList extends Component {
     renderList() {
         return (
             <div className="widget-list">
-                <AddWidgetButton />
                 { this.displayWidgetItems() }
             </div>
         );

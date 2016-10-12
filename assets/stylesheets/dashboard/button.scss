@@ -2,11 +2,15 @@
   .back-button {
     margin-top: 200px;
   }
+  .widget-list {
+    max-height: 74vh;
+    overflow: scroll;
+  }
   li.widget-item {
     list-style-type: none;
     margin-bottom: 20px;
     padding: 10px;
-    display:flex;
+    display: flex;
     &:hover {
       cursor: pointer;
       border: 2px solid lightgrey;
@@ -23,49 +27,53 @@
       width: 100%;
     }
   }
-  .button-list ul li.button-item {
-    list-style-type: none;
-    margin-bottom: 30px;
-    padding: 10px;
-    &:hover {
-      border: 2px solid #c7c4c4;
-    }
-    .button-content {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      li {
-        list-style-type: none;
+  .button-list {
+    max-height: 80vh;
+    overflow: scroll;
+    ul li.button-item {
+      list-style-type: none;
+      margin-bottom: 30px;
+      padding: 10px;
+      &:hover {
+        border: 2px solid #c7c4c4;
       }
-      .action-content {
-        width: 20%;
-      }
-      .text {
-        width: 80%;
-        .custom, .not-assigned {
-          color: dodgerblue;
-          font-weight: 600;
-          font-size: 1.1em;
-          & input {
-            background-color: transparent;
-            border: none;
-            padding-left: 0px;
-            opacity: 0.8;
+      .button-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        li {
+          list-style-type: none;
+        }
+        .action-content {
+          width: 20%;
+        }
+        .text {
+          width: 80%;
+          .custom, .not-assigned {
             color: dodgerblue;
+            font-weight: 600;
+            font-size: 1.1em;
+            & input {
+              background-color: transparent;
+              border: none;
+              padding-left: 0px;
+              opacity: 0.8;
+              color: dodgerblue;
+            }
+          }
+          .not-assigned {
+            opacity: 0.6;
+          }
+          .default {
+            color: #fff8dc;
+            font-size: 0.9em;
           }
         }
-        .not-assigned {
-          opacity: 0.6;
+        .number {
+          display: flex;
+          align-items: center;
+          color: #c7c4c4;
         }
-        .default {
-          color: #fff8dc;
-          font-size: 0.9em;
-        }
-      }
-      .number {
-        display: flex;
-        align-items: center;
-        color: #c7c4c4;
       }
     }
   }

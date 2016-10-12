@@ -1,4 +1,4 @@
-import { ROOM_ADDED, UNIT_WIDGET_EDITED } from 'actions/dashboard/dashboardTypes';
+import { ROOM_ADDED_SUCCESS, UNIT_WIDGET_EDITED } from 'actions/dashboard/dashboardTypes';
 
 export const widgetsFetchedData = () => ({
     widgets: {
@@ -7,37 +7,40 @@ export const widgetsFetchedData = () => ({
             position: 1,
             text: 'Lina Familly',
             attached: true,
-            id: 1
+            id: "1"
         }
     },
     rooms: {
         'asdf2kf0asdfnasdf90': {
             type: ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'],
             text: 'Surrounding People',
-            widgets: [1]
+            widgets: ["1"]
         }
     }
 });
 
 export const newRoomAction = () => ({
-    type: ROOM_ADDED,
+    type: ROOM_ADDED_SUCCESS,
     response: {
-        'asdf2kf0asdfnasdf90': {
+        room: {
+            _id: 'asdf2kf0asdfnasdf90',
             type: ['GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS', 'GS'],
             text: 'Surrounding People',
-            widgets: [1]
-        }
+            widgets: ["1"],
+            attached: false
+        },
+        actualPage: 1
     }
 });
 
 export const unitWidgetArgument = (attached) => ({
-    widgetId: 1,
+    widgetId: "1",
     attached,
     position: 3,
     roomId: 'asdf2kf0asdfnasdf90'
 });
 export const unitWidgetActionCreatorObject = (attached) => ({
-    widgetId: 1,
+    widgetId: "1",
     attached,
     position: 3,
     roomId: 'asdf2kf0asdfnasdf90',
@@ -47,7 +50,7 @@ export const unitWidgetActionCreatorObject = (attached) => ({
 export const unitWidgetActionCreator = (attached, type) => ({
     type,
     response: {
-        widgetId: 1,
+        widgetId: "1",
         attached,
         position: 3,
         roomId: 'asdf2kf0asdfnasdf90',

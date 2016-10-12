@@ -5,6 +5,7 @@ import { fetchWidgets } from 'actions/dashboard/widgetActions';
 import { getModalState } from 'reducers/dashboard/modalReducer';
 import WidgetList from './widgetList';
 import RemoveWidgetModal from './removeWidgetModal';
+import AddWidgetButton from 'containers/dashboard/widget/addWidgetButton';
 import style from '../../../../assets/stylesheets/dashboard/widget.scss';
 
 class WidgetBoard extends Component {
@@ -17,6 +18,7 @@ class WidgetBoard extends Component {
 	renderWidgetComponents(){
 		return (
 			<div className="widget-board">
+				<AddWidgetButton />
 				<WidgetList />
 				{ this.props.removeWidgetModalIsOpen && <RemoveWidgetModal />}
 			</div>

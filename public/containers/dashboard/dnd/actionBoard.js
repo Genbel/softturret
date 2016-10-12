@@ -9,6 +9,8 @@ import { getRoomError } from 'reducers/dashboard/errorReducer';
 import { getDisconnectedWidgets } from 'reducers/dashboard/widgetReducer';
 import style from '../../../../assets/stylesheets/dashboard/dnd.scss';
 import _ from 'lodash';
+import ControlBoard from 'containers/dashboard/dnd/controlBoard';
+import RoomPagination from 'containers/dashboard/dnd/pagination';
 import RoomName from 'containers/dashboard/dnd/roomName';
 import ErrorMessage from 'containers/general/errors/errorMessage';
 import DragElement from './../../../components/dashboard/dnd/dragBoard';
@@ -30,29 +32,35 @@ class ActionBoard extends Component {
                 { actualRoom !== null && <RoomName roomId={ roomId } roomName={ roomName }/> }
                 <div className="col-lg-12 dnd-grids">
                     <div className="col-lg-9 clearfix">
-                        <div className="drop-board clearfix">
-                            { _.map(attachedWidgets, (widget, index) => {
-                                return <DropElement type={ widget.type }
-                                                    key={ index }
-                                                    position={ index }
-                                                    widgetId= { widget.attached && widget.id }
-                                                    text={ widget.text }
-                                                    attached={ widget.attached }
-                                                    widgetActionInTheRoom={ this.widgetActionInTheRoom.bind(this) }
-                                                    editMode={ editMode }/>
-                            })}
+                        <div className="col-lg-12 clearfix">
+                            <div className="drop-board clearfix">
+                                { _.map(attachedWidgets, (widget, index) => {
+                                    return <DropElement type={ widget.type }
+                                                        key={ index }
+                                                        position={ index }
+                                                        widgetId= { widget.attached && widget.id }
+                                                        text={ widget.text }
+                                                        attached={ widget.attached }
+                                                        widgetActionInTheRoom={ this.widgetActionInTheRoom.bind(this) }
+                                                        editMode={ editMode }/>
+                                })}
+                            </div>
+                        </div>
+                        <div className="col-lg-12 clearfix">
+                            <div className="dnd-control">
+                                <ControlBoard />
+                                <RoomPagination />
+                            </div>
                         </div>
                     </div>
-                    <div className="col-lg-3 clearfix">
-                        <div className="drag-board">
-                            { _.map(disconnectedWidgets, (widget, index) => {
-                                return <DragElement type={widget.type}
-                                                    key={index}
-                                                    text={widget.text}
-                                                    id ={widget.id}
-                                />
-                            })}
-                        </div>
+                    <div className="col-lg-3 clearfix drag-board">
+                        { _.map(disconnectedWidgets, (widget, index) => {
+                            return <DragElement type={widget.type}
+                                                key={index}
+                                                text={widget.text}
+                                                id ={widget.id}
+                            />
+                        })}
                     </div>
                 </div>
             </div>

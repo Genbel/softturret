@@ -32,14 +32,14 @@ class RoomPagination extends Component {
             const prevButton = this.displayButton(actualRoom, 0, 'PREV');
             const nextButton = this.displayButton(actualRoom, totalRooms, 'NEXT');
             return (
-                <div className="room-pagination col-lg-3">
-                    <div className="col-lg-3">
+                <div className="room-pagination col-lg-4">
+                    <div className="col-lg-4">
                         { prevButton }
                     </div>
                     <div className="col-lg-3" id="pagination-text">
                         <p>{ actualRoom + 1 }/{ totalRooms + 1 }</p>
                     </div>
-                    <div className="col-lg-3">
+                    <div className="col-lg-4">
                         { nextButton }
                     </div>
                 </div>

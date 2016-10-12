@@ -145,6 +145,366 @@ exports.getUserInfo = function() {
                         position: 4
                     }
                 }
+            },
+            'c81bca8f-gaara-49a7-91a6-f5a88b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bcaa8f-gara-49a7-91a6-f5a88b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bca8f-gara-49aa7-91a6-f5a88b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bca8f-garaaa-49a7-91a6-f5a88b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bca8f-gara-49a7-91a6-f5a88ab6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bca8f-gara-49a7-91a6-f5a8aa8b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bdfsca8f-gaara-49a7-91a6-f5a88b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bcsadfaa8f-gara-49a7-91a6-f5a88b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bca8f-garfsda-49aa7-91a6-f5a88b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bca8f-garadfsaa-49a7-91a6-f5a88b6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bca8f-gara-49a7-91fsa6-f5a88ab6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
+            },
+            'c81bca8f-gara-49a7-91a6-f5a8aa8basfd6cce0d': {
+                type: 'GS',
+                position: null,
+                text: 'Lagunak',
+                attached: false,
+                buttonsAttached: true,
+                id: 'c81bca8f-gara-49a7-91a6-f5a88b6cce0d',
+                buttons: {
+                    fa9asdf9asd: {
+                        channel_ref: 'Kuadrila, London, SIP',
+                        display_text: 'Amin Kheireddine',
+                        position: 1
+                    },
+                    fa9aasf9asd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 2
+                    },
+                    fa9asdfassd: {
+                        channel_ref: null,
+                        display_text: null,
+                        position: 3
+                    },
+                    fa9asdf9a132d: {
+                        channel_ref: 'Kuadrila, Nepal, PORT 7 CH 24',
+                        display_text: null,
+                        position: 4
+                    }
+                }
             }
         },
         rooms: {

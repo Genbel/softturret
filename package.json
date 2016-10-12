@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "NODE_PATH=./public mocha --compilers js:babel-core/register --require ./test/test_helper.js --require ignore-styles --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "test-dash": "NODE_PATH=./public mocha --compilers js:babel-core/register --require ./test/test_helper.js --require ignore-styles --recursive ./test/dashboard",
+    "test-turret": "NODE_PATH=./public mocha --compilers js:babel-core/register --require ./test/test_helper.js --require ignore-styles --recursive ./test/dealerboard",
+    "test-dash:watch": "npm run test-dash -- --watch",
+    "test-turret:watch": "npm run test-turret -- --watch"
   },
   "keywords": [
     "react",
