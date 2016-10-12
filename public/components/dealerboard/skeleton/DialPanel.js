@@ -6,7 +6,7 @@ class DialPanel extends Component {
 
     render() {
         return (
-            <div className="dial-panel">
+            <div className="dial-panel-component">
                 <MultiAlert />
                 <Handset />
             </div>

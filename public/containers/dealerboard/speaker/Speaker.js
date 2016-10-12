@@ -4,7 +4,7 @@ class Speaker extends Component {
 
     render() {
         return (
-            <div className="speaker-panel">
+            <div className="speaker-component">
                 <span>Speaker</span>
             </div>
         );

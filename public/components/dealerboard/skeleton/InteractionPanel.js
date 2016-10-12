@@ -6,7 +6,7 @@ class InteractionPanel extends Component {
 
     render() {
         return (
-            <div className="interaction-panel">
+            <div className="interaction-panel-component">
                 <NotificationArea />
                 <Speaker />
             </div>

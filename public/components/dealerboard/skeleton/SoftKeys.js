@@ -6,7 +6,7 @@ class SoftKeys extends Component {
 
     render() {
         return (
-            <div className="soft-keys">
+            <div className="soft-keys-component">
                 <Turret />
                 <DialPanel />
             </div>

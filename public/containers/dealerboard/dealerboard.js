@@ -7,7 +7,7 @@ class DealerBoard extends Component {
 
     render() {
         return (
-            <div className="dealer-board">
+            <div className="dealer-board-component">
                 <RoomPanel />
                 <SoftKeys />
                 <InteractionPanel />

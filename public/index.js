@@ -6,7 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // App Components
 import App from './components/app';
 import Dashboard from './components/dashboard/board';
-import DealerBoard from './containers/dealerboard/dealerboard';
+import DealerBoard from './containers/dealerboard/DealerBoard';
 import DnDWidget from './containers/dashboard/dnd/dndWidget';
 import WidgetBoard from './containers/dashboard/widget/widgetBoard';
 import ButtonBoard from './containers/dashboard/button/buttonBoard';
